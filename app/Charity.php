@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Charity extends Model
 {
-    
-    protected $fillable = ['Name', 'Char_address', 'Char_information', 'user_id'];
+    protected $fillable = [
+        'customer_id', 'charity_id'
+    ];
+    // protected $fillable = ['Name', 'Char_address', 'Char_information', 'user_id'];
 
     public function user () {
         return $this->belongsTo(User::class);

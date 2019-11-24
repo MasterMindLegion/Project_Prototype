@@ -16,10 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->dateTime('order_date');
+            $table->dateTime('order_date')->nullable();
             $table->boolean('confirmed');
-            $table->decimal('quantity', 8, 2);
-            $table->float('price_per_item', 8, 2);
+            $table->decimal('quantity', 8, 2)->nullable();
+            $table->float('price_per_item', 8, 2)->nullable();
             $table->timestamps();
         });
 
@@ -36,11 +36,11 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
 
-        Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('charity_id');
+        // Schema::table('orders', function (Blueprint $table) {
+        //     $table->unsignedBigInteger('charity_id');
 
-            $table->foreign('charity_id')->references('id')->on('charities');
-        });
+        //     $table->foreign('charity_id')->references('id')->on('charities');
+        // });
 
 
 

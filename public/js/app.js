@@ -59266,8 +59266,8 @@ react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/martinchalupa/Web/Final_Project/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/martinchalupa/Web/Final_Project/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/LACI/Web/Project_Prototype/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/LACI/Web/Project_Prototype/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
