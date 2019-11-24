@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 import Register from './Auth/Register.jsx';
 import Login from './Auth/Login.jsx';
 import NotFoundPage from './Layout/NotFoundPage.jsx';
 import HomePage from './Pages/HomePage.jsx';
 import Cart from './Layout/Main/Cart/Cart.jsx';
-import { connect } from 'react-redux';
-
+import SellOn from './Layout/Main/SellOn.jsx';
+import Checkout from './Layout/Main/Checkout/Checkout.jsx'
 import CharityRegister from './Auth/CharityRegister.jsx';
 import PrivateRoute from './Pages/Protected.jsx';
 
@@ -70,6 +71,7 @@ class App extends React.Component {
         return (
             <BrowserRouter>
             <Switch>
+                {/* HomePage */}
                  <Route exact path="/"  render={() => {
                      return <HomePage
                      items={this.state.items}
@@ -77,13 +79,17 @@ class App extends React.Component {
                      />;
                  }}
              ></Route>
+             {/* REGISTER */}
                  <Route exact path="/app/register" component={Register}/>           
+                {/* LOGIN */}
                <Route exact path="/app/login">
                    <Login/>
-               </Route>           
+               </Route>   
+               {/* REGISTER CHARITY/PRIVATE ROUTE */}
                <PrivateRoute exact path="/app/registerCharity">
                     <CharityRegister/>
                 </PrivateRoute>
+                {/* CART */}
                 <Route exact path="/app/cart"  render={() => {
                      return <Cart
                      items={this.state.cart} 
@@ -91,6 +97,11 @@ class App extends React.Component {
                      />;
                  }}
                 />
+                {/* SELL ON */}
+                <Route path="/app/sellon" component={SellOn} />
+                {/* CHECKOUT  */}
+                <Route path="/app/checkout" component={Checkout} />
+                {/* NotFoundPage */}
                <Route path="*" component={NotFoundPage} /> 
             </Switch>
             </BrowserRouter>

@@ -50,6 +50,9 @@ import { connect } from 'react-redux';
               <NavItem>
                 <Link to='/app/cart'>  Cart </ Link>     
               </NavItem>
+              <NavItem>
+                <Link to='/app/sellon'>  Sell </ Link>     
+              </NavItem>
             </Nav>
           </Collapse>
         </Navbar>

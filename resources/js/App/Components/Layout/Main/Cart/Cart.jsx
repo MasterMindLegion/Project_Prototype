@@ -41,7 +41,7 @@ const CartItem = props => {
                         <CardSubtitle> {props.description} </CardSubtitle>
                         <Button>Clear Cart</Button>
                         <Button className="counter-button" onClick={removeItem}>Remove Item</Button>
-                        <Link to="/checkout">Proceed to Checkout</Link>
+                        <Link to="/app/checkout">Proceed to Checkout</Link>
                     </CardBody>
                 </Card>
                 </Col>
@@ -59,7 +59,6 @@ const Cart = props => {
     console.log(localstorage_shoppingCart);
 
     let productCard = props.items.map((item, index) => {
-        console.log("[CART], one item from map", item);
         return (
             <CartItem
                 key={`cartItem-${index}`}
@@ -72,8 +71,6 @@ const Cart = props => {
             />
         );
     });
-    console.log("productCard", productCard);
-
     return <div>{productCard}</div>;
   <Button>Remove Item</Button>
 
