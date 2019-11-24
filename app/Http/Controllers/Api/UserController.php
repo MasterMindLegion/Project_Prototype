@@ -18,7 +18,7 @@ class UserController extends Controller
          * 
          * @return \Illuminate\Http\Response 
          */ 
-        public function login(){ 
+        public function login(Request $request){ 
             
             // add credentials? link:https://blog.pusher.com/build-rest-api-laravel-api-resources/
 
@@ -30,6 +30,7 @@ class UserController extends Controller
                 // dd($hasCharity);
                 return response()->json([
                     'success' => $success, 
+                    'TEST_USER' =>  $request->user(),
                     'token_type' => "Bearer",
                     'message' => 'You are authorized to access',
                     'status' => 'success',

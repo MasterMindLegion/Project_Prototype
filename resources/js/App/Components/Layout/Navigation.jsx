@@ -26,7 +26,6 @@ import { connect } from 'react-redux';
   }
  
   render() {
-    console.log("[NAVIGATION] cart props", this.props.items);
     return (
       <>
         <Navbar color="light" light expand="md">

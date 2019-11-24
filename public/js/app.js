@@ -15053,7 +15053,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
+/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72759,7 +72759,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86943,7 +86943,7 @@ exports.devToolsEnhancer = (
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91592,8 +91592,8 @@ function (_React$Component) {
     });
 
     _this.state = {
-      email: 'martiin.chalupa@gmail.com',
-      password: '1',
+      email: '',
+      password: '',
       token: null,
       loginErrors: []
     };
@@ -93382,7 +93382,6 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("[NAVIGATION] cart props", this.props.items);
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Navbar"], {
         color: "light",
         light: true,
@@ -93832,15 +93831,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_devtools_extension_developmentOnly__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux-devtools-extension/developmentOnly */ "./node_modules/redux-devtools-extension/developmentOnly.js");
 /* harmony import */ var redux_devtools_extension_developmentOnly__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(redux_devtools_extension_developmentOnly__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _App_Components_App_jsx__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./App/Components/App.jsx */ "./resources/js/App/Components/App.jsx");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
-/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
-/* harmony import */ var _App_Components_store_login_loginReducer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./App/Components/store/login/loginReducer.js */ "./resources/js/App/Components/store/login/loginReducer.js");
-/* harmony import */ var _App_Components_store_charityRegister_charityRegisterReducer_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./App/Components/store/charityRegister/charityRegisterReducer.js */ "./resources/js/App/Components/store/charityRegister/charityRegisterReducer.js");
-/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux-saga */ "./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js");
-/* harmony import */ var _App_Components_sagas_userSagas_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./App/Components/sagas/userSagas.js */ "./resources/js/App/Components/sagas/userSagas.js");
+/* harmony import */ var _App_Components_App_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./App/Components/App.jsx */ "./resources/js/App/Components/App.jsx");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.min.css */ "./node_modules/bootstrap/dist/css/bootstrap.min.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_min_css__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var redux_saga_effects__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! redux-saga/effects */ "./node_modules/redux-saga/dist/redux-saga-effects-npm-proxy.esm.js");
+/* harmony import */ var _App_Components_store_login_loginReducer_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./App/Components/store/login/loginReducer.js */ "./resources/js/App/Components/store/login/loginReducer.js");
+/* harmony import */ var _App_Components_store_charityRegister_charityRegisterReducer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./App/Components/store/charityRegister/charityRegisterReducer.js */ "./resources/js/App/Components/store/charityRegister/charityRegisterReducer.js");
+/* harmony import */ var redux_saga__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux-saga */ "./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js");
+/* harmony import */ var _App_Components_sagas_userSagas_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./App/Components/sagas/userSagas.js */ "./resources/js/App/Components/sagas/userSagas.js");
 
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -93864,12 +93862,11 @@ _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(rootSaga)
 
 
 
-
  // combining two reducers into a single reducer
 
 var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_3__["combineReducers"])({
-  loginReducer: _App_Components_store_login_loginReducer_js__WEBPACK_IMPORTED_MODULE_10__["loginReducer"],
-  charityRegisterReducer: _App_Components_store_charityRegister_charityRegisterReducer_js__WEBPACK_IMPORTED_MODULE_11__["charityRegisterReducer"]
+  loginReducer: _App_Components_store_login_loginReducer_js__WEBPACK_IMPORTED_MODULE_9__["loginReducer"],
+  charityRegisterReducer: _App_Components_store_charityRegister_charityRegisterReducer_js__WEBPACK_IMPORTED_MODULE_10__["charityRegisterReducer"]
 }); // Store
 
 function rootSaga() {
@@ -93878,7 +93875,7 @@ function rootSaga() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_9__["all"])([_App_Components_sagas_userSagas_js__WEBPACK_IMPORTED_MODULE_13__["default"]]);
+          return Object(redux_saga_effects__WEBPACK_IMPORTED_MODULE_8__["all"])([_App_Components_sagas_userSagas_js__WEBPACK_IMPORTED_MODULE_12__["default"]]);
 
         case 2:
         case "end":
@@ -93888,7 +93885,7 @@ function rootSaga() {
   }, _marked);
 }
 
-var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_12__["default"])([rootSaga]);
+var sagaMiddleware = Object(redux_saga__WEBPACK_IMPORTED_MODULE_11__["default"])([rootSaga]);
 
 var makeStore = function makeStore(initialState) {
   var initState = _objectSpread({}, initialState);
@@ -93902,7 +93899,7 @@ var makeStore = function makeStore(initialState) {
 var store = makeStore({});
 react_dom__WEBPACK_IMPORTED_MODULE_2___default.a.render(react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_5__["Provider"], {
   store: store
-}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_App_Components_App_jsx__WEBPACK_IMPORTED_MODULE_7__["default"], null), " "), document.getElementById('app'));
+}, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_App_Components_App_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], null), " "), document.getElementById('app'));
 
 /***/ }),
 

@@ -6,8 +6,8 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: 'martiin.chalupa@gmail.com',
-      password: '1',
+      email: '',
+      password: '',
       token: null,
       loginErrors: []
     }

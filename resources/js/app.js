@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from "react-router-dom";
 import App from './App/Components/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { all } from 'redux-saga/effects'

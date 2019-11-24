@@ -51,7 +51,9 @@ class CharityController extends Controller
       $users = User::get();
       $charities = Charity::get();
       return response()->json([
-        'status' => $request->user()->charity == null,
+        'status' => $request->user()->charity != null,
+        'message_charity' =>$request->user()->charity,
+        'message_user' =>$request->user(),
       ]);
       
     }
