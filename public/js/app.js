@@ -15053,7 +15053,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
+/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72759,7 +72759,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86943,7 +86943,7 @@ exports.devToolsEnhancer = (
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
+/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91298,6 +91298,8 @@ function (_React$Component) {
         path: "/app/checkout",
         component: _Layout_Main_Checkout_Checkout_jsx__WEBPACK_IMPORTED_MODULE_9__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        path: "api/usercharity/5"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "*",
         component: _Layout_NotFoundPage_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]
       })));
@@ -91391,13 +91393,14 @@ function (_React$Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "handleFormSubmit", function (event) {
+      console.log("[charityregister]", _this.state);
       event.preventDefault();
       fetch('/api/registerCharity', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + _token
+          'Authorization': 'Bearer ' + _this.state.localToken
         },
         body: JSON.stringify({
           name: _this.state.name,
@@ -91415,6 +91418,7 @@ function (_React$Component) {
       information: '',
       localToken: window.localStorage.getItem('_token')
     };
+    console.log("[charityregister]", _this.state);
     return _this;
   }
 
@@ -91424,8 +91428,8 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log("render from ch reg", this.props.registerCharity);
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.charityRegister == true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "allowed") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Not "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Here you can register your charity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_3__["Form"], {
+      console.log("[charityRegister]", this.props.showRegisterLink);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, this.props.showRegisterLink ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Register Charity") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Edit Charity"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_3__["Form"], {
         action: "",
         method: "post",
         onSubmit: this.handleFormSubmit
@@ -91475,8 +91479,7 @@ var mapStateToProps = function mapStateToProps(state) {
   return {
     loginStatus: state.loginStatus,
     loginSuccess: state.loginSuccess,
-    registerCharity: state.registerCharity,
-    _token: state.loginReducer._token
+    showRegisterLink: state.loginReducer.showRegisterLink
   };
 }; // What Actions be used
 
@@ -91578,11 +91581,11 @@ function (_React$Component) {
         return response.json();
       }).then(function (data) {
         if (data.status === 'success') {
-          _this.props_token = window.localStorage.getItem('_token');
+          window.localStorage.setItem('_token', data.success.token);
+          _this.props_token = window.localStorage.getItem(data.success.token);
+          console.log('[LOGIN] props_token', _this.props_token);
 
           _this.props.loginFunction();
-
-          window.localStorage.setItem('_token', data.success.token);
         }
       })["catch"](function (e) {
         _this.setState({
@@ -93396,13 +93399,23 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
         className: "ml-auto",
         navbar: true
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, this.props.loginSuccess === true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Auth_Logout_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modals_ModalNavigationLogin_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modals_ModalNavigationRegister_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), this.props.showRegisterLink && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, this.props.loginSuccess === true ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Auth_Logout_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modals_ModalNavigationLogin_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Modals_ModalNavigationRegister_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null)), this.props.loginSuccess && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/app/registerCharity"
-      }, " registerCharity")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+      }, this.props.showRegisterLink ? "registerCharity" : "editcharity")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/app/cart"
       }, "  Cart ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/app/sellon"
-      }, "  Sell "))))));
+      }, "  Sell ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["UncontrolledDropdown"], {
+        nav: true,
+        inNavbar: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownToggle"], {
+        nav: true,
+        caret: true
+      }, "User"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownMenu"], {
+        right: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], null, "Purchasses and Sales"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], null, "Acount Settings"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
+        divider: true
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Auth_Logout_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], null))))))));
     }
   }]);
 
@@ -93782,7 +93795,8 @@ var logoutAction = {
 var initialState = {
   loginSuccess: false,
   showRegisterLink: false,
-  _token: window.localStorage.getItem('_token')
+  _token: null // _token: window.localStorage.getItem('_token'),
+
 };
 var loginReducer = function loginReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
@@ -93791,11 +93805,13 @@ var loginReducer = function loginReducer() {
   switch (action.type) {
     case "login":
       return _objectSpread({}, state, {
+        _token: window.localStorage.getItem('_token'),
         loginSuccess: true
       });
 
     case "logout":
       return _objectSpread({}, state, {
+        _token: window.localStorage.clear(),
         loginSuccess: false
       });
 

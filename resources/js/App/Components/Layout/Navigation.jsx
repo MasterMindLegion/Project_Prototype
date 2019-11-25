@@ -1,6 +1,7 @@
 import React from 'react';
 import {
-  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,
+  Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,   DropdownToggle,
+  DropdownMenu, DropdownItem,  UncontrolledDropdown,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ModalNavigationLogin from './Modals/ModalNavigationLogin.jsx';
@@ -24,7 +25,6 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
- 
   render() {
     return (
       <>
@@ -43,8 +43,8 @@ import { connect } from 'react-redux';
               <NavItem>
                 <ModalNavigationRegister />
               </NavItem>
-              {this.props.showRegisterLink && <NavItem >
-                <Link to="/app/registerCharity"> registerCharity</Link>
+              { this.props.loginSuccess && <NavItem >
+                <Link to="/app/registerCharity">{this.props.showRegisterLink ? "registerCharity": "editcharity"}</Link>
               </ NavItem >}
               <NavItem>
                 <Link to='/app/cart'>  Cart </ Link>     
@@ -52,6 +52,24 @@ import { connect } from 'react-redux';
               <NavItem>
                 <Link to='/app/sellon'>  Sell </ Link>     
               </NavItem>
+              <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                User
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                  Purchasses and Sales
+                </DropdownItem>
+                <DropdownItem>
+                  Acount Settings
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  <Logout />
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+              
             </Nav>
           </Collapse>
         </Navbar>

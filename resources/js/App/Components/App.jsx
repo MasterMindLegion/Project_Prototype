@@ -13,7 +13,6 @@ import PrivateRoute from './Pages/Protected.jsx';
 
 class App extends React.Component {
     constructor(props) {
-
         super(props); 
         const cartString = window.localStorage.getItem("cart")
         const cart = cartString ? JSON.parse(cartString) : [{name: 'nemo'}]
@@ -101,6 +100,9 @@ class App extends React.Component {
                 <Route path="/app/sellon" component={SellOn} />
                 {/* CHECKOUT  */}
                 <Route path="/app/checkout" component={Checkout} />
+                {/* Display User Charity  */}
+                <Route path="api/usercharity/5"/>
+                {/* Change Charity Information */}
                 {/* NotFoundPage */}
                <Route path="*" component={NotFoundPage} /> 
             </Switch>

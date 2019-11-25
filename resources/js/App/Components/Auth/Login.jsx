@@ -41,9 +41,10 @@ class Login extends React.Component {
       .then(response => response.json())
       .then(data => {
         if (data.status === 'success') {
-          this.props_token = window.localStorage.getItem('_token');
-          this.props.loginFunction();
           window.localStorage.setItem('_token', data.success.token);
+          this.props_token = window.localStorage.getItem( data.success.token);
+          console.log('[LOGIN] props_token', this.props_token);
+          this.props.loginFunction();
         }
       })
       .catch(e => {
