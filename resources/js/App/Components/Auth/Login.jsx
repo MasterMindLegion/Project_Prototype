@@ -22,7 +22,6 @@ class Login extends React.Component {
       password: event.target.value,
     })
   }
-
   componentDidMount() {
     this.props_token = window.localStorage.getItem('_token');
   }

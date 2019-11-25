@@ -49,7 +49,6 @@ class CharityController extends Controller
   }
     public function canCreateCharity(Request $request, User $User) {
       $users = User::get();
-      $charities = Charity::get();
       return response()->json([
         'status' => $request->user()->charity != null,
         'message_charity' =>$request->user()->charity,
