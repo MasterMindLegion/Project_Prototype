@@ -21,6 +21,7 @@ export default class Main extends React.Component {
             return (
                 <Col key={`product-${x.item_name}-${index}`}>
                     <ProductCard
+                        id={x.id}
                         name={x.item_name}
                         item_img={x.item_img}
                         price={x.price_per_item}

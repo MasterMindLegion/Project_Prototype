@@ -10,6 +10,7 @@ import SellOn from './Layout/Main/SellOn.jsx';
 import Checkout from './Layout/Main/Checkout/Checkout.jsx'
 import CharityRegister from './Auth/CharityRegister.jsx';
 import PrivateRoute from './Pages/Protected.jsx';
+import ProductPage from './Layout/Main/Cart/ProductPage.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -25,7 +26,7 @@ class App extends React.Component {
         };
     }
     componentDidMount() {
-        fetch("http://www.charity.test:8080/api/items")
+        fetch("http://www.charity.test/api/items")
             .then(res => res.json())
             .then(result => {
             //  console.log("[Homepage] FETCH", result);
@@ -97,6 +98,17 @@ class App extends React.Component {
                      />;
                  }}
                 />
+
+
+                {/* MORE INFO BUTTON --- SHOULD GO TO PRODUCT PAGE */}
+                <Route path="/app/moreinfo/:id" 
+                 render={() => {
+                    return <ProductPage
+                    items={this.state.items}
+                    />;
+                }} />
+
+
                 {/* SELL ON */}
                 <Route path="/app/sellon" component={SellOn} />
                 {/* CHECKOUT  */}

@@ -12,6 +12,8 @@ import {
 } from "reactstrap";
 import "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
+import {Link } from "react-router-dom";
+
 
 export default class ProductCard extends React.Component {
     constructor(props) {
@@ -26,8 +28,20 @@ export default class ProductCard extends React.Component {
             image: this.props.item_img,
             quantity: 1
         })
+    
+    moreInfo = e => {
+        console.log('moreInfo', this.props)
+        this.props.moreInfo({
+            name: this.props.name,
+            price: this.props.price,
+            description: this.props.description,
+            image: this.props.item_img,
+            quantity: 1
+        })
+        
+    }
 
-
+    
     };
 
     render() {
@@ -57,7 +71,12 @@ export default class ProductCard extends React.Component {
                         <CardText>{this.props.description}</CardText>
                         <Button onClick={this.addToCart}>Buy</Button>
                         <div>
-                            <CardLink to="#">More Info</CardLink>
+                <CardLink to="#">
+                <Link to={`/app/moreinfo/${this.props.id}`} >
+
+                    More Info {this.props.id}
+                    </Link>
+                    </CardLink>
                         </div>
                     </CardBody>
                 </Card>
