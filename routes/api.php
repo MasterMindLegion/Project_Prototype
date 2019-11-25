@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Charity;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -23,12 +23,15 @@ Route::post('register', 'API\UserController@register');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
-  Route::post('auth/charity', 'API\CharityController@canCreateCharity');
-  Route::post('registerCharity', 'API\CharityController@registerCharity');
-  Route::post('details', 'API\UserController@details');
+  Route::post('/auth/charity', 'API\CharityController@canCreateCharity');
+  Route::post('/registerCharity', 'API\CharityController@registerCharity');
+  Route::post('/details', 'API\UserController@details');
+  Route::put('/usercharitychange', 'API\CharityController@changeInformationCharity');
+ // Route::get('/usercharity', 'API\CharityController@changeInformationCharity');
 });
-Route::get('items', 'API\ItemController@index');
-Route::get('displayCharities', 'API\CharityController@index');
+
+Route::get('/items', 'API\ItemController@index');
+Route::get('/displayCharities', 'API\CharityController@index');
 
 
 // Route::post('/login', 'Api\LoginController@login');
