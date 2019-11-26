@@ -1,32 +1,109 @@
 import React from 'react';
-import { Card, Container, Row, Col } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "reactstrap";
-import {useParams } from "react-router-dom";
+import { 
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardLink,
+  CardTitle,
+  CardSubtitle,
+  Button } from "reactstrap";
+import ProductCounter from "./ProductCounter.jsx";
+import { useParams } from "react-router-dom";
 
 
-export default function  ProductPage (props){
+
+// const SingleItem = (props) => {
+//   //pass down the correct ID here on props
+//   return(
+//     <div>
+//       <p>Product ID: {props.id}</p>
+//       <p>name: {props.name}</p>
+//       <p>description: {props.description}</p>
+//     </div>
+//   )
+// }
+
+export default function ProductPage (props){
+  //all props are passed down
   const {items} = {...props}
-  let { id } = {...useParams()};
+
+  //looks for the item id based on url - app/more/info/3
+  const {id} = useParams();
+
+  let item = null;
+  if(items.length > 0){
+    //filter items based on the item id(finds an existing item with id requested)
+    //retrives item indexed 0, alt you can use pop()
+    item = items.filter((item) => (item.id == id))[0];
+  } 
+  console.log(item);
+
+  // const DropDown = props => {
+  //   const [dropdownOpen, setDropdownOpen] = useState(false);
+  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
+  //   const { setDepartureCode } = props;
+  //   const toggle = () => setDropdownOpen(prevState => !prevState);
   
-  // console.log(props.items);
-  console.log('ITEMS: ', items)
-  // console.log('ITEMS: ')
+  //   const handleItemClick = e => {
+  //     setDropdownTitle(e.target.dataset.title);
+  //     setDepartureCode(e.target.id)
 
-  // const content
-
-  // componentDidMount(){
-  //   content = (
-  //     <div>{item[2].item_name}</div>
-  //   )
-  // }
-
-    return(
+  return(
       <div>
-        <h1>Hel {id}</h1>
-        <h1>WORLD</h1>
+      {
+       item !== null ? (
+         <Row>
+         <Col>
+           <Card
+           style={{
+            padding: "1rem",
+            margin: "1rem",
+            minHeight: "500px",
+            maxWidth: "500px",
+          }}>
+            <CardTitle><h1>{item.item_name}</h1></CardTitle>
+            <CardImg 
+              top
+              width="100%"
+              src={item.item_img}
+              alt="product image"/>
 
-        {/* {items.map(item => (
+            <CardBody min-width="500px">
+            <CardSubtitle>Description: {item.description}</CardSubtitle>
+            <CardText>Price: {item.price_per_item} CZK</CardText>
+            </CardBody>
+            </Card>
+          </Col>
+          <Col>
+          {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
+          <ProductCounter/>
+          </Col>
+        </Row>
+       ) : (
+         <h2>Loading</h2> 
+       )
+       }
+     </div>
+    )
+}
+
+// export default class ProductPage extends React.Component {
+//   componentDidMount() {
+//     const id = this.props.match.params.id;
+//     this.fetchData(id);
+//   }
+//   fetchData = id => {
+//     //...
+//   };
+//   render() {
+//     return <div>BLAH</div>;
+//   }
+// }
+
+{/* {items.map(item => (
           <>
           <p>{item.item_name}</p>
           <p>{item.id}</p>
@@ -34,8 +111,10 @@ export default function  ProductPage (props){
 
         ))} */}
         {/* <div>{items[2].item_name}</div> */}
-      </div>
-    )
 
-
-}
+// const itemsArr = items.map(x => {
+  //   return(
+  //     <SingleItem name={x.item_name} description={x.description} />
+  //   )
+  // })
+  // console.log(itemsArr)

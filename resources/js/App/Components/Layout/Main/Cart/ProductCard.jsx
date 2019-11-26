@@ -74,7 +74,8 @@ export default class ProductCard extends React.Component {
                 <CardLink to="#">
                 <Link to={`/app/moreinfo/${this.props.id}`} >
 
-                    More Info {this.props.id}
+                    {/* More Info {this.props.id} */}
+                    More info
                     </Link>
                     </CardLink>
                         </div>

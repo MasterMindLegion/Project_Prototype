@@ -99,7 +99,8 @@ class App extends React.Component {
                 />
 
 
-                {/* MORE INFO BUTTON --- SHOULD GO TO PRODUCT PAGE */}
+                {/* 'MORE INFO' BUTTON --- SHOULD GO TO PRODUCT PAGE */}
+                {/* <Route path="/app/moreinfo/:id" component={ProductPage} /> */}
                 <Route path="/app/moreinfo/:id" 
                  render={() => {
                     return <ProductPage

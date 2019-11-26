@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///./resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI","file":"/css/app.css","sourcesContent":["//\nbody {\n    width: 90%;\n}"],"sourceRoot":""}
+{"version":3,"sources":["webpack:///./resources/sass/C:/web/bootcamp/Project_Prototype/resources/sass/C:/web/bootcamp/Project_Prototype/resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI","file":"/css/app.css","sourcesContent":["//\r\nbody {\r\n    width: 90%;\r\n}"],"sourceRoot":""}

@@ -74055,7 +74055,7 @@ function parse (str, options) {
  * @return {!function(Object=, Object=)}
  */
 function compile (str, options) {
-  return tokensToFunction(parse(str, options))
+  return tokensToFunction(parse(str, options), options)
 }
 
 /**
@@ -74085,14 +74085,14 @@ function encodeAsterisk (str) {
 /**
  * Expose a method for transforming tokens into the path function.
  */
-function tokensToFunction (tokens) {
+function tokensToFunction (tokens, options) {
   // Compile all the tokens into regexps.
   var matches = new Array(tokens.length)
 
   // Compile all the patterns before compilation.
   for (var i = 0; i < tokens.length; i++) {
     if (typeof tokens[i] === 'object') {
-      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$')
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options))
     }
   }
 
@@ -74205,7 +74205,7 @@ function attachKeys (re, keys) {
  * @return {string}
  */
 function flags (options) {
-  return options.sensitive ? '' : 'i'
+  return options && options.sensitive ? '' : 'i'
 }
 
 /**
@@ -92161,6 +92161,62 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var AddedProduct = function AddedProduct(props) {
+  var buttonLabel = props.buttonLabel;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  var toggle = function toggle() {
+    return setModal(!modal);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "danger",
+    onClick: toggle
+  }, buttonLabel), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    isOpen: modal,
+    toggle: toggle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
+    toggle: toggle
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "This product has been added to your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    onClick: toggle
+  }, "Keep shopping"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "secondary",
+    onClick: toggle
+  }, "Go to cart"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AddedProduct);
+
+/***/ }),
+
 /***/ "./resources/js/App/Components/Layout/Main/Cart/Cart.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/App/Components/Layout/Main/Cart/Cart.jsx ***!
@@ -92353,11 +92409,132 @@ function (_React$Component) {
         to: "#"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/app/moreinfo/".concat(this.props.id)
-      }, "More Info ", this.props.id))))));
+      }, "More info"))))));
     }
   }]);
 
   return ProductCard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductCounter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCard */ "./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx");
+/* harmony import */ var _AddedProductModal_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddedProductModal.jsx */ "./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ProductCounter =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProductCounter, _React$Component);
+
+  function ProductCounter(props) {
+    var _this;
+
+    _classCallCheck(this, ProductCounter);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductCounter).call(this, props));
+    _this.state = {
+      count: 0
+    };
+    _this.increment = _this.increment.bind(_assertThisInitialized(_this));
+    _this.decrement = _this.decrement.bind(_assertThisInitialized(_this));
+    _this.reset = _this.reset.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ProductCounter, [{
+    key: "reset",
+    value: function reset() {
+      this.setState({
+        count: 0
+      });
+    }
+  }, {
+    key: "increment",
+    value: function increment() {
+      this.setState(function (state) {
+        return {
+          count: state.count + 1
+        };
+      });
+    }
+  }, {
+    key: "decrement",
+    value: function decrement() {
+      var _this2 = this;
+
+      if (this.state.count > 0) {
+        this.setState(function (prevState) {
+          return {
+            count: prevState.count - 1
+          };
+        });
+      }
+
+      addToCart = function addToCart(e) {
+        console.log('addProps', _this2.props);
+
+        _this2.props.addItemToCart({
+          name: _this2.props.name,
+          price: _this2.props.price,
+          description: _this2.props.description,
+          image: _this2.props.item_img,
+          quantity: 1
+        });
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Current quantity: ", this.state.count), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.increment
+      }, "Add"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.decrement
+      }, "Remove"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.reset
+      }, "Reset"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.addToCart
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddedProductModal_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), "Add to cart"));
+    }
+  }]);
+
+  return ProductCounter;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -92379,7 +92556,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _ProductCounter_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductCounter.jsx */ "./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -92391,24 +92569,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // const SingleItem = (props) => {
+//   //pass down the correct ID here on props
+//   return(
+//     <div>
+//       <p>Product ID: {props.id}</p>
+//       <p>name: {props.name}</p>
+//       <p>description: {props.description}</p>
+//     </div>
+//   )
+// }
+
 function ProductPage(props) {
+  //all props are passed down
   var _props = _objectSpread({}, props),
-      items = _props.items;
-
-  var _useParams = _objectSpread({}, Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["useParams"])()),
-      id = _useParams.id; // console.log(props.items);
+      items = _props.items; //looks for the item id based on url - app/more/info/3
 
 
-  console.log('ITEMS: ', items); // console.log('ITEMS: ')
-  // const content
-  // componentDidMount(){
-  //   content = (
-  //     <div>{item[2].item_name}</div>
-  //   )
-  // }
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useParams"])(),
+      id = _useParams.id;
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hel ", id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WORLD"));
+  var item = null;
+
+  if (items.length > 0) {
+    //filter items based on the item id(finds an existing item with id requested)
+    //retrives item indexed 0, alt you can use pop()
+    item = items.filter(function (item) {
+      return item.id == id;
+    })[0];
+  }
+
+  console.log(item); // const DropDown = props => {
+  //   const [dropdownOpen, setDropdownOpen] = useState(false);
+  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
+  //   const { setDepartureCode } = props;
+  //   const toggle = () => setDropdownOpen(prevState => !prevState);
+  //   const handleItemClick = e => {
+  //     setDropdownTitle(e.target.dataset.title);
+  //     setDepartureCode(e.target.id)
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item !== null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+    style: {
+      padding: "1rem",
+      margin: "1rem",
+      minHeight: "500px",
+      maxWidth: "500px"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, item.item_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardImg"], {
+    top: true,
+    width: "100%",
+    src: item.item_img,
+    alt: "product image"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], {
+    "min-width": "500px"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardSubtitle"], null, "Description: ", item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], null, "Price: ", item.price_per_item, " CZK")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCounter_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Loading"));
+} // export default class ProductPage extends React.Component {
+//   componentDidMount() {
+//     const id = this.props.match.params.id;
+//     this.fetchData(id);
+//   }
+//   fetchData = id => {
+//     //...
+//   };
+//   render() {
+//     return <div>BLAH</div>;
+//   }
+// }
+
+{
+  /* {items.map(item => (
+           <>
+           <p>{item.item_name}</p>
+           <p>{item.id}</p>
+           </>
+  
+         ))} */
 }
+{}
+/* <div>{items[2].item_name}</div> */
+// const itemsArr = items.map(x => {
+//   return(
+//     <SingleItem name={x.item_name} description={x.description} />
+//   )
+// })
+// console.log(itemsArr)
 
 /***/ }),
 
