@@ -30,9 +30,6 @@ import {store} from './../../../app';
             information: event.target.value
         });
     }
-    componentDidMount() {
-      
-    }
   handleFormSubmit = (event) => {
     console.log("[charityregister]", this.state)
     event.preventDefault();

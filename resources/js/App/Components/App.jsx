@@ -9,6 +9,7 @@ import Cart from './Layout/Main/Cart/Cart.jsx';
 import SellOn from './Layout/Main/SellOn.jsx';
 import Checkout from './Layout/Main/Checkout/Checkout.jsx'
 import CharityRegister from './Auth/CharityRegister.jsx';
+import UserPage  from './Pages/UserPage.jsx';
 import PrivateRoute from './Pages/Protected.jsx';
 import ProductPage from './Layout/Main/Cart/ProductPage.jsx';
 
@@ -113,9 +114,11 @@ class App extends React.Component {
                 <Route path="/app/sellon" component={SellOn} />
                 {/* CHECKOUT  */}
                 <Route path="/app/checkout" component={Checkout} />
-                {/* Display User Charity  */}
-                <Route path="api/usercharity/5"/>
+                {/* Display User Page */}
+                <Route path="/app/user" component={UserPage} />
+             
                 {/* Change Charity Information */}
+
                 {/* NotFoundPage */}
                <Route path="*" component={NotFoundPage} /> 
             </Switch>

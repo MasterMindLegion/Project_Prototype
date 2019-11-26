@@ -58,18 +58,17 @@ import { connect } from 'react-redux';
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
-                  Purchasses and Sales
+                <Link to="/app/user">Purchasses and Sales</Link>
                 </DropdownItem>
                 <DropdownItem>
-                  Acount Settings
+                  <Link to="/app/user">Acount Settings</Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>
-                  <Logout />
+                  {/* <Logout /> */}
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>
-              
             </Nav>
           </Collapse>
         </Navbar>
