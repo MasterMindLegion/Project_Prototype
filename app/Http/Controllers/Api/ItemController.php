@@ -12,4 +12,9 @@ class ItemController extends Controller
         $all_items = Item::get();
         return $all_items;
     }
+
+    public function paginateItems() {
+        $paginate_items = Item::paginate(3);
+        return $paginate_items;
+    }
 }

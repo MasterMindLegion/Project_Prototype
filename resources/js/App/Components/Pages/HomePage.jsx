@@ -10,7 +10,6 @@ export default class Homepage extends React.Component {
        super(props);
    }
    render() {
-    
        return (
          <>
            <Navigation items={this.props.cart} removeItemFromCart={this.props.removeItemFromCart} />
