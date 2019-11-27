@@ -13,7 +13,9 @@ export default class Homepage extends React.Component {
    render() {
        return (
          <>
-           <Navigation items={this.props.cart} removeItemFromCart={this.props.removeItemFromCart} />
+           <Navigation items={this.props.cart} removeItemFromCart={this.props.removeItemFromCart} numberOfItems={
+                     this.props.numberOfItems
+                     } />
            <Main 
              items={this.props.items} 
              addItemToCart={this.props.addItemToCart}

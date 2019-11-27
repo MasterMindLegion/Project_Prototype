@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import { connect } from 'react-redux';
 
 import Register from './Auth/Register.jsx';
@@ -17,7 +17,9 @@ import Charities from './Pages/Charities.jsx';
 import ShowItems from './Pages/ShowItems.jsx';
 import Products from "./Layout/Main/Products.jsx";
  import ProductsPage from "./Pages/ProductsPage.jsx";
-
+ import AddItems from './/Pages/AddItems.jsx';
+import Navigation from './Layout/Navigation.jsx';
+import Footer from './Layout/Footer/Footer.jsx';
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
 
@@ -34,7 +36,8 @@ class App extends React.Component {
             charities: [],
             cart: cart,
             selectedCart: null,
-            test: "hi"
+            test: "hi",
+            numberOfItems: 0,
         };
     }
     componentDidMount() {
@@ -79,11 +82,15 @@ class App extends React.Component {
                 cart: newCart
             };
         });
+        this.setState(prevState => {
+            const newItem = this.state.numberOfItems + 1;
+            return {
+                ...prevState,
+                numberOfItems: newItem,
+                }
+            })     
     };
-
     selectedCartCallback = arg => {
-        console.log("argument of the callback", arg);
-        console.log("parent state object", this.state);
         this.setState({
             selectedCart: arg
         });
@@ -99,10 +106,16 @@ class App extends React.Component {
                 cart: newCart
             };
         });
+        this.setState(prevState => {
+            const newItem = this.state.numberOfItems - 1;
+            return {
+                ...prevState,
+                numberOfItems: newItem,
+                }
+        })
     };
     decreaseItemInCart = itemName => {};
     render() {
-        console.log("app parent STATE from callback", this.state.selectedCart);
         return (
             <BrowserRouter>
                 <Switch>
@@ -116,6 +129,7 @@ class App extends React.Component {
                                     items={this.state.items}
                                     addItemToCart={this.addItemToCart}
                                     charities={this.state.charities}
+                                    numberOfItems={this.state.numberOfItems }
                                 />
                             );
                         }}
@@ -149,12 +163,16 @@ class App extends React.Component {
                             path="/app/cart"
                             render={() => {
                                 return (
+                                    <>
+                                    <Navigation />
                                     <Cart
                                         items={this.state.cart}
                                         removeItemFromCart={
                                             this.removeItemFromCart
                                         }
                                     />
+                                    <Footer />
+                                    </>
                                 );
                             }}
                         />
@@ -199,6 +217,7 @@ class App extends React.Component {
                         }}
                         >
                         </Route>
+
                     {/* NotFoundPage */}
                     {/* <Route path="*" component={NotFoundPage} /> */}
                     </CartContextProvider>

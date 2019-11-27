@@ -8,6 +8,7 @@ import {
 
 import UserInformation from './../Auth/UserInformation.jsx';
 import PasswordChange from './../Auth/PasswordChange.jsx';
+import AddItems from './../Pages/AddItems.jsx'
 import HomePage from './../Pages/HomePage.jsx';
 
 export default function UserPage() {
@@ -24,15 +25,23 @@ export default function UserPage() {
             <li>
               <Link to="/app/user/password">Change Password</Link>
             </li>
+            <li>
+              <Link to="/app/addItems"> Add new item</Link>
+            </li>
           </ul>
           <hr />
           <Switch>
-            <Route path="/app/user/email">
+            <Route exact path="/app/user/email">
               <UserInformation />
             </Route>
-            <Route path="/app/user/password">
+            <Route exact path="/app/user/password">
               <PasswordChange />
+              {/* Add Items */}
+              </Route>
+            <Route exact path="/app/addItems">
+              <AddItems/>
             </Route>
+           
           </Switch>
         </div>
       </Router>
