@@ -13,19 +13,6 @@ import {
 import ProductCounter from "./ProductCounter.jsx";
 import { useParams } from "react-router-dom";
 
-
-
-// const SingleItem = (props) => {
-//   //pass down the correct ID here on props
-//   return(
-//     <div>
-//       <p>Product ID: {props.id}</p>
-//       <p>name: {props.name}</p>
-//       <p>description: {props.description}</p>
-//     </div>
-//   )
-// }
-
 export default function ProductPage (props){
   //all props are passed down
   const {items} = {...props}
@@ -36,22 +23,12 @@ export default function ProductPage (props){
 
   let item = null;
   if(items.length > 0){
-    //filter items based on the item id(finds an existing item with id requested)
-    //retrives item indexed 0, alt you can use pop()
     item = items.filter((item) => (item.id == id))[0];
   } 
-  //console.log(item);
-
-  // const DropDown = props => {
-  //   const [dropdownOpen, setDropdownOpen] = useState(false);
-  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
-  //   const { setDepartureCode } = props;
-  //   const toggle = () => setDropdownOpen(prevState => !prevState);
-  
-  //   const handleItemClick = e => {
-  //     setDropdownTitle(e.target.dataset.title);
-  //     setDepartureCode(e.target.id)
-
+ 
+  if (item === undefined) {
+    item = null;
+  }
   return(
       <div>
       {
@@ -90,32 +67,3 @@ export default function ProductPage (props){
      </div>
     )
 }
-
-// export default class ProductPage extends React.Component {
-//   componentDidMount() {
-//     const id = this.props.match.params.id;
-//     this.fetchData(id);
-//   }
-//   fetchData = id => {
-//     //...
-//   };
-//   render() {
-//     return <div>BLAH</div>;
-//   }
-// }
-
-{/* {items.map(item => (
-          <>
-          <p>{item.item_name}</p>
-          <p>{item.id}</p>
-          </>
-
-        ))} */}
-        {/* <div>{items[2].item_name}</div> */}
-
-// const itemsArr = items.map(x => {
-  //   return(
-  //     <SingleItem name={x.item_name} description={x.description} />
-  //   )
-  // })
-  // console.log(itemsArr)

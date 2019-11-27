@@ -1,6 +1,14 @@
 import React from "react";
 // import { Jumbotron } from 'reactstrap';
-import { Card, Container, Row, Col, Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import {
+    Card,
+    Container,
+    Row,
+    Col,
+    Pagination,
+    PaginationItem,
+    PaginationLink
+} from "reactstrap";
 import ProductCard from "./Cart/ProductCard.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
@@ -11,40 +19,41 @@ import { Link } from 'react-router-dom';
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
-       
         this.state = {
             loading: false,
             isLoaded: false,
             items: null,
+            all_item: [],
             paginationData: null,
             diplay: false,
             all_item: [
             ],
     }
-}
-    // https://www.youtube.com/watch?v=koQmm5HIFgw
-
+    }
      handleClick = () => {
          this.setState({display: !this.state.display})
  }
+
     render() {  
         const productCards = this.props.items.map((x, index) => {
-            if(x.id < 4) {
+            if (x.id < 4) {
                 return (
                     <Col key={`product-${x.item_name}-${index}`}>
                        <ProductCard
+                            id = {x.id}
                             name={x.item_name}
                             item_img={x.item_img}
                             price={x.price_per_item}
-                           description={x.description}
-                           addItemToCart={this.props.addItemToCart}
-                />
-                   </Col>
-            );           
+                            description={x.description}
+                            addItemToCart={this.props.addItemToCart}
+                        />
+                    </Col>
+                );
             } else {
                 return this.state.display && (
                     <Col key={`product-${x.item_name}-${index}`}>
                        <ProductCard
+                            id = {x.id}
                             name={x.item_name}
                             item_img={x.item_img}
                             price={x.price_per_item}
@@ -55,20 +64,19 @@ export default class Main extends React.Component {
             );
             }
         });
-
-        const CharitiesCards =
-        this.props.charities.map((charity, index) => { if (index < 2){
-            return (
-                <Col key={`product-${charity.name}-${index}`}>
-                    <CharitiesCard
+         const CharitiesCards = this.props.charities.map((charity, index) => { 
+             if (index < 2){
+             return (
+                 <Col key={`product-${charity.name}-${index}`}>
+                     <CharitiesCard
                         name={charity.Name}
                         address={charity.Char_address}
                         information={charity.Char_information}
-                        id={charity.id}
-                    />
-                </Col>
-            );}
-        });
+                         id={charity.id}
+                     />
+                 </Col>
+         );}
+         });
         return (
             <>
                 <div>
@@ -115,21 +123,18 @@ export default class Main extends React.Component {
                     </Container>
 
                     <Container>
-                        {   
+                        {
                             // ADD STYLE TO HAVE BTN AT THE BOTTOM
                             <div>
                                 {this.state.display && <h1>View More</h1>}
-                                <Row>{productCards}</Row> 
-                                <button onClick={this.handleClick}>load more</button>
+                                <Row>{productCards}</Row>
+                                <button onClick={this.handleClick}>
+                                    load more
+                                </button>
                             </div>
-                           
-                          
-                           
                         }
 
-                         
-                        <Button className="bg-success">
-                        </Button>
+                        <Button className="bg-success"></Button>
                     </Container>
                     {/* <Carousel /> */}
                     <Container
@@ -241,7 +246,7 @@ export default class Main extends React.Component {
                                 </p>
                             </Col>
                             <Container>
-                        <Row>{CharitiesCards}</Row>
+                         <Row>{CharitiesCards}</Row> 
                         <Link to="/app/charities">
                         <Button className="bg-success"> All charities
                         </Button>
@@ -265,6 +270,7 @@ export default class Main extends React.Component {
         );
     }
 }
+
 
 //FETCH MULTIPLE Request
 // const paginateItems = async () => {
@@ -297,7 +303,7 @@ export default class Main extends React.Component {
 //             paginateDataNotEmpty:true,
 //              paginationData:  this.state.allData.map((value, key) => {
 //                  console.log(this.state.allData)
-//                 return ( 
+//                 return (
 //                 <div>
 //                     <Col key={value.id}>
 //                             <ProductCard
@@ -315,4 +321,4 @@ export default class Main extends React.Component {
 //         })
 //        }
 
-// });  
+// });
