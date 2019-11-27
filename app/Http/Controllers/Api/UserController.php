@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller; 
 use App\User; 
 use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Hash; 
 use Validator;
 use App\Role;
 class UserController extends Controller
@@ -87,4 +88,45 @@ class UserController extends Controller
             $user = Auth::user(); 
             return response()->json(['success' => $user], $this-> successStatus); 
         } 
-}
+
+        public function changeEmailInformationUser(Request $request) {
+            $user = Auth::user(); 
+            if(Hash::check($request->input('confirm_password'), $user->password)) {
+                $user->email =$request->input('email');
+              //  $user->password = bcrypt($request->input('confirm_password')); 
+                $user->save();
+
+                return [
+                    "success" => true
+                ];
+            }
+            return [
+                "success" => false
+            ];
+    } 
+
+
+    public function changePasswordInformationUser(Request $request) {
+        $user = Auth::user(); 
+        if(Hash::check($request->input('old_password'), $user->password) && $request->input('new_password') == $request->input('confirm_new_password')) {
+            $user->password = bcrypt($request->input('new_password'));
+          //  $user->password = bcrypt($request->input('confirm_password')); 
+            $user->save();
+
+            return [
+                "success" => true
+            ];
+        }
+        return [
+            "success" => false
+        ];
+} 
+
+
+
+
+
+        }
+
+        
+

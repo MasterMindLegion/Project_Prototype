@@ -16,4 +16,8 @@ class ItemController extends Controller
         $single_items = Item::limit(1)->get();
         return $single_items;
     }
+    public function paginateItems() {
+        $paginate_items = Item::paginate(3);
+        return $paginate_items;
+    }
 }

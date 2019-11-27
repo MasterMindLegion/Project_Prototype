@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+use App\Charity;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -22,21 +22,27 @@ Route::post('register', 'API\UserController@register');
 
 
 
-Route::group(['middleware' => 'auth:api'], function(){
-  Route::post('auth/charity', 'API\CharityController@canCreateCharity');
-  Route::post('registerCharity', 'API\CharityController@registerCharity');
-  Route::post('details', 'API\UserController@details');
+Route::group(['middleware' => 'auth:api'], function () {
+    Route::post('/auth/charity', 'API\CharityController@canCreateCharity');
+    Route::post('/registerCharity', 'API\CharityController@registerCharity');
+    Route::post('/details', 'API\UserController@details');
+    Route::put('/usercharitychange', 'API\CharityController@changeInformationCharity');
+
+    Route::put('/useremailchange', 'API\UserController@changeEmailInformationUser');
+    Route::put('/userpasswordchange', 'API\UserController@changePasswordInformationUser');
+
+    // Route::get('/usercharity', 'API\CharityController@changeInformationCharity');
 });
 
-Route::get('singleitem', 'API\ItemController@create');
-Route::get('items', 'API\ItemController@index');
-Route::get('displayCharities', 'API\CharityController@index');
+Route::get('/items', 'API\ItemController@index');
+Route::get('/paginateitems', 'API\ItemController@paginateitems');
+Route::get('/displayCharities', 'API\CharityController@index');
 
 
 // Route::post('/login', 'Api\LoginController@login');
 // Route::post('/register', 'Api\RegisterController@register');
 // Route::group(['middleware' => ['auth:api']], function ($group) {
- 
-   
- 
+
+
+
 // });

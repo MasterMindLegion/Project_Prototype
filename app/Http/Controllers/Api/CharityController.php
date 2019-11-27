@@ -21,13 +21,15 @@ class CharityController extends Controller
     public function registerCharity(Request $request, User $User) {
 
     if($request->user()->charity != null){
-      return response()->json([
-        'success' => false, 
-        'error'=>'Yout got charity',
-        'message' => 'Please leave',
-    ], 401); 
+      //CHANGE CHARITY INFORMATION
+      $charity = $request->user()->charity;
+      $charity->name = $request->name;
+      $charity->char_address = $request->char_address;
+      $charity->char_information = $request->char_information;
+      $charity->save();
           
     }else {
+      //CREATE CHARITY 
         $charity = Charity::create([
             'user_id' => $request->user()->id,
             'Name' => $request->name,
@@ -36,8 +38,7 @@ class CharityController extends Controller
           ]);
           $user =  $request->user();
           $user->role_id = 1;
-          $user->save();
-          
+          $user->save();   
           return response()->json([
             'success' => true, 
             'name' => $request->name,
@@ -47,16 +48,28 @@ class CharityController extends Controller
         ], $this->successStatus);    
     }
   }
-    public function canCreateCharity(Request $request, User $User) {
+    //POST
+    public function canCreateCharity(Request $request) {
       $users = User::get();
       return response()->json([
-        'status' => $request->user()->charity != null,
+        'status' => $request->user()->charity == null,
         'message_charity' =>$request->user()->charity,
         'message_user' =>$request->user(),
-      ]);
-      
+      ]); 
     }
-
+   // PUT
+    public function changeInformationCharity(Request $request) {
+      $charity = $request->user()->charity;
+      $charity->name = $request->input('name');
+      $charity->char_address = $request->input('adress');
+      $charity->char_information = $request->input('info');
+      $charity->save();
+    }
+    //GET
+   public function getUserCharity(Request $request, $id) {
+    return Charity::find($id);
+   }
+   //GET
     public function index() {
       $all_charities = Charity::get();
       return $all_charities;

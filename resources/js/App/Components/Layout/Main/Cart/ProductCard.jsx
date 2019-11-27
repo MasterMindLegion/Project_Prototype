@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 export default class ProductCard extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
     }
     addToCart = e => {
         console.log('addProps', this.props)
@@ -20,7 +21,6 @@ export default class ProductCard extends React.Component {
             image: this.props.item_img,
             quantity: 1
         })
-
 
     };
 
@@ -52,6 +52,14 @@ export default class ProductCard extends React.Component {
                         <Button onClick={this.addToCart}>Buy</Button>
                         <div>
                             <Link to="#">More Info</Link>
+
+                <CardLink to="#">
+                <Link to={`/app/moreinfo/${this.props.id}`} >
+
+                    {/* More Info {this.props.id} */}
+                    More info
+                    </Link>
+                    </CardLink>
                         </div>
                     </CardBody>
                 </Card>

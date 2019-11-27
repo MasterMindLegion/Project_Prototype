@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Item;
 
 class ItemTableSeeder extends Seeder
 {
@@ -21,8 +20,5 @@ class ItemTableSeeder extends Seeder
         foreach($items as $item) {
             $item->save();
         }
-
     }
 }
-
-

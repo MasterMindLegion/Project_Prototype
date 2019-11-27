@@ -13,6 +13,7 @@ import {store} from './../../../app';
       information: '',
       localToken: window.localStorage.getItem('_token'),
       }
+      console.log("[charityregister]", this.state)
   }
     handleNameChange = (event) => {
       this.setState({
@@ -29,17 +30,15 @@ import {store} from './../../../app';
             information: event.target.value
         });
     }
-    componentDidMount() {
-      
-    }
   handleFormSubmit = (event) => {
+    console.log("[charityregister]", this.state)
     event.preventDefault();
     fetch('/api/registerCharity', {
         method: 'POST',
         headers: {
             'Accept':       'application/json',
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + _token 
+            'Authorization': 'Bearer ' + this.state.localToken
         },
         body: JSON.stringify({
             name: this.state.name,
@@ -52,15 +51,15 @@ import {store} from './../../../app';
     })
 }
     render() {
-      console.log("render from ch reg", this.props.registerCharity)
+      console.log("[charityRegister]", this.props.showRegisterLink)
         return (
           <>
-         {this.props.charityRegister == true            
-         ? <h1>allowed</h1>
-         : <h1>Not </h1>
-         }
-
-           <h1>Here you can register your charity</h1>
+           {this.props.showRegisterLink 
+           ? 
+             <h1>Register Charity</h1> 
+           : 
+           <h1>Edit Charity</h1>
+           }
            <Form action="" method="post" onSubmit={this.handleFormSubmit}>
              <FormGroup>
               <Label htmlFor="register_charity_name">Name</Label>
@@ -90,8 +89,7 @@ const mapStateToProps = state => {
   return {
     loginStatus: state.loginStatus,
     loginSuccess: state.loginSuccess,
-    registerCharity: state.registerCharity,
-    _token : state.loginReducer._token
+    showRegisterLink: state.loginReducer.showRegisterLink
   };
 }
 

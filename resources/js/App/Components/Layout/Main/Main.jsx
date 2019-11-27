@@ -1,6 +1,14 @@
 import React from "react";
 // import { Jumbotron } from 'reactstrap';
-import { Card, Container, Row, Col } from "reactstrap";
+import {
+    Card,
+    Container,
+    Row,
+    Col,
+    Pagination,
+    PaginationItem,
+    PaginationLink
+} from "reactstrap";
 import ProductCard from "./Cart/ProductCard.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
@@ -8,28 +16,57 @@ import { Button } from "reactstrap";
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
+            loading: false,
             isLoaded: false,
             items: null,
-            all_item: [  ]
+            all_item: [],
+            paginationData: null,
+            diplay: false,
+            all_item: []
         };
     }
 
+    // https://www.youtube.com/watch?v=koQmm5HIFgw
+
+    handleClick = () => {
+        this.setState({ display: !this.state.display });
+    };
     render() {
+        //EVERY ITEM
         const productCards = this.props.items.map((x, index) => {
-            return (
-                <Col key={`product-${x.item_name}-${index}`}>
-                    <ProductCard
-                        id={x.id}
-                        name={x.item_name}
-                        item_img={x.item_img}
-                        price={x.price_per_item}
-                        description={x.description}
-                        addItemToCart={this.props.addItemToCart}
-                    />
-                </Col>
-            );
+            if (x.id < 4) {
+                return (
+                    <Col key={`product-${x.item_name}-${index}`}>
+                        <ProductCard
+                            id={x.id}
+                            name={x.item_name}
+                            item_img={x.item_img}
+                            price={x.price_per_item}
+                            description={x.description}
+                            addItemToCart={this.props.addItemToCart}
+                        />
+                    </Col>
+                );
+            } else {
+                return (
+                    this.state.display && (
+                        <Col key={`product-${x.item_name}-${index}`}>
+                            <ProductCard
+                                id={x.id}
+                                name={x.item_name}
+                                item_img={x.item_img}
+                                price={x.price_per_item}
+                                description={x.description}
+                                addItemToCart={this.props.addItemToCart}
+                            />
+                        </Col>
+                    )
+                );
+            }
         });
+
         return (
             <>
                 <div>
@@ -76,9 +113,18 @@ export default class Main extends React.Component {
                     </Container>
 
                     <Container>
-                        <Row>{productCards}</Row>
-                        <Button className="bg-success">
-                        </Button>
+                        {
+                            // ADD STYLE TO HAVE BTN AT THE BOTTOM
+                            <div>
+                                {this.state.display && <h1>View More</h1>}
+                                <Row>{productCards}</Row>
+                                <button onClick={this.handleClick}>
+                                    load more
+                                </button>
+                            </div>
+                        }
+
+                        <Button className="bg-success"></Button>
                     </Container>
                     {/* <Carousel /> */}
                     <Container
@@ -207,3 +253,54 @@ export default class Main extends React.Component {
         );
     }
 }
+
+//FETCH MULTIPLE Request
+// const paginateItems = async () => {
+//     let response = await fetch(this.state.url, {
+//       method: 'GET',
+//       headers: {
+//         'Accept': 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//     });
+//    const data = await response.json();
+//    console.log("DATA", data)
+//     this.setState({
+//       allData: data,
+//      // url: response.data.paginationNextPage
+//     })
+//     console.log("state alldata", this.state.allData)
+
+// };
+// const loadMore = () => {
+//    this.setState({
+//     url: this.state.pagination.paginationNextPage
+//    })
+//    paginateItems();
+// }
+// //loadMore();
+// paginateItems().then(() => {
+//     if(this.state.allData.data != null) {
+//         this.setState({
+//             paginateDataNotEmpty:true,
+//              paginationData:  this.state.allData.map((value, key) => {
+//                  console.log(this.state.allData)
+//                 return (
+//                 <div>
+//                     <Col key={value.id}>
+//                             <ProductCard
+//                             key={value.id}
+//                                 name={value.item_name}
+//                             // item_img={x.item_img}
+//                                 price={value.price_per_item}
+//                                 description={value.description}
+//                             // addItemToCart={this.props.addItemToCart}
+//                             />
+//                     </Col>
+//                 </div>
+//                 )
+//             })
+//         })
+//        }
+
+// });
