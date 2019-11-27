@@ -10,7 +10,6 @@ import UserInformation from './../Auth/UserInformation.jsx';
 import PasswordChange from './../Auth/PasswordChange.jsx';
 import HomePage from './../Pages/HomePage.jsx';
 
-
 export default function UserPage() {
     return (
       <>

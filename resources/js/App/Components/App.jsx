@@ -12,6 +12,8 @@ import CharityRegister from './Auth/CharityRegister.jsx';
 import UserPage  from './Pages/UserPage.jsx';
 import PrivateRoute from './Pages/Protected.jsx';
 import ProductPage from './Layout/Main/Cart/ProductPage.jsx';
+import Charities from './Pages/Charities.jsx';
+import ShowItems from './Pages/ShowItems.jsx';
 
 class App extends React.Component {
     constructor(props) {
@@ -22,6 +24,7 @@ class App extends React.Component {
             token: null,
             logged_in: null,
             items: [],
+            charities: [],
             cart: cart,
         };
     }
@@ -36,7 +39,18 @@ class App extends React.Component {
                     items: result
                 });
             });
+
+            fetch("http://www.final_charity.test:8080/api/charities")
+            .then(res => res.json())
+            .then(result => {
+            //  console.log("[Homepage] FETCH", result);
+                this.setState({
+                    isLoaded: true,
+                    charities: result
+                });
+            });
     }
+    
     addItemToCart = (newItem) => {
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(item => item.name === newItem.name)
@@ -78,6 +92,7 @@ class App extends React.Component {
                      return <HomePage
                      items={this.state.items}
                      addItemToCart={this.addItemToCart}
+                     charities={this.state.charities}
                      />;
                  }}
              ></Route>
@@ -101,7 +116,16 @@ class App extends React.Component {
                 />
 
 
-                {/* MORE INFO BUTTON --- SHOULD GO TO PRODUCT PAGE */}
+                 <Route exact path="/app/charities"  render={() => {
+                     return <Charities
+                     charities={this.state.charities}
+                     />;
+                 }}
+             ></Route>
+
+
+                {/* 'MORE INFO' BUTTON --- SHOULD GO TO PRODUCT PAGE */}
+                {/* <Route path="/app/moreinfo/:id" component={ProductPage} /> */}
                 <Route path="/app/moreinfo/:id" 
                  render={() => {
                     return <ProductPage
@@ -118,6 +142,14 @@ class App extends React.Component {
                 <Route path="/app/user" component={UserPage} />
              
                 {/* Change Charity Information */}
+
+                 {/* show items from one Charity */}
+                <Route exact path="/app/showItems/:id" render={() => {
+                      return   <ShowItems
+                     items={this.state.items}
+                     />;
+                 }}
+                 ></Route>
 
                 {/* NotFoundPage */}
                <Route path="*" component={NotFoundPage} /> 

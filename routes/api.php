@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
 Route::get('/items', 'API\ItemController@index');
 Route::get('/paginateitems', 'API\ItemController@paginateitems');
+Route::get('charities', 'API\CharityController@index');
 Route::get('/displayCharities', 'API\CharityController@index');
 
 

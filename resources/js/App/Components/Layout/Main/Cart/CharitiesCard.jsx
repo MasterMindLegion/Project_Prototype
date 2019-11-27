@@ -12,25 +12,15 @@ import {
 } from "reactstrap";
 import "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-export default class ProductCard extends React.Component {
+export default class CharitiesCard extends React.Component {
     constructor(props) {
         super(props);
     }
 
-    addToCart = e => {
-        console.log('addProps', this.props)
-        this.props.addItemToCart({
-            name: this.props.name,
-            price: this.props.price,
-            description: this.props.description,
-            image: this.props.item_img,
-            quantity: 1
-        })
-
-    };
     render() {
+        console.log(this.props.information);
         return (
             <div>
                 <Card
@@ -41,28 +31,27 @@ export default class ProductCard extends React.Component {
                         minWidth: "200px",
                     }}
                 >
-                    <CardImg
+{/*                     <CardImg
                         top
                         width="100%"
                         src={this.props.item_img}
                         alt="Card image"
-                    />
+                    /> */}
                     <CardBody min-width="500px">
                         <CardTitle>
                             <h4>{this.props.name}</h4>
                         </CardTitle>
                         <CardSubtitle>
-                            <h5> {this.props.price}/CZK</h5>
+                            <h5> {this.props.information}</h5>
                         </CardSubtitle>
-                        <CardText>{this.props.description}</CardText>
-                        <Button onClick={this.addToCart}>Buy</Button>
-                        <div>
-                <CardLink to="#">
-                <Link to={`/app/moreinfo/${this.props.id}`} >
-                    More info
-                    </Link>
-                    </CardLink>
-                        </div>
+                        <CardText>{this.props.address}</CardText>
+                        <CardText>
+                        <Link to= {`/app/showItems/${this.props.id}`}>
+                         <Button className="bg-success"> Items to buy                
+                        </Button>
+                        </Link>
+                        </CardText>
+                        
                     </CardBody>
                 </Card>
             </div>

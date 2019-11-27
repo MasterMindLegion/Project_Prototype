@@ -4,6 +4,9 @@ import { Card, Container, Row, Col, Pagination, PaginationItem, PaginationLink }
 import ProductCard from "./Cart/ProductCard.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
+import CharitiesCard from "./Cart/CharitiesCard.jsx";
+import Charities from "../../Pages/Charities.jsx";
+import { Link } from 'react-router-dom';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -23,7 +26,6 @@ export default class Main extends React.Component {
 
      handleClick = () => {
          this.setState({display: !this.state.display})
-
  }
     render() {  
         const productCards = this.props.items.map((x, index) => {
@@ -39,7 +41,7 @@ export default class Main extends React.Component {
                 />
                    </Col>
             );           
-            } else if(x.id ) {
+            } else {
                 return this.state.display && (
                     <Col key={`product-${x.item_name}-${index}`}>
                        <ProductCard
@@ -52,6 +54,20 @@ export default class Main extends React.Component {
                    </Col>
             );
             }
+        });
+
+        const CharitiesCards =
+        this.props.charities.map((charity, index) => { if (index < 2){
+            return (
+                <Col key={`product-${charity.name}-${index}`}>
+                    <CharitiesCard
+                        name={charity.Name}
+                        address={charity.Char_address}
+                        information={charity.Char_information}
+                        id={charity.id}
+                    />
+                </Col>
+            );}
         });
         return (
             <>
@@ -224,6 +240,13 @@ export default class Main extends React.Component {
                                     happy, but also promote a good cause.
                                 </p>
                             </Col>
+                            <Container>
+                        <Row>{CharitiesCards}</Row>
+                        <Link to="/app/charities">
+                        <Button className="bg-success"> All charities
+                        </Button>
+                        </Link>
+                    </Container>
                             <Row>
                                 <Col>
                                     <Card></Card>

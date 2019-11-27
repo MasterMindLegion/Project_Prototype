@@ -15053,7 +15053,7 @@ var defaultTheme = Object(_createMuiTheme__WEBPACK_IMPORTED_MODULE_0__["default"
 /*!************************************************************!*\
   !*** ./node_modules/@material-ui/core/esm/styles/index.js ***!
   \************************************************************/
-/*! exports provided: hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, easing, duration, formatMs, isString, isNumber, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider */
+/*! exports provided: createMuiTheme, createStyles, makeStyles, responsiveFontSizes, styled, useTheme, withStyles, withTheme, createGenerateClassName, jssPreset, ServerStyleSheets, StylesProvider, MuiThemeProvider, ThemeProvider, hexToRgb, rgbToHex, hslToRgb, decomposeColor, recomposeColor, getContrastRatio, getLuminance, emphasize, fade, darken, lighten, easing, duration, formatMs, isString, isNumber */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72759,7 +72759,7 @@ function warning(message) {
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter, BrowserRouter, HashRouter, Link, NavLink */
+/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, __RouterContext, generatePath, matchPath, useHistory, useLocation, useParams, useRouteMatch, withRouter */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86945,7 +86945,7 @@ exports.devToolsEnhancer = (
 /*!***********************************************************************!*\
   !*** ./node_modules/redux-saga/dist/redux-saga-core-npm-proxy.esm.js ***!
   \***********************************************************************/
-/*! exports provided: CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel, default */
+/*! exports provided: default, CANCEL, SAGA_LOCATION, buffers, detach, END, channel, eventChannel, isEnd, multicastChannel, runSaga, stdChannel */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -91149,6 +91149,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Pages_UserPage_jsx__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./Pages/UserPage.jsx */ "./resources/js/App/Components/Pages/UserPage.jsx");
 /* harmony import */ var _Pages_Protected_jsx__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./Pages/Protected.jsx */ "./resources/js/App/Components/Pages/Protected.jsx");
 /* harmony import */ var _Layout_Main_Cart_ProductPage_jsx__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Layout/Main/Cart/ProductPage.jsx */ "./resources/js/App/Components/Layout/Main/Cart/ProductPage.jsx");
+/* harmony import */ var _Pages_Charities_jsx__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Pages/Charities.jsx */ "./resources/js/App/Components/Pages/Charities.jsx");
+/* harmony import */ var _Pages_ShowItems_jsx__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Pages/ShowItems.jsx */ "./resources/js/App/Components/Pages/ShowItems.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -91172,6 +91174,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -91244,6 +91248,7 @@ function (_React$Component) {
       token: null,
       logged_in: null,
       items: [],
+      charities: [],
       cart: cart
     };
     return _this;
@@ -91264,6 +91269,15 @@ function (_React$Component) {
           items: result
         });
       });
+      fetch("http://www.final_charity.test:8080/api/charities").then(function (res) {
+        return res.json();
+      }).then(function (result) {
+        //  console.log("[Homepage] FETCH", result);
+        _this2.setState({
+          isLoaded: true,
+          charities: result
+        });
+      });
     }
   }, {
     key: "render",
@@ -91276,7 +91290,8 @@ function (_React$Component) {
         render: function render() {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_HomePage_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
             items: _this3.state.items,
-            addItemToCart: _this3.addItemToCart
+            addItemToCart: _this3.addItemToCart,
+            charities: _this3.state.charities
           });
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
@@ -91299,6 +91314,14 @@ function (_React$Component) {
           });
         }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        exact: true,
+        path: "/app/charities",
+        render: function render() {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_Charities_jsx__WEBPACK_IMPORTED_MODULE_14__["default"], {
+            charities: _this3.state.charities
+          });
+        }
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/app/moreinfo/:id",
         render: function render() {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Layout_Main_Cart_ProductPage_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], {
@@ -91314,6 +91337,14 @@ function (_React$Component) {
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "/app/user",
         component: _Pages_UserPage_jsx__WEBPACK_IMPORTED_MODULE_11__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+        exact: true,
+        path: "/app/showItems/:id",
+        render: function render() {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Pages_ShowItems_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], {
+            items: _this3.state.items
+          });
+        }
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
         path: "*",
         component: _Layout_NotFoundPage_jsx__WEBPACK_IMPORTED_MODULE_5__["default"]
@@ -92467,6 +92498,62 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx":
+/*!****************************************************************************!*\
+  !*** ./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var AddedProduct = function AddedProduct(props) {
+  var buttonLabel = props.buttonLabel;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modal = _useState2[0],
+      setModal = _useState2[1];
+
+  var toggle = function toggle() {
+    return setModal(!modal);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "danger",
+    onClick: toggle
+  }, buttonLabel), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    isOpen: modal,
+    toggle: toggle
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalHeader"], {
+    toggle: toggle
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalBody"], null, "This product has been added to your cart"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["ModalFooter"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "primary",
+    onClick: toggle
+  }, "Keep shopping"), ' ', react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+    color: "secondary",
+    onClick: toggle
+  }, "Go to cart"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AddedProduct);
+
+/***/ }),
+
 /***/ "./resources/js/App/Components/Layout/Main/Cart/Cart.jsx":
 /*!***************************************************************!*\
   !*** ./resources/js/App/Components/Layout/Main/Cart/Cart.jsx ***!
@@ -92555,6 +92642,85 @@ var Cart = function Cart(props) {
 
 /***/ }),
 
+/***/ "./resources/js/App/Components/Layout/Main/Cart/CharitiesCard.jsx":
+/*!************************************************************************!*\
+  !*** ./resources/js/App/Components/Layout/Main/Cart/CharitiesCard.jsx ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return CharitiesCard; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+
+var CharitiesCard =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(CharitiesCard, _React$Component);
+
+  function CharitiesCard(props) {
+    _classCallCheck(this, CharitiesCard);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(CharitiesCard).call(this, props));
+  }
+
+  _createClass(CharitiesCard, [{
+    key: "render",
+    value: function render() {
+      console.log(this.props.information);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+        style: {
+          padding: "1rem",
+          margin: "1rem",
+          maxHeight: "600px",
+          minWidth: "200px"
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], {
+        "min-width": "500px"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, this.props.name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardSubtitle"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, " ", this.props.information)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], null, this.props.address), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
+        to: "/app/showItems/".concat(this.props.id)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        className: "bg-success"
+      }, " Items to buy"))))));
+    }
+  }]);
+
+  return CharitiesCard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx":
 /*!**********************************************************************!*\
   !*** ./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx ***!
@@ -92619,18 +92785,6 @@ function (_React$Component) {
         image: _this.props.item_img,
         quantity: 1
       });
-
-      moreInfo = function moreInfo(e) {
-        console.log('moreInfo', _this.props);
-
-        _this.props.moreInfo({
-          name: _this.props.name,
-          price: _this.props.price,
-          description: _this.props.description,
-          image: _this.props.item_img,
-          quantity: 1
-        });
-      };
     });
 
     return _this;
@@ -92659,11 +92813,132 @@ function (_React$Component) {
         to: "#"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Link"], {
         to: "/app/moreinfo/".concat(this.props.id)
-      }, "More Info ", this.props.id))))));
+      }, "More info"))))));
     }
   }]);
 
   return ProductCard;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx":
+/*!*************************************************************************!*\
+  !*** ./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return ProductCounter; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _ProductCard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductCard */ "./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx");
+/* harmony import */ var _AddedProductModal_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddedProductModal.jsx */ "./resources/js/App/Components/Layout/Main/Cart/AddedProductModal.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var ProductCounter =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(ProductCounter, _React$Component);
+
+  function ProductCounter(props) {
+    var _this;
+
+    _classCallCheck(this, ProductCounter);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ProductCounter).call(this, props));
+    _this.state = {
+      count: 0
+    };
+    _this.increment = _this.increment.bind(_assertThisInitialized(_this));
+    _this.decrement = _this.decrement.bind(_assertThisInitialized(_this));
+    _this.reset = _this.reset.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ProductCounter, [{
+    key: "reset",
+    value: function reset() {
+      this.setState({
+        count: 0
+      });
+    }
+  }, {
+    key: "increment",
+    value: function increment() {
+      this.setState(function (state) {
+        return {
+          count: state.count + 1
+        };
+      });
+    }
+  }, {
+    key: "decrement",
+    value: function decrement() {
+      var _this2 = this;
+
+      if (this.state.count > 0) {
+        this.setState(function (prevState) {
+          return {
+            count: prevState.count - 1
+          };
+        });
+      }
+
+      addToCart = function addToCart(e) {
+        console.log('addProps', _this2.props);
+
+        _this2.props.addItemToCart({
+          name: _this2.props.name,
+          price: _this2.props.price,
+          description: _this2.props.description,
+          image: _this2.props.item_img,
+          quantity: 1
+        });
+      };
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Current quantity: ", this.state.count), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.increment
+      }, "Add"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.decrement
+      }, "Remove"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.reset
+      }, "Reset"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        onClick: this.addToCart
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddedProductModal_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null), "Add to cart"));
+    }
+  }]);
+
+  return ProductCounter;
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 
@@ -92685,7 +92960,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _ProductCounter_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./ProductCounter.jsx */ "./resources/js/App/Components/Layout/Main/Cart/ProductCounter.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -92697,24 +92973,90 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+ // const SingleItem = (props) => {
+//   //pass down the correct ID here on props
+//   return(
+//     <div>
+//       <p>Product ID: {props.id}</p>
+//       <p>name: {props.name}</p>
+//       <p>description: {props.description}</p>
+//     </div>
+//   )
+// }
+
 function ProductPage(props) {
+  //all props are passed down
   var _props = _objectSpread({}, props),
       items = _props.items;
 
-  var _useParams = _objectSpread({}, Object(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["useParams"])()),
-      id = _useParams.id; // console.log(props.items);
+  console.log("[ProductPage] items", items); //looks for the item id based on url - app/more/info/3
+
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useParams"])(),
+      id = _useParams.id;
+
+  var item = null;
+
+  if (items.length > 0) {
+    //filter items based on the item id(finds an existing item with id requested)
+    //retrives item indexed 0, alt you can use pop()
+    item = items.filter(function (item) {
+      return item.id == id;
+    })[0];
+  } //console.log(item);
+  // const DropDown = props => {
+  //   const [dropdownOpen, setDropdownOpen] = useState(false);
+  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
+  //   const { setDepartureCode } = props;
+  //   const toggle = () => setDropdownOpen(prevState => !prevState);
+  //   const handleItemClick = e => {
+  //     setDropdownTitle(e.target.dataset.title);
+  //     setDepartureCode(e.target.id)
 
 
-  console.log('ITEMS: ', items); // console.log('ITEMS: ')
-  // const content
-  // componentDidMount(){
-  //   content = (
-  //     <div>{item[2].item_name}</div>
-  //   )
-  // }
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item !== null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
+    style: {
+      padding: "1rem",
+      margin: "1rem",
+      minHeight: "500px",
+      maxWidth: "500px"
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardTitle"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, item.item_name)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardImg"], {
+    top: true,
+    width: "100%",
+    src: item.item_img,
+    alt: "product image"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardBody"], {
+    "min-width": "500px"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardSubtitle"], null, "Description: ", item.description), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["CardText"], null, "Price: ", item.price_per_item, " CZK")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ProductCounter_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], null))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Loading"));
+} // export default class ProductPage extends React.Component {
+//   componentDidMount() {
+//     const id = this.props.match.params.id;
+//     this.fetchData(id);
+//   }
+//   fetchData = id => {
+//     //...
+//   };
+//   render() {
+//     return <div>BLAH</div>;
+//   }
+// }
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hel ", id), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "WORLD"));
+{
+  /* {items.map(item => (
+           <>
+           <p>{item.item_name}</p>
+           <p>{item.id}</p>
+           </>
+          ))} */
 }
+{}
+/* <div>{items[2].item_name}</div> */
+// const itemsArr = items.map(x => {
+//   return(
+//     <SingleItem name={x.item_name} description={x.description} />
+//   )
+// })
+// console.log(itemsArr)
 
 /***/ }),
 
@@ -93263,6 +93605,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cart_ProductCard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Cart/ProductCard.jsx */ "./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _Cart_CharitiesCard_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Cart/CharitiesCard.jsx */ "./resources/js/App/Components/Layout/Main/Cart/CharitiesCard.jsx");
+/* harmony import */ var _Pages_Charities_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../Pages/Charities.jsx */ "./resources/js/App/Components/Pages/Charities.jsx");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -93284,6 +93629,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
  // import { Jumbotron } from 'reactstrap';
+
+
+
 
 
 
@@ -93336,7 +93684,7 @@ function (_React$Component) {
             description: x.description,
             addItemToCart: _this2.props.addItemToCart
           }));
-        } else if (x.id) {
+        } else {
           return _this2.state.display && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
             key: "product-".concat(x.item_name, "-").concat(index)
           }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cart_ProductCard_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -93345,6 +93693,18 @@ function (_React$Component) {
             price: x.price_per_item,
             description: x.description,
             addItemToCart: _this2.props.addItemToCart
+          }));
+        }
+      });
+      var CharitiesCards = this.props.charities.map(function (charity, index) {
+        if (index < 2) {
+          return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+            key: "product-".concat(charity.name, "-").concat(index)
+          }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cart_CharitiesCard_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            name: charity.Name,
+            address: charity.Char_address,
+            information: charity.Char_information,
+            id: charity.id
           }));
         }
       });
@@ -93394,7 +93754,11 @@ function (_React$Component) {
           backgroundColor: "#7E5A4",
           textAlign: "center"
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "List of Charities"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This site was created to make it easier for charities in the Czech Republic to access their goods online. At the same time, charities can also be financially supported. By buying products from this site, you will not only make yourself or your loved ones happy, but also promote a good cause.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "List of Charities"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "This site was created to make it easier for charities in the Czech Republic to access their goods online. At the same time, charities can also be financially supported. By buying products from this site, you will not only make yourself or your loved ones happy, but also promote a good cause.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, CharitiesCards), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__["Link"], {
+        to: "/app/charities"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        className: "bg-success"
+      }, " All charities"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], null)))))));
     }
   }]);
 
@@ -93976,22 +94340,22 @@ function (_React$Component) {
 
 /***/ }),
 
-/***/ "./resources/js/App/Components/Pages/HomePage.jsx":
-/*!********************************************************!*\
-  !*** ./resources/js/App/Components/Pages/HomePage.jsx ***!
-  \********************************************************/
+/***/ "./resources/js/App/Components/Pages/Charities.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/App/Components/Pages/Charities.jsx ***!
+  \*********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Homepage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Charities; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _Layout_Navigation_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../Layout/Navigation.jsx */ "./resources/js/App/Components/Layout/Navigation.jsx");
-/* harmony import */ var _Layout_Main_Main_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../Layout/Main/Main.jsx */ "./resources/js/App/Components/Layout/Main/Main.jsx");
-/* harmony import */ var _Layout_Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../Layout/Footer/Footer.jsx */ "./resources/js/App/Components/Layout/Footer/Footer.jsx");
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _Layout_Main_Cart_CharitiesCard_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Layout/Main/Cart/CharitiesCard.jsx */ "./resources/js/App/Components/Layout/Main/Cart/CharitiesCard.jsx");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -94009,6 +94373,88 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+ // import { Jumbotron } from 'reactstrap';
+
+
+
+
+
+
+var Charities =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Charities, _React$Component);
+
+  function Charities(props) {
+    var _this;
+
+    _classCallCheck(this, Charities);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(Charities).call(this, props));
+    _this.state = {};
+    return _this;
+  }
+
+  _createClass(Charities, [{
+    key: "render",
+    value: function render() {
+      var CharitiesCards = this.props.charities.map(function (charity, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+          key: "product-".concat(charity.name, "-").concat(index)
+        }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Layout_Main_Cart_CharitiesCard_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          name: charity.Name,
+          address: charity.Char_address,
+          information: charity.Char_information,
+          id: charity.id
+        }));
+      });
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, CharitiesCards);
+    }
+  }]);
+
+  return Charities;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/App/Components/Pages/HomePage.jsx":
+/*!********************************************************!*\
+  !*** ./resources/js/App/Components/Pages/HomePage.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Homepage; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Layout_Navigation_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./../Layout/Navigation.jsx */ "./resources/js/App/Components/Layout/Navigation.jsx");
+/* harmony import */ var _Layout_Main_Main_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../Layout/Main/Main.jsx */ "./resources/js/App/Components/Layout/Main/Main.jsx");
+/* harmony import */ var _Layout_Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./../Layout/Footer/Footer.jsx */ "./resources/js/App/Components/Layout/Footer/Footer.jsx");
+/* harmony import */ var _Charities_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Charities.jsx */ "./resources/js/App/Components/Pages/Charities.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -94036,7 +94482,8 @@ function (_React$Component) {
         removeItemFromCart: this.props.removeItemFromCart
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Layout_Main_Main_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
         items: this.props.items,
-        addItemToCart: this.props.addItemToCart
+        addItemToCart: this.props.addItemToCart,
+        charities: this.props.charities
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Layout_Footer_Footer_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], null));
     }
   }]);
@@ -94089,6 +94536,72 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(PrivateRoute));
+
+/***/ }),
+
+/***/ "./resources/js/App/Components/Pages/ShowItems.jsx":
+/*!*********************************************************!*\
+  !*** ./resources/js/App/Components/Pages/ShowItems.jsx ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Layout_Main_Cart_ProductCard_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Layout/Main/Cart/ProductCard.jsx */ "./resources/js/App/Components/Layout/Main/Cart/ProductCard.jsx");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+ // import { Jumbotron } from 'reactstrap';
+
+
+
+
+
+
+
+var ShowItems = function ShowItems(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])()),
+      _useState2 = _slicedToArray(_useState, 2),
+      id = _useState2[0],
+      setId = _useState2[1];
+
+  console.log("id", _typeof(id.id));
+  /*             setId(parseInt(id.id, 10));
+               */
+
+  var productCards = props.items.map(function (x, index) {
+    if (x.charity_id == id.id) {
+      console.log(x);
+      console.log(id.id);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+        key: "product-".concat(x.item_name, "-").concat(index)
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Layout_Main_Cart_ProductCard_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        name: x.item_name,
+        item_img: x.item_img,
+        price: x.price_per_item,
+        description: x.description
+      }));
+    }
+  });
+  console.log(props);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, "Portfolio component", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Topic: id"), productCards);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ShowItems);
 
 /***/ }),
 
