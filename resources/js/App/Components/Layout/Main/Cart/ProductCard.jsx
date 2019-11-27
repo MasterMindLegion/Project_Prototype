@@ -18,6 +18,7 @@ import {Link } from "react-router-dom";
 export default class ProductCard extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props)
     }
     addToCart = e => {
         console.log('addProps', this.props)
@@ -28,19 +29,6 @@ export default class ProductCard extends React.Component {
             image: this.props.item_img,
             quantity: 1
         })
-    
-    moreInfo = e => {
-        console.log('moreInfo', this.props)
-        this.props.moreInfo({
-            name: this.props.name,
-            price: this.props.price,
-            description: this.props.description,
-            image: this.props.item_img,
-            quantity: 1
-        })
-        
-    }
-
     
     };
 

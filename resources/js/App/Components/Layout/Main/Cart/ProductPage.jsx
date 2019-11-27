@@ -39,7 +39,11 @@ export default function ProductPage (props){
     //retrives item indexed 0, alt you can use pop()
     item = items.filter((item) => (item.id == id))[0];
   } 
-  console.log(item);
+ 
+  if (item === undefined) {
+    item = null;
+  }
+ 
 
   // const DropDown = props => {
   //   const [dropdownOpen, setDropdownOpen] = useState(false);
