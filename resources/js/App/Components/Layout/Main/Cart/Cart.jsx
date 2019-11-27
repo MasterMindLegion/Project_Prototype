@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from 'react';
 import { Nav, NavItem, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import {
@@ -15,6 +16,7 @@ import {
     Row,
     CardDeck
 } from "reactstrap";
+// import ProductCounter from './ProductCounter.jsx';
 
 
 const CartItem = props => {
@@ -23,8 +25,8 @@ const CartItem = props => {
         props.removeItemFromCart(props.name)
     }
 
-    return (
 
+    return (
         <>
             <div>
                <CardDeck>
@@ -57,6 +59,7 @@ const Cart = props => {
     const onChange = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
     console.log(localstorage_shoppingCart);
+
 
     let productCard = props.items.map((item, index) => {
         return (

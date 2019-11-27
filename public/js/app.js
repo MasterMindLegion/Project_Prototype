@@ -91234,7 +91234,11 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_this), "decreaseItemInCart", function (itemName) {});
+    _defineProperty(_assertThisInitialized(_this), "decreaseItemInCart", function (itemName) {
+      _this.setState(function (prevState) {
+        var newCart = prevState.cart;
+      });
+    });
 
     var cartString = window.localStorage.getItem("cart");
     var cart = cartString ? JSON.parse(cartString) : [{
@@ -92316,7 +92320,7 @@ function (_React$Component) {
         className: "h6"
       }, "About Us"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "h6"
-      }, "Join Our Monthly Newsletter"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "Subscribe to Our Newsletter"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "input-group"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
@@ -92332,7 +92336,7 @@ function (_React$Component) {
         className: "col-lg-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "h6"
-      }, "Internship"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Something"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "list-unstyled footer-blog-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "d-flex align-items-center"
@@ -92376,13 +92380,13 @@ function (_React$Component) {
         className: "mb-0"
       }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "post.html"
-      }, "Very very long blog post name"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, "Blog post name"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "d-block d-lg-none"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-lg-3"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
         className: "h6"
-      }, "Experience abroad"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+      }, "Something"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
         className: "list-unstyled footer-blog-list"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
         className: "d-flex align-items-center"
@@ -92426,7 +92430,7 @@ function (_React$Component) {
         className: "mb-0"
       }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: "post.html"
-      }, "Very very long blog post name"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
+      }, "Blog post name"))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", {
         className: "d-block d-lg-none"
       })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "col-lg-3"
@@ -92547,6 +92551,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ // import ProductCounter from './ProductCounter.jsx';
 
 var CartItem = function CartItem(props) {
   var removeItem = function removeItem() {
@@ -92863,16 +92868,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
- // const SingleItem = (props) => {
-//   //pass down the correct ID here on props
-//   return(
-//     <div>
-//       <p>Product ID: {props.id}</p>
-//       <p>name: {props.name}</p>
-//       <p>description: {props.description}</p>
-//     </div>
-//   )
-// }
 
 function ProductPage(props) {
   //all props are passed down
@@ -92882,6 +92877,10 @@ function ProductPage(props) {
 
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["useParams"])(),
       id = _useParams.id;
+
+  var addItem = function addItem() {
+    props.addItemToCart(props.name);
+  };
 
   var item = null;
 
@@ -92895,15 +92894,7 @@ function ProductPage(props) {
 
   if (item === undefined) {
     item = null;
-  } // const DropDown = props => {
-  //   const [dropdownOpen, setDropdownOpen] = useState(false);
-  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
-  //   const { setDepartureCode } = props;
-  //   const toggle = () => setDropdownOpen(prevState => !prevState);
-  //   const handleItemClick = e => {
-  //     setDropdownTitle(e.target.dataset.title);
-  //     setDepartureCode(e.target.id)
-
+  }
 
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, item !== null ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Card"], {
     style: {
@@ -93608,16 +93599,14 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "Secure shopping")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "We take you privacy seriously - whenever you need assistance, we're here for you.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], null, // ADD STYLE TO HAVE BTN AT THE BOTTOM
       react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, this.state.display && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "View More"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, productCards), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: this.handleClick
-      }, "load more")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
-        className: "bg-success"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+      }, "load more"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
         className: "w-10\r fluid\r mt-3\r mb-3",
         style: {
           padding: "2em",
           backgroundColor: "#29f4cd",
           textAlign: "center"
         }
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "About E-Market")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "A one-of-a-kind community"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "E-Market is an online marketplace, where people come together to make, sell, buy and collect unique items.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support independent creators"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "There\u2019s no Etsy warehouse \u2013 just millions of people selling the things they love. We make the whole process easy, helping you connect directly with makers to find something extraordinary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Peace of mind"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your privacy is the highest priority of our dedicated team. And if you ever need assistance, we are always ready to step in for support.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "About E-Market")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "A one-of-a-kind community"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "E-Market is an online marketplace, where people come together to make, sell, buy and collect unique items.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Support independent creators"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "There're no warehouses \u2013 just hundreds of people selling the things they love. We make the whole process easy, helping you connect directly with makers to find something extraordinary.")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Peace of mind"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your privacy is the highest priority of our dedicated team. And if you ever need assistance, we are always ready to step in for support.")))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Container"], {
         fluid: true,
         className: "w-100 bg-light",
         style: {
@@ -94096,7 +94085,7 @@ function (_React$Component) {
         to: "/app/cart"
       }, "  Cart ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/app/sellon"
-      }, "  Sell ")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["UncontrolledDropdown"], {
+      }, " Sell")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["UncontrolledDropdown"], {
         nav: true,
         inNavbar: true
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownToggle"], {
@@ -94108,7 +94097,7 @@ function (_React$Component) {
         to: "/app/user"
       }, "Purchasses and Sales")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
         to: "/app/user"
-      }, "Acount Settings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
+      }, "Account Settings")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], {
         divider: true
       }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["DropdownItem"], null)))))));
     }

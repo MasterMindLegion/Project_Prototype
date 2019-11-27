@@ -41,8 +41,7 @@ export default class ProductCard extends React.Component {
                         margin: "1rem",
                         maxHeight: "600px",
                         minWidth: "200px",
-                    }}
-                >
+                    }}>
                     <CardImg
                         top
                         width="100%"
@@ -56,16 +55,13 @@ export default class ProductCard extends React.Component {
                         <CardSubtitle>
                             <h5> {this.props.price}/CZK</h5>
                         </CardSubtitle>
-                        <CardText>{this.props.description}</CardText>
+                        <CardText>{this.props.description}
+                        </CardText>
                         <Button onClick={this.addToCart}>Buy</Button>
                         <div>
-                <CardLink to="#">
-                <Link to={`/app/moreinfo/${this.props.id}`} >
-
-                    {/* More Info {this.props.id} */}
-                    More info
-                    </Link>
-                    </CardLink>
+                            <CardLink to="#">
+                            <Link to={`/app/moreinfo/${this.props.id}`} >More info</Link>
+                            </CardLink>
                         </div>
                     </CardBody>
                 </Card>

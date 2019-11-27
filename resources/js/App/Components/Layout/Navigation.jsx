@@ -50,7 +50,7 @@ import { connect } from 'react-redux';
                 <Link to='/app/cart'>  Cart </ Link>     
               </NavItem>
               <NavItem>
-                <Link to='/app/sellon'>  Sell </ Link>     
+                <Link to='/app/sellon'> Sell</ Link>     
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
@@ -61,7 +61,7 @@ import { connect } from 'react-redux';
                 <Link to="/app/user">Purchasses and Sales</Link>
                 </DropdownItem>
                 <DropdownItem>
-                  <Link to="/app/user">Acount Settings</Link>
+                  <Link to="/app/user">Account Settings</Link>
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>

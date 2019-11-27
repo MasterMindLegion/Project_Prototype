@@ -22,7 +22,7 @@ class App extends React.Component {
             token: null,
             logged_in: null,
             items: [],
-            cart: cart,
+            cart: cart
         };
     }
     componentDidMount() {
@@ -35,7 +35,7 @@ class App extends React.Component {
                     items: result
                 });
             });
-    }
+        }
     addItemToCart = (newItem) => {
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(item => item.name === newItem.name)
@@ -61,12 +61,17 @@ class App extends React.Component {
             return {
                 ...prevState,
                 cart: newCart
-            }
-        })
-    }
-    decreaseItemInCart=itemName=>{
+            };
+        });
+    };
     
-    }
+    decreaseItemInCart = (itemName) => {
+        this.setState(prevState => {
+            const newCart = prevState.cart
+        })
+    };  
+        
+
     render() {
        
         return (
@@ -123,14 +128,15 @@ class App extends React.Component {
                <Route path="*" component={NotFoundPage} /> 
             </Switch>
             </BrowserRouter>
-        )
+        );
     }
 }
-const mapStateToProps = state => {
+
+    const mapStateToProps = state => {
     return {
       loginStatus: state.loginReducer.loginStatus,
       loginSuccess: state.loginReducer.loginSuccess,
       
     };
-  }
+  };
 export default connect(mapStateToProps)(App);

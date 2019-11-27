@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { 
@@ -14,24 +14,15 @@ import ProductCounter from "./ProductCounter.jsx";
 import { useParams } from "react-router-dom";
 
 
-
-// const SingleItem = (props) => {
-//   //pass down the correct ID here on props
-//   return(
-//     <div>
-//       <p>Product ID: {props.id}</p>
-//       <p>name: {props.name}</p>
-//       <p>description: {props.description}</p>
-//     </div>
-//   )
-// }
-
 export default function ProductPage (props){
   //all props are passed down
   const {items} = {...props}
-
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
+
+  const addItem =() => {
+    props.addItemToCart(props.name)
+  }
 
   let item = null;
   if(items.length > 0){
@@ -43,18 +34,7 @@ export default function ProductPage (props){
   if (item === undefined) {
     item = null;
   }
- 
-
-  // const DropDown = props => {
-  //   const [dropdownOpen, setDropdownOpen] = useState(false);
-  //   const [dropdownTitle, setDropdownTitle] = useState("Departure");
-  //   const { setDepartureCode } = props;
-  //   const toggle = () => setDropdownOpen(prevState => !prevState);
   
-  //   const handleItemClick = e => {
-  //     setDropdownTitle(e.target.dataset.title);
-  //     setDepartureCode(e.target.id)
-
   return(
       <div>
       {
@@ -81,17 +61,20 @@ export default function ProductPage (props){
             </CardBody>
             </Card>
           </Col>
+          
           <Col>
-          {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
           <ProductCounter/>
           </Col>
+          
         </Row>
        ) : (
          <h2>Loading</h2> 
        )
        }
-     </div>
+      </div>
     )
+
+
 }
 
 // export default class ProductPage extends React.Component {

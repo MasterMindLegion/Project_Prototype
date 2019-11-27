@@ -114,16 +114,13 @@ export default class Main extends React.Component {
                                 <Row>{productCards}</Row> 
                                 <button onClick={this.handleClick}>load more</button>
                             </div>
-                           
-                          
-                           
                         }
-
-                         
-                        <Button className="bg-success">
-                        </Button>
+                        {/* <Button className="bg-success">
+                        </Button> */}
                     </Container>
+
                     {/* <Carousel /> */}
+                    
                     <Container
                         className="w-10
                         fluid
@@ -154,7 +151,7 @@ export default class Main extends React.Component {
                             <Col>
                                 <h3>Support independent creators</h3>
                                 <p>
-                                    There’s no Etsy warehouse – just millions of
+                                    There're no warehouses – just hundreds of
                                     people selling the things they love. We make
                                     the whole process easy, helping you connect
                                     directly with makers to find something
