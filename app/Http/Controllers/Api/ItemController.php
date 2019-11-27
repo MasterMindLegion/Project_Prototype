@@ -12,4 +12,8 @@ class ItemController extends Controller
         $all_items = Item::get();
         return $all_items;
     }
+    public function create() {
+        $single_items = Item::limit(1)->get();
+        return $single_items;
+    }
 }

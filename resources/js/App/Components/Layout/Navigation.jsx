@@ -24,7 +24,7 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
- 
+
   render() {
     return (
       <>
@@ -35,10 +35,10 @@ import { connect } from 'react-redux';
             <Nav className="ml-auto" navbar>
               <NavItem>
                 {
-                  this.props.loginSuccess === true 
+                  this.props.loginSuccess === true
                   ? <Logout />
                   : <ModalNavigationLogin />
-                }  
+                }
               </NavItem>
               <NavItem>
                 <ModalNavigationRegister />
@@ -47,10 +47,13 @@ import { connect } from 'react-redux';
                 <Link to="/app/registerCharity"> registerCharity</Link>
               </ NavItem >}
               <NavItem>
-                <Link to='/app/cart'>  Cart </ Link>     
+                <Link to='/app/cart'>  Cart </ Link>
               </NavItem>
               <NavItem>
-                <Link to='/app/sellon'>  Sell </ Link>     
+                <Link to='/app/sellon'>  Sell </ Link>
+              </NavItem>
+              <NavItem>
+                <Link to='/app/Products'> @ Products </ Link>
               </NavItem>
             </Nav>
           </Collapse>

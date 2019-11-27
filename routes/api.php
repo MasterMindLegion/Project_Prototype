@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::post('registerCharity', 'API\CharityController@registerCharity');
   Route::post('details', 'API\UserController@details');
 });
+
+Route::get('singleitem', 'API\ItemController@create');
 Route::get('items', 'API\ItemController@index');
 Route::get('displayCharities', 'API\CharityController@index');
 
