@@ -104,8 +104,6 @@ class UserController extends Controller
                 "success" => false
             ];
     } 
-
-
     public function changePasswordInformationUser(Request $request) {
         $user = Auth::user(); 
         if(Hash::check($request->input('old_password'), $user->password) && $request->input('new_password') == $request->input('confirm_new_password')) {
@@ -121,11 +119,6 @@ class UserController extends Controller
             "success" => false
         ];
 } 
-
-
-
-
-
         }
 
         

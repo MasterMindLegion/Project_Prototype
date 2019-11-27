@@ -27,6 +27,11 @@ class CharityController extends Controller
       $charity->char_address = $request->char_address;
       $charity->char_information = $request->char_information;
       $charity->save();
+      return response()->json([
+        'status' => true,
+        'message_charity' =>$request->user()->charity,
+        'message_user' =>$request->user(),
+      ]); 
           
     }else {
       //CREATE CHARITY 
@@ -74,8 +79,5 @@ class CharityController extends Controller
       $all_charities = Charity::get();
       return $all_charities;
     }
-
-    
-    
 }
 

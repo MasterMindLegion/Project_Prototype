@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from 'react';
+import React, {useContext} from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import {
@@ -12,14 +11,17 @@ import {
     CardTitle,
     CardSubtitle,
     Button,
-    Col, 
+    Col,
     Row,
     CardDeck
 } from "reactstrap";
-// import ProductCounter from './ProductCounter.jsx';
+import {cartContext} from "../../../App.jsx"
+// import Posts from './../Posts.jsx';
 
 
 const CartItem = props => {
+    const SelectedCartContext = useContext(cartContext);
+    console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
 
     const removeItem =() => {
         props.removeItemFromCart(props.name)
@@ -28,7 +30,10 @@ const CartItem = props => {
 
     return (
         <>
+
             <div>
+                {/* <h1>getting data from posts: {SelectedCartContext.selectedCartValue}</h1> */}
+                {/* <h1>getting data from posts: {SelectedCartContext.selectedCartValue}</h1> */}
                <CardDeck>
                  <Col sm="6">
                 <Card
@@ -43,6 +48,7 @@ const CartItem = props => {
                         <CardSubtitle> {props.description} </CardSubtitle>
                         <Button>Clear Cart</Button>
                         <Button className="counter-button" onClick={removeItem}>Remove Item</Button>
+
                         <Link to="/app/checkout">Proceed to Checkout</Link>
                     </CardBody>
                 </Card>

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ModalNavigationLogin from './Modals/ModalNavigationLogin.jsx';
 import ModalNavigationRegister from './Modals/ModalNavigationRegister.jsx';
 import Logout from './../Auth/Logout.jsx';
+
+
 import Cart from './Main/Cart/Cart.jsx';
 import { connect } from 'react-redux';
 
@@ -25,6 +27,7 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
     return (
       <>
@@ -33,25 +36,41 @@ import { connect } from 'react-redux';
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
+              {/* LOGIN/LOGOUT */}
               <NavItem>
                 {
-                  this.props.loginSuccess === true 
+                  this.props.loginSuccess === true
                   ? <Logout />
                   : <ModalNavigationLogin />
-                }  
+                }
               </NavItem>
+              {/* Register */}
               <NavItem>
                 <ModalNavigationRegister />
               </NavItem>
+              {/* Register/Edit Charity */}
               { this.props.loginSuccess && <NavItem >
                 <Link to="/app/registerCharity">{this.props.showRegisterLink ? "registerCharity": "editcharity"}</Link>
               </ NavItem >}
+              {/* Cart */}
               <NavItem>
-                <Link to='/app/cart'>  Cart </ Link>     
+                <Link to='/app/cart'>  Cart {this.props.numberOfItems} </ Link>
               </NavItem>
+              {/* Sell */}
               <NavItem>
-                <Link to='/app/sellon'> Sell</ Link>     
+                <Link to='/app/sellon'>  Sell </ Link>
               </NavItem>
+              {/* PRODUCTS */}
+              <NavItem>
+                <Link to='/app/Products'> Products </ Link>
+              </NavItem>
+              {/* ADD ITEMS */}
+              {/* {this.props.loginSuccess &&
+              <NavItem >
+                <Link to="/app/addItems"> Add new item</Link>
+              </ NavItem >}
+                USER DROPDOWN */}
+              {this.props.loginSuccess &&
               <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
                 User
@@ -68,7 +87,10 @@ import { connect } from 'react-redux';
                   {/* <Logout /> */}
                 </DropdownItem>
               </DropdownMenu>
-            </UncontrolledDropdown>
+            </UncontrolledDropdown> }
+
+
+
             </Nav>
           </Collapse>
         </Navbar>

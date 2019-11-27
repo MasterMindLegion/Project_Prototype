@@ -1,25 +1,18 @@
 
 import React from "react";
 import {
-    Card,
-    CardImg,
-    CardText,
-    CardBody,
-    CardLink,
-    CardTitle,
-    CardSubtitle,
-    Button
+    Card,CardImg,CardText,CardBody,CardLink,CardTitle,CardSubtitle, Button
 } from "reactstrap";
 import "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {Link } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 
 export default class ProductCard extends React.Component {
     constructor(props) {
         super(props);
         console.log(props)
     }
+
     addToCart = e => {
         console.log('addProps', this.props)
         this.props.addItemToCart({
@@ -29,9 +22,7 @@ export default class ProductCard extends React.Component {
             image: this.props.item_img,
             quantity: 1
         })
-    
     };
-
     render() {
         return (
             <div>
@@ -59,9 +50,11 @@ export default class ProductCard extends React.Component {
                         </CardText>
                         <Button onClick={this.addToCart}>Buy</Button>
                         <div>
-                            <CardLink to="#">
-                            <Link to={`/app/moreinfo/${this.props.id}`} >More info</Link>
-                            </CardLink>
+                <CardLink to="#">
+                <Link to={`/app/moreinfo/${this.props.id}`} >
+                    More info
+                    </Link>
+                    </CardLink>
                         </div>
                     </CardBody>
                 </Card>

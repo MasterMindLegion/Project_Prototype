@@ -7,9 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     // protected $table = 'items';
-    protected $fillable = [
-        'charity_id'
-    ];
+    protected $guarded = [];
 
     public function charity () {
         return $this->belongsTo(Charity::class);
