@@ -10,7 +10,6 @@ export default class Main extends React.Component {
         super(props);
        
         this.state = {
-
             loading: false,
             isLoaded: false,
             items: null,
@@ -18,7 +17,6 @@ export default class Main extends React.Component {
             diplay: false,
             all_item: [
             ],
-    
     }
 }
     // https://www.youtube.com/watch?v=koQmm5HIFgw
@@ -28,12 +26,10 @@ export default class Main extends React.Component {
 
  }
     render() {  
-        //EVERY ITEM
         const productCards = this.props.items.map((x, index) => {
             if(x.id < 4) {
                 return (
                     <Col key={`product-${x.item_name}-${index}`}>
-                       
                        <ProductCard
                             name={x.item_name}
                             item_img={x.item_img}
@@ -43,10 +39,9 @@ export default class Main extends React.Component {
                 />
                    </Col>
             );           
-            } else {
+            } else if(x.id ) {
                 return this.state.display && (
                     <Col key={`product-${x.item_name}-${index}`}>
-                       
                        <ProductCard
                             name={x.item_name}
                             item_img={x.item_img}
@@ -57,7 +52,6 @@ export default class Main extends React.Component {
                    </Col>
             );
             }
-       
         });
         return (
             <>

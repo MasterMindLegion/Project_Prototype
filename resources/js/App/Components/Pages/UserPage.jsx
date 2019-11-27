@@ -13,12 +13,12 @@ import HomePage from './../Pages/HomePage.jsx';
 
 export default function UserPage() {
     return (
+      <>
+      {/* Cant be in router */}
+       <Link to="/">Home</Link>
       <Router>
         <div>
           <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
             <li>
               <Link to="/app/user/email">Change Email</Link>
             </li>
@@ -37,6 +37,7 @@ export default function UserPage() {
           </Switch>
         </div>
       </Router>
+      </>
     );
   }
 

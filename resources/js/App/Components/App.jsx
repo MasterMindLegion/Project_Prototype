@@ -26,7 +26,8 @@ class App extends React.Component {
         };
     }
     componentDidMount() {
-        fetch("http://www.charity.test/api/items")
+        //MARTIN VERSION /www.final_charity.test:8080/
+        fetch("http://www.final_charity.test:8080/api/items")
             .then(res => res.json())
             .then(result => {
             //  console.log("[Homepage] FETCH", result);
