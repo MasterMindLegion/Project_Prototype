@@ -1,7 +1,6 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import { connect } from 'react-redux';
-
 import Register from './Auth/Register.jsx';
 import Login from './Auth/Login.jsx';
 import NotFoundPage from './Layout/NotFoundPage.jsx';
@@ -18,8 +17,10 @@ import ShowItems from './Pages/ShowItems.jsx';
 import Products from "./Layout/Main/Products.jsx";
  import ProductsPage from "./Pages/ProductsPage.jsx";
  import AddItems from './/Pages/AddItems.jsx';
-import Navigation from './Layout/Navigation.jsx';
+import Navigation from './Layout/Main/Navigation.jsx';
 import Footer from './Layout/Footer/Footer.jsx';
+import EditItems from './Pages/EditItems.jsx';
+
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
 
@@ -86,7 +87,7 @@ class App extends React.Component {
                 ...prevState,
                 numberOfItems: newItem,
                 }
-            })     
+            })
     };
     selectedCartCallback = arg => {
         this.setState({
@@ -179,8 +180,8 @@ class App extends React.Component {
                         <Route
                             path="/app/moreinfo/:id"
                             render={() => {
-                                return <ProductPage 
-                                items={this.state.items} 
+                                return <ProductPage
+                                items={this.state.items}
                                 addItemToCart= {this.addItemToCart}
                                 />;
                             }}
@@ -215,7 +216,14 @@ class App extends React.Component {
                         }}
                         >
                         </Route>
-
+                        {/* EDIT ITEMS */}
+                         <Route exact path="/app/editItems/:id" render={() => {
+                            return <EditItems
+                            
+                            user={this.state.user}
+                            token={this.state.token}/>;
+                            }}
+                            /> 
                     {/* NotFoundPage */}
                     {/* <Route path="*" component={NotFoundPage} /> */}
                     </CartContextProvider>

@@ -17,7 +17,7 @@ return (
     <Modal isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle}></ModalHeader>
       <ModalBody>
-        This product has been added to your cart 
+        This product has been added to your cart
         </ModalBody>
       <ModalFooter>
         <Button color="primary" onClick={toggle}>Keep shopping</Button>{' '}

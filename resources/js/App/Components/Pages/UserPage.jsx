@@ -10,7 +10,8 @@ import UserInformation from './../Auth/UserInformation.jsx';
 import PasswordChange from './../Auth/PasswordChange.jsx';
 import AddItems from './../Pages/AddItems.jsx'
 import HomePage from './../Pages/HomePage.jsx';
-
+import editItems from './../Pages/EditItems.jsx';
+import PrivateRouteEditItems from './../Pages/Protected.jsx';
 export default function UserPage() {
     return (
       <>
@@ -28,6 +29,9 @@ export default function UserPage() {
             <li>
               <Link to="/app/addItems"> Add new item</Link>
             </li>
+            <li>
+              <Link to="/app/editItems/:id"> Edit item</Link>
+            </li>
           </ul>
           <hr />
           <Switch>
@@ -41,6 +45,12 @@ export default function UserPage() {
             <Route exact path="/app/addItems">
               <AddItems/>
             </Route>
+            <PrivateRouteEditItems>
+                    <Route exact path="/app/editItems/:id" render={() => {
+                        return <EditItems/>;
+                        }}
+                        />
+            </PrivateRouteEditItems>
            
           </Switch>
         </div>

@@ -7,14 +7,13 @@ import App from './App/Components/App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { all } from 'redux-saga/effects'
 import { loginReducer } from './App/Components/store/login/loginReducer.js';
-import { charityRegisterReducer } from './App/Components/store/charityRegister/charityRegisterReducer.js';
 import createSagaMiddleware from 'redux-saga';
 import userSagas from './App/Components/sagas/userSagas.js';
-
+import { itemReducer } from './App/Components/store/item/itemReducer.js';
 // combining two reducers into a single reducer
 const rootReducer = combineReducers({
   loginReducer: loginReducer,
-  charityRegisterReducer: charityRegisterReducer
+  itemReducer: itemReducer
 })
 // Store
 function* rootSaga() {

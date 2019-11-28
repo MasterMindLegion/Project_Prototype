@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
     Card,CardImg,CardText,CardBody,CardLink,CardTitle,CardSubtitle, Button
@@ -6,15 +5,13 @@ import {
 import "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
-
+;
 export default class ProductCard extends React.Component {
     constructor(props) {
         super(props);
         console.log(props)
     }
-
     addToCart = e => {
-        console.log('addProps', this.props)
         this.props.addItemToCart({
             name: this.props.name,
             price: this.props.price,
@@ -39,7 +36,7 @@ export default class ProductCard extends React.Component {
                         src={this.props.item_img}
                         alt="Card image"
                     />
-                    <CardBody min-width="500px">
+                    <CardBody min-width="200px">
                         <CardTitle>
                             <h4>{this.props.name}</h4>
                         </CardTitle>
