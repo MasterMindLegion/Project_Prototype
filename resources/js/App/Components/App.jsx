@@ -36,7 +36,6 @@ class App extends React.Component {
             charities: [],
             cart: cart,
             selectedCart: null,
-            test: "hi",
             numberOfItems: 0,
         };
     }
@@ -50,7 +49,6 @@ class App extends React.Component {
                     items: result
                 });
             });
-
         fetch("http://www.final_charity.test:8080/api/charities")
             .then(res => res.json())
             .then(result => {

@@ -7,9 +7,7 @@ export default class SellOn extends React.Component {
         return (
             <>
                 <h1>Charities </h1>
-
                 <div>
-
                 <MDBRow>
                 <MDBCol style={{  maxWidth: "60rem" }}>
                     <MDBCard reverse>
