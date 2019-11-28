@@ -42,7 +42,7 @@ class App extends React.Component {
     }
     componentDidMount() {
         //MARTIN VERSION /www.final_charity.test:8080/
-        fetch("http://www.final_charity.test:8080/api/items")
+        fetch("http://www.projectprototype.test:8080/api/items")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -51,7 +51,7 @@ class App extends React.Component {
                 });
             });
 
-        fetch("http://www.final_charity.test:8080/api/charities")
+        fetch("http://www.projectprototype.test:8080/api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -88,7 +88,7 @@ class App extends React.Component {
                 ...prevState,
                 numberOfItems: newItem,
                 }
-            })     
+            })
     };
     selectedCartCallback = arg => {
         this.setState({
@@ -181,8 +181,8 @@ class App extends React.Component {
                         <Route
                             path="/app/moreinfo/:id"
                             render={() => {
-                                return <ProductPage 
-                                items={this.state.items} 
+                                return <ProductPage
+                                items={this.state.items}
                                 addItemToCart= {this.addItemToCart}
                                 />;
                             }}
