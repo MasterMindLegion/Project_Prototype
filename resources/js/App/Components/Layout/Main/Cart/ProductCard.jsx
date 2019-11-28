@@ -7,14 +7,13 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
 // import Checkout from '../../../../../../../Project_Prototype/resources/js/App/Components/Layout/Main/Checkout/Checkout';
 
+;
 export default class ProductCard extends React.Component {
     constructor(props) {
         super(props);
         console.log(props)
     }
-
     addToCart = e => {
-        console.log('addProps', this.props)
         this.props.addItemToCart({
             name: this.props.name,
             price: this.props.price,

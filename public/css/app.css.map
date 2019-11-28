@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"version":3,"sources":["webpack:///./resources/sass/C:/web/bootcamp/Project_Prototype/resources/sass/C:/web/bootcamp/Project_Prototype/resources/sass/app.scss","webpack:///./resources/sass/C:/web/bootcamp/Project_Prototype/resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI;CCAJ;;ADKA;EAEM;CCHN;;ADOA;EACI","file":"/css/app.css","sourcesContent":["//\r\nbody {\r\n    width: 90%;\r\n}\r\n\r\n$primary : rgb(41, 244, 205);\r\n\r\n.navigationLink {\r\n  \r\n      color: white!important;\r\n  \r\n   \r\n}\r\n.cartIcon {\r\n    color: white !important;\r\n}","body {\n  width: 90%;\n}\n\n.navigationLink {\n  color: white !important;\n}\n\n.cartIcon {\n  color: white !important;\n}"],"sourceRoot":""}
+=======
+{"version":3,"sources":["webpack:///./resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI;CAAJ;;AAKA;EAEM;CAHN;;AAOA;EACI","file":"/css/app.css","sourcesContent":["//\nbody {\n    width: 90%;\n}\n\n$primary : rgb(41, 244, 205);\n\n.navigationLink {\n  \n      color: white!important;\n  \n   \n}\n.cartIcon {\n    color: white !important;\n}"],"sourceRoot":""}
+>>>>>>> 54b257b9f0cb254c7a848652870089e5e91a4afe

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Navigation from './../Layout/Navigation.jsx';
+import Navigation from './../Layout/Main/Navigation.jsx';
 import { Link } from 'react-router-dom';
 import Main from './../Layout/Main/Main.jsx'
 import Footer from './../Layout/Footer/Footer.jsx'

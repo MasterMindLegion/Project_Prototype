@@ -1,7 +1,6 @@
 import React, { createContext } from "react";
 import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
 import { connect } from 'react-redux';
-
 import Register from './Auth/Register.jsx';
 import Login from './Auth/Login.jsx';
 import NotFoundPage from './Layout/NotFoundPage.jsx';
@@ -18,9 +17,9 @@ import ShowItems from './Pages/ShowItems.jsx';
 import Products from "./Layout/Main/Products.jsx";
  import ProductsPage from "./Pages/ProductsPage.jsx";
  import AddItems from './/Pages/AddItems.jsx';
-import Navigation from './Layout/Navigation.jsx';
+import Navigation from './Layout/Main/Navigation.jsx';
 import Footer from './Layout/Footer/Footer.jsx';
-
+import EditItems from './Pages/EditItems.jsx';
 
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
@@ -38,13 +37,13 @@ class App extends React.Component {
             charities: [],
             cart: cart,
             selectedCart: null,
-            test: "hi",
             numberOfItems: 0,
         };
     }
     componentDidMount() {
         //MARTIN VERSION /www.final_charity.test:8080/
         fetch("http://www.charity.test/api/items")
+        // fetch("http://www.final_charity.test:8080/api/items")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -54,6 +53,7 @@ class App extends React.Component {
             });
 
         fetch("http://www.charity.test/api/charities")
+        // fetch("http://www.final_charity.test:8080/api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -222,7 +222,14 @@ class App extends React.Component {
                         }}
                         >
                         </Route>
-
+                        {/* EDIT ITEMS */}
+                         <Route exact path="/app/editItems/:id" render={() => {
+                            return <EditItems
+                            
+                            user={this.state.user}
+                            token={this.state.token}/>;
+                            }}
+                            /> 
                     {/* NotFoundPage */}
                     {/* <Route path="*" component={NotFoundPage} /> */}
                     </CartContextProvider>

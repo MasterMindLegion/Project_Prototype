@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash; 
 use Validator;
 use App\Role;
+use App\Item;
 class UserController extends Controller
 {
 
@@ -83,12 +84,12 @@ class UserController extends Controller
          * 
          * @return \Illuminate\Http\Response 
          */ 
-        public function details() 
-        { 
-            $user = Auth::user(); 
-            return response()->json(['success' => $user], $this-> successStatus); 
-        } 
-
+        public function details(Request $request)
+        {
+            $user = $request->user()->charity->id;
+            $all_items = Item::where('charity_id',$user)->get();
+            return $all_items;
+        }
         public function changeEmailInformationUser(Request $request) {
             $user = Auth::user(); 
             if(Hash::check($request->input('confirm_password'), $user->password)) {
@@ -119,6 +120,8 @@ class UserController extends Controller
             "success" => false
         ];
 } 
+
+
         }
 
         
