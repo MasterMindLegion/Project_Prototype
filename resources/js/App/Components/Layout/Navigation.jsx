@@ -54,7 +54,7 @@ import { connect } from 'react-redux';
                 <Link to='/app/sellon'>  Sell </ Link>
               </NavItem>
               <NavItem>
-                <Link to='/app/Products'> @ Products </ Link>
+                <Link to='/app/Products'> Products </ Link>
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>

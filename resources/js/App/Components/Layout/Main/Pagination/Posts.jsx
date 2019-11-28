@@ -1,18 +1,17 @@
-//
+
 import React, {useContext} from 'react';
 import {
-    Card,Container,CardImg,CardText,CardBody,CardLink, Button,CardTitle, CardSubtitle,Col, Row, CardDeck
+    Card,Container,CardImg,CardText,CardBody,CardLink,Jumbotron, Button,CardTitle, CardSubtitle,Col, Row, CardDeck
 } from "reactstrap";
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { FaCcVisa } from 'react-icons/fa';FaApplePay
 import { FaCcMastercard } from 'react-icons/fa';
 import { FaApplePay } from 'react-icons/fa';
-import { FaArrowCircleRight } from 'react-icons/fa';
 import { FaGoogleWallet } from 'react-icons/fa';
 import {cartContext} from "../../../App.jsx"
 console.log("cartcontext from posts", cartContext)
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+
 
 
 const Posts = ({posts, loading, addItemToCart }) => {
@@ -30,49 +29,44 @@ const Posts = ({posts, loading, addItemToCart }) => {
         // cartContextValue.selectedCartCallback(arg.item_name)
     }
     if(loading) {
-        return <h2> loading ... </h2>;
+        return <h2> Loading... </h2>;
     }
 console.log(posts);
   return (
     <ul className="card">
         {posts.map (post => (
                 <div key={post.id} className='card-body'>
-         <Container>
-            {/* <Row> */}
-            <Col sm="8">
-            <Card style={{padding: "1rem", margin: "0.5rem",maxHeight: "900px", maxWidth: "900px"}}>
-                <CardBody min-width="500px">
-                <CardBody>
+
+
+
+
+
+            <Jumbotron>
                     <CardTitle> <h1>{post.item_name} </h1></CardTitle>
-                </CardBody>
-                <CardImg top width="90%" src={post.item_img} />
-
-                    <div>
-                    <CardBody>
+                    <CardImg top width="90%" alt="Loading..." src={post.item_img} />
+                    <p> </p>
+                    <hr className="my-2" />
+                    <CardSubtitle> <h2> Price:  {post.price_per_item} CZK </h2>  </CardSubtitle>
+                    
+                    <h4> Item description:   </h4>
                     <CardText>{post.description}</CardText>
-                    <CardSubtitle><h3>{post.price_per_item} CZK  BUY NOW !!! </h3> </CardSubtitle>
-
-
-                        <Button onClick={() => handleClick(post)}><FaShoppingCart />  ADD TO SHOPPING CART </Button>
-                        {/* <Button onClick={this.addToCart}>Add to Cart</Button> */}
-
-                       <Link to="/app/cart"> GO TO SHOPPING CART <FaShoppingCart /></Link>
-
-                       <h3 color="success"><FaCcVisa /> <FaCcMastercard /> <FaApplePay /> <FaGoogleWallet /> </h3>
-
+                    <hr className="my-1" />
+                    <CardBody min-width="400px">
+                    
+                    <Button onClick={() => handleClick(post)}><FaShoppingCart />  ADD TO SHOPPING CART </Button>
+                      
+                       <h4> Payments: <FaCcVisa /> <FaCcMastercard /> <FaApplePay /> <FaGoogleWallet /> </h4>
+                       <h6>  Get more time to pay.  See payment information... </h6>
                         {/* <Link to="/app/checkout"> <h3> </h3></Link>
                         <Link to="/app/checkout"> <h3><</h3></Link>
                         <Link to="/app/checkout"> <h3> </h3></Link> */}
-
+                         <Link to="/app/cart"> Go To Shopping Cart </Link>
+                        <p> </p>
                         <Link to="/app/checkout/checkout">  Proceed to Checkout </Link>
-                        {/* <Link to="/checkout">Go To Checkout </Link> */}
                     </CardBody>
-                    </div>
-                </CardBody>
-                </Card>
-            </Col>
-            {/* </Row> */}
-            </Container>
+                </Jumbotron>
+
+
             </div>
         ))}
         </ul>
