@@ -14,17 +14,25 @@ import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
+import CreditCardIcon from '@material-ui/icons/CreditCard';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+      <Link color="inherit" href="https://liveleak.com/">
+         BOOTCAMP PRAGUE
       </Link>{' '}
+
       {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
+
 }
 
 const useStyles = makeStyles(theme => ({
@@ -92,17 +100,38 @@ export default function Checkout() {
   return (
      <React.Fragment>
       <CssBaseline />
-      <AppBar position="absolute" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Company name
-          </Typography>
-        </Toolbar>
-      </AppBar>
+        <AppBar position="absolute" color="default" className={classes.appBar}>
+            <Toolbar>
+             <Typography variant="h6" color="inherit" noWrap>
+                <Link color="inherit" href="/../app/products">
+                <MenuIcon />  Back to Products
+                </Link>
+                </Typography>
+            </Toolbar>
+
+             <Toolbar>
+                <Typography variant="h6" color="inherit" noWrap>
+                    <Link color="inherit" href="/../app/cart">
+                    <ShoppingCartIcon /> Back to Cart
+                    </Link>
+                </Typography>
+            </Toolbar>
+
+            <Toolbar>
+             <Typography variant="h6" color="inherit" noWrap>
+                <Link color="inherit" href="/../app/products">
+                <CreditCardIcon /> How would you like to pay?
+                </Link>
+                </Typography>
+
+
+            </Toolbar>
+        </AppBar>
+
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center">
-            Checkout
+          Great Choice! Enjoy Your Checkout
           </Typography>
           <Stepper activeStep={activeStep} className={classes.stepper}>
             {steps.map(label => (

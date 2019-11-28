@@ -73,7 +73,7 @@ class Login extends React.Component {
               onChange={this.handlePasswordChange}
             />
           </FormGroup>
-          <Button type="submit" value="Login" color="danger"> [Login] Log In</Button>
+          <Button type="submit" value="Login" color="success">Log In</Button>
         </Form>
       </>
     )

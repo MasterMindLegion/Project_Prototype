@@ -9,7 +9,7 @@ const Logout = (props) => {
      props.logoutFunction();
   }
   return(
-    <Button type="submit" value="Login" color="secondary" onClick={handleLogout}> [Logout] Logout</Button>
+    <Button outline type="submit" value="Login" color="secondary" onClick={handleLogout}>Logout</Button>
   );
 }
 

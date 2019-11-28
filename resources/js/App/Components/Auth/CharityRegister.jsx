@@ -62,10 +62,6 @@ import {store} from './../../../app';
     })
     
     }
-
-
-//alocateUserWhenRegisterSuccess();
-
     render() {
       console.log("[charityRegister] this.state.redirect", this.state.redirect)
         return (

@@ -1,4 +1,12 @@
 body {
   width: 90%;
 }
+
+.navigationLink {
+  color: white !important;
+}
+
+.cartIcon {
+  color: white !important;
+}
 /*# sourceMappingURL=app.css.map*/
