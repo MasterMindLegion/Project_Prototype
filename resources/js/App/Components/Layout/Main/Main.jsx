@@ -128,27 +128,18 @@ export default class Main extends React.Component {
                             <div>
                                 {this.state.display && <h1>View More</h1>}
                                 <Row>{productCards}</Row>
-                                <button onClick={this.handleClick}>
-                                    load more
-                                </button>
+                                <Row>
+                                    <Button className="bg-success" onClick={this.handleClick}>load more</Button>
+                                </Row>
+                                <br/>
                             </div>
                         }
-
-                        <Button className="bg-success"></Button>
                     </Container>
 
-                    {/* <Carousel /> */}
-                    
                     <Container
-                        className="w-10
                         fluid
-                        mt-3
-                        mb-3"
-                        style={{
-                            padding: "2em",
-                            backgroundColor: "#29f4cd",
-                            textAlign: "center"
-                        }}
+                        className="w-100 bg-success"
+                        style={{ padding: "2em", textAlign: "center" }}
                     >
                         <Row>
                             <Col>
@@ -189,43 +180,6 @@ export default class Main extends React.Component {
                     </Container>
 
                     <Container
-                        fluid
-                        className="w-100 bg-light"
-                        style={{ padding: "2em", textAlign: "center" }}
-                    >
-                        <Row>
-                            <Col>
-                                <h3>One-of-a-kind-community</h3>
-                                <p>
-                                    E-Market is an online marketplace located in
-                                    the heart of Czech Republic, where people
-                                    come together to make, sell, buy, and
-                                    collect unique items.
-                                </p>
-                            </Col>
-                            <Col>
-                                <h3>Support independent sellers</h3>
-                                <p>
-                                    E-Market is about hundreds of people selling
-                                    the things they love. We make the whole
-                                    process easy, helping you connect directly
-                                    with makers to find something extraordinary.
-                                </p>
-                            </Col>
-                            <Col>
-                                <h3>Peace of mind</h3>
-                                <p>
-                                    Your privacy is the highest priority of our
-                                    dedicated team. And if you ever need
-                                    assistance, we are always ready to step in
-                                    for support.
-                                </p>
-                            </Col>
-                        </Row>
-                    </Container>
-                    <br />
-                    <br />
-                    <Container
                         className=" w-100"
                         fluid
                         style={{
@@ -247,24 +201,17 @@ export default class Main extends React.Component {
                                     happy, but also promote a good cause.
                                 </p>
                             </Col>
+                        </Row>
+                        <Row>
                             <Container>
-                         <Row>{CharitiesCards}</Row> 
-                        <Link to="/app/charities">
-                        <Button className="bg-success"> All charities
-                        </Button>
-                        </Link>
-                    </Container>
-                            <Row>
-                                <Col>
-                                    <Card></Card>
-                                </Col>
-                                <Col>
-                                    <Card></Card>
-                                </Col>
-                                <Col>
-                                    <Card></Card>
-                                </Col>
-                            </Row>
+                                <Row>{CharitiesCards}</Row> 
+                            <br/>
+                            <Link to="/app/charities">
+                            <Button className="bg-success"> All charities
+                            </Button>
+                            </Link>
+                            <br/>
+                            </Container>
                         </Row>
                     </Container>
                 </div>

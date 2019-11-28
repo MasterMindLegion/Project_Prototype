@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import { Nav, NavItem, NavLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import {
@@ -15,24 +15,22 @@ import {
     Row,
     CardDeck
 } from "reactstrap";
-import {cartContext} from "../../../App.jsx"
+import {cartContext} from "../../../App.jsx";
+import ProductCounter from "./ProductCounter.jsx";
 // import Posts from './../Posts.jsx';
 
 
 const CartItem = props => {
-    const SelectedCartContext = useContext(cartContext);
-    console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
+     const SelectedCartContext = useContext(cartContext);
+    //  console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
 
     const removeItem =() => {
         props.removeItemFromCart(props.name)
     }
 
-
     return (
         <>
-
             <div>
-                {/* <h1>getting data from posts: {SelectedCartContext.selectedCartValue}</h1> */}
                 {/* <h1>getting data from posts: {SelectedCartContext.selectedCartValue}</h1> */}
                <CardDeck>
                  <Col sm="6">
@@ -55,29 +53,63 @@ const CartItem = props => {
                 </Col>
                 </CardDeck>
             </div>
+            
         </>
     );
 };
 
+
 const Cart = props => {
-    console.log("cart props", props);
+    const [quantityState, setQuantityState] = useState( Object.values(...props.items)[4])
+    
+    // console.log("cart props", props);
+    // console.log('prop quantity', Object.values(...props.items)[4])
+    // console.log('state quantity', quantityState)
+    
     const [value, setValue] = React.useState(localStorage.getItem("cart"));
-    const onChange = event => setValue(event.target.value);
+    const onClick = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
     console.log(localstorage_shoppingCart);
+
+    const increment = (index) => {
+        setQuantityState(quantityState+1)
+    }
+
+    const decrement = (index) => {
+        if (quantityState > 0){
+            setQuantityState(quantityState-1)
+        } return 
+    }
 
 
     let productCard = props.items.map((item, index) => {
         return (
-            <CartItem
-                key={`cartItem-${index}`}
-                name={item.name}
-                image={item.image}
-                price={item.price}
-                description={item.description}
-                quantity={item.quantity}
-                removeItemFromCart ={props.removeItemFromCart}
-            />
+            <React.Fragment>
+                <Container>
+                    <Col>
+                        <Row>
+                        <CartItem
+                            key={`cartItem-${index}`}
+                            name={item.name}
+                            image={item.image}
+                            price={item.price}
+                            description={item.description}
+                            quantity={item.quantity}
+                            removeItemFromCart ={props.removeItemFromCart}
+                        />
+                            {/* <h4>current quantity: {quantityState}</h4>
+                                <button onClick={() => increment(index)}>+</button>
+                                <button onClick={() => decrement(index)}>-</button> */}
+                        </Row>
+                    </Col>
+                    <Col>
+                        <Row>
+                            <ProductCounter/>
+                        </Row>
+                    </Col>
+                </Container>
+                <br/>
+            </React.Fragment>   
         );
     });
     return <div>{productCard}</div>;

@@ -20,6 +20,8 @@ import Products from "./Layout/Main/Products.jsx";
  import AddItems from './/Pages/AddItems.jsx';
 import Navigation from './Layout/Navigation.jsx';
 import Footer from './Layout/Footer/Footer.jsx';
+
+
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
 
@@ -42,7 +44,7 @@ class App extends React.Component {
     }
     componentDidMount() {
         //MARTIN VERSION /www.final_charity.test:8080/
-        fetch("http://www.final_charity.test:8080/api/items")
+        fetch("http://www.charity.test/api/items")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -51,7 +53,7 @@ class App extends React.Component {
                 });
             });
 
-        fetch("http://www.final_charity.test:8080/api/charities")
+        fetch("http://www.charity.test/api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -62,6 +64,7 @@ class App extends React.Component {
     }
 
     addItemToCart = newItem => {
+        console.log('adding item to cart')
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(
                 item => item.name === newItem.name
@@ -114,7 +117,9 @@ class App extends React.Component {
                 }
         })
     };
+    
     decreaseItemInCart = itemName => {};
+
     render() {
         return (
             <BrowserRouter>
