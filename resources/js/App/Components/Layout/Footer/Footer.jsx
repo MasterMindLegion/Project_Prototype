@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
                   <h4 className="h6">About Us</h4>
                   <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
                   <hr/>
-                  <h4 className="h6">Join Our Monthly Newsletter</h4>
+                  <h4 className="h6">Subscribe to Our Newsletter</h4>
                   <form>
                     <div className="input-group">
                         <input type="text" className="form-control"/>
@@ -21,7 +21,7 @@ export default class Footer extends React.Component {
                   </form>
                 </div>
                 <div className="col-lg-3">
-                  <h4 className="h6">Internship</h4>
+                  <h4 className="h6">Something</h4>
                   <ul className="list-unstyled footer-blog-list">
                     <li className="d-flex align-items-center">
                       <div className="image"><img src="img/detailsquare.jpg" alt="..." className="img-fluid"/></div>
@@ -38,14 +38,14 @@ export default class Footer extends React.Component {
                     <li className="d-flex align-items-center">
                       <div className="image"><img src="img/detailsquare.jpg" alt="..." className="img-fluid"/></div>
                       <div className="text">
-                        <h5 className="mb-0"> <a href="post.html">Very very long blog post name</a></h5>
+                        <h5 className="mb-0"> <a href="post.html">Blog post name</a></h5>
                       </div>
                     </li>
                   </ul>
                   <hr className="d-block d-lg-none"></hr>
               </div>
               <div className="col-lg-3">
-              <h4 className="h6">Experience abroad</h4>
+              <h4 className="h6">Something</h4>
               <ul className="list-unstyled footer-blog-list">
                 <li className="d-flex align-items-center">
                   <div className="image"><img src="img/detailsquare.jpg" alt="..." className="img-fluid"/></div>
@@ -62,7 +62,7 @@ export default class Footer extends React.Component {
                 <li className="d-flex align-items-center">
                   <div className="image"><img src="img/detailsquare.jpg" alt="..." className="img-fluid"/></div>
                   <div className="text">
-                    <h5 className="mb-0"> <a href="post.html">Very very long blog post name</a></h5>
+                    <h5 className="mb-0"> <a href="post.html">Blog post name</a></h5>
                   </div>
                 </li>
               </ul>

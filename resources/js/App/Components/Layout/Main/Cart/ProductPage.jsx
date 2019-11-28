@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { 
@@ -20,6 +20,10 @@ export default function ProductPage (props){
 
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
+
+  const addItem =() => {
+    props.addItemToCart(props.name)
+  }
 
   let item = null;
   if(items.length > 0){
@@ -55,15 +59,18 @@ export default function ProductPage (props){
             </CardBody>
             </Card>
           </Col>
+          
           <Col>
-          {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
           <ProductCounter/>
           </Col>
+          
         </Row>
        ) : (
          <h2>Loading</h2> 
        )
        }
-     </div>
+      </div>
     )
+
+
 }

@@ -27,8 +27,8 @@ const CartItem = props => {
         props.removeItemFromCart(props.name)
     }
 
-    return (
 
+    return (
         <>
 
             <div>
@@ -65,6 +65,7 @@ const Cart = props => {
     const onChange = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
     console.log(localstorage_shoppingCart);
+
 
     let productCard = props.items.map((item, index) => {
         return (
