@@ -30,7 +30,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/addItems', 'Api\ItemController@createItem');
     Route::put('/useremailchange', 'API\UserController@changeEmailInformationUser');
     Route::put('/userpasswordchange', 'API\UserController@changePasswordInformationUser');
-
+    Route::get('details', 'API\UserController@details');
     // Route::get('/usercharity', 'API\CharityController@changeInformationCharity');
 });
 

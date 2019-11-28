@@ -27,7 +27,7 @@ const Products = (props) => {
             setLoading(true);
             // const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
             // const res = await axios.get('http://www.final_charity.test:8080/api/items');
-            const res = await axios.get('http://www.projectprototype.test:8080/api/items');
+            const res = await axios.get('http://www.final_charity.test:8080/api/items');
             setPosts(res.data);
             setLoading(false);
         }

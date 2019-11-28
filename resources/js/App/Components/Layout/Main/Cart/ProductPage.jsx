@@ -10,7 +10,6 @@ import {
   CardSubtitle,
   Jumbotron,
   Button } from "reactstrap";
-import ProductCounter from "./ProductCounter.jsx";
 import { useParams } from "react-router-dom";
 import { FaCcVisa } from 'react-icons/fa';FaApplePay
 import { FaCcMastercard } from 'react-icons/fa';
@@ -29,7 +28,22 @@ import { Link } from "react-router-dom";
 //   )
 // }
 
+
+
 export default function ProductPage (props){
+  
+  
+    const addItem = (item) => {
+      props.addItemToCart({
+          name: item.name,
+          price: item.price_per_item,
+          description: item.description,
+          image: item.item_img,
+          quantity: 1
+      })
+    }
+
+  
   //all props are passed down
   const {items} = {...props}
   console.log("[ProductPage] items", items)
@@ -37,28 +51,7 @@ export default function ProductPage (props){
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
 
-  const addItem =(item) => {
-    props.addItemToCart({
-        name: item.name,
-        price:item.price_per_item,
-        description: item.description,
-        image: item.item_img,
-        quantity: 1
-    })
-  }
-
-
-  // addToCart = e => {
-  //     console.log('addProps', this.props)
-  //     this.props.addItemToCart({
-  //         name: this.name,
-  //         price: this.price,
-  //         description: this.description,
-  //         image: this.item_img,
-  //         quantity: 1
-  //   })
-  // }
-
+  
   let item = null;
   if(items.length > 0){
     item = items.filter((item) => (item.id == id))[0];
@@ -146,6 +139,4 @@ export default function ProductPage (props){
        }
       </div>
     )
-
-
 }

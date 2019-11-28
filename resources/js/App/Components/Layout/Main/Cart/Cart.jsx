@@ -14,8 +14,8 @@ import {
 import {cartContext} from "../../../App.jsx"
 
 const CartItem = props => {
-    const SelectedCartContext = useContext(cartContext);
-    console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
+     const SelectedCartContext = useContext(cartContext);
+    //  console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
 
     const removeItem =() => {
         props.removeItemFromCart(props.name);
@@ -63,12 +63,28 @@ const CartItem = props => {
     );
 };
 
+
 const Cart = props => {
-    console.log("cart props", props);
+    const [quantityState, setQuantityState] = useState( Object.values(...props.items)[4])
+    
+    // console.log("cart props", props);
+    // console.log('prop quantity', Object.values(...props.items)[4])
+    // console.log('state quantity', quantityState)
+    
     const [value, setValue] = React.useState(localStorage.getItem("cart"));
-    const onChange = event => setValue(event.target.value);
+    const onClick = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
     console.log(localstorage_shoppingCart);
+
+    const increment = (index) => {
+        setQuantityState(quantityState+1)
+    }
+
+    const decrement = (index) => {
+        if (quantityState > 0){
+            setQuantityState(quantityState-1)
+        } return 
+    }
 
 
     let productCard = props.items.map((item, index) => {
