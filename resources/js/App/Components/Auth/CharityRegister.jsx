@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
 import { Form, FormGroup, Label, Input, FormText,  } from 'reactstrap';
 import {store} from './../../../app';
+
  class CharityRegister extends React.Component {
     constructor(props) {
         super(props);
@@ -12,6 +13,8 @@ import {store} from './../../../app';
       adress: '',
       information: '',
       localToken: window.localStorage.getItem('_token'),
+      loading: false,
+      redirect: false
       }
       console.log("[charityregister]", this.state)
   }
@@ -48,10 +51,23 @@ import {store} from './../../../app';
     })
     .then(response => response.json())
     .then(data => {
+      if(data.status == true ){
+        console.log("[DATA STATUS RESPONSE]", data.status )
+        this.setState({
+          redirect: true
+        })
+        return history.push("/");
+      }
+      console.log("[CHARITY REGISTER] this.state", this.state)
     })
-}
+    
+    }
+
+
+//alocateUserWhenRegisterSuccess();
+
     render() {
-      console.log("[charityRegister]", this.props.showRegisterLink)
+      console.log("[charityRegister] this.state.redirect", this.state.redirect)
         return (
           <>
            {this.props.showRegisterLink 

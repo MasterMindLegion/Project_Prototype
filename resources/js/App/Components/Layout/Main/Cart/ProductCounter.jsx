@@ -8,7 +8,6 @@ export default class ProductCounter extends React.Component {
     super(props);
     this.state = {
       count: 0,
-
     };
   this.increment = this.increment.bind(this);
   this.decrement = this.decrement.bind(this);

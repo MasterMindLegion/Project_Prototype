@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('/registerCharity', 'API\CharityController@registerCharity');
     Route::post('/details', 'API\UserController@details');
     Route::put('/usercharitychange', 'API\CharityController@changeInformationCharity');
-
+    Route::post('/addItems', 'Api\ItemController@createItem');
     Route::put('/useremailchange', 'API\UserController@changeEmailInformationUser');
     Route::put('/userpasswordchange', 'API\UserController@changePasswordInformationUser');
 
@@ -36,6 +36,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 Route::get('/items', 'API\ItemController@index');
 Route::get('/paginateitems', 'API\ItemController@paginateitems');
+Route::get('charities', 'API\CharityController@index');
 Route::get('/displayCharities', 'API\CharityController@index');
 
 

@@ -1,21 +1,25 @@
 import React, { createContext } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import Register from "./Auth/Register.jsx";
-import Login from "./Auth/Login.jsx";
-import NotFoundPage from "./Layout/NotFoundPage.jsx";
-import HomePage from "./Pages/HomePage.jsx";
-import Cart from "./Layout/Main/Cart/Cart.jsx";
-import SellOn from "./Layout/Main/SellOn.jsx";
+import { BrowserRouter, Route, Switch, Redirect, Router } from "react-router-dom";
+import { connect } from 'react-redux';
+
+import Register from './Auth/Register.jsx';
+import Login from './Auth/Login.jsx';
+import NotFoundPage from './Layout/NotFoundPage.jsx';
+import HomePage from './Pages/HomePage.jsx';
+import Cart from './Layout/Main/Cart/Cart.jsx';
+import SellOn from './Layout/Main/SellOn.jsx';
+import Checkout from './Layout/Main/Checkout/Checkout.jsx'
+import CharityRegister from './Auth/CharityRegister.jsx';
+import UserPage  from './Pages/UserPage.jsx';
+import PrivateRoute from './Pages/Protected.jsx';
+import ProductPage from './Layout/Main/Cart/ProductPage.jsx';
+import Charities from './Pages/Charities.jsx';
+import ShowItems from './Pages/ShowItems.jsx';
 import Products from "./Layout/Main/Products.jsx";
-import Checkout from "./Layout/Main/Checkout/Checkout.jsx";
-import CharityRegister from "./Auth/CharityRegister.jsx";
-import UserPage from "./Pages/UserPage.jsx";
-import PrivateRoute from "./Pages/Protected.jsx";
-import ProductPage from "./Layout/Main/Cart/ProductPage.jsx";
-
-import ProductsPage from "./Pages/ProductsPage.jsx";
-
+ import ProductsPage from "./Pages/ProductsPage.jsx";
+ import AddItems from './/Pages/AddItems.jsx';
+import Navigation from './Layout/Navigation.jsx';
+import Footer from './Layout/Footer/Footer.jsx';
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
 
@@ -29,24 +33,34 @@ class App extends React.Component {
             token: null,
             logged_in: null,
             items: [],
+            charities: [],
             cart: cart,
             selectedCart: null,
-            test: "hi"
+            test: "hi",
+            numberOfItems: 0,
         };
     }
     componentDidMount() {
-        fetch("http://www.projectprototype.test:8080/api/items")
-            // fetch("http://www.charity.test/api/items")
-
+        //MARTIN VERSION /www.final_charity.test:8080/
+        fetch("http://www.final_charity.test:8080/api/items")
             .then(res => res.json())
             .then(result => {
-                //  console.log("[Homepage] FETCH", result);
                 this.setState({
                     isLoaded: true,
                     items: result
                 });
             });
+
+        fetch("http://www.final_charity.test:8080/api/charities")
+            .then(res => res.json())
+            .then(result => {
+                this.setState({
+                    isLoaded: true,
+                    charities: result
+                });
+            });
     }
+
     addItemToCart = newItem => {
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(
@@ -68,16 +82,18 @@ class App extends React.Component {
                 cart: newCart
             };
         });
+        this.setState(prevState => {
+            const newItem = this.state.numberOfItems + 1;
+            return {
+                ...prevState,
+                numberOfItems: newItem,
+                }
+            })     
     };
-
     selectedCartCallback = arg => {
-        console.log("argument of the callback", arg);
-        console.log("parent state object", this.state);
         this.setState({
             selectedCart: arg
         });
-
-        // console.log('PARENT STATE AFTER CALLBACK FUNCTION', this.state.selectedCart)
     };
 
     removeItemFromCart = itemName => {
@@ -90,10 +106,16 @@ class App extends React.Component {
                 cart: newCart
             };
         });
+        this.setState(prevState => {
+            const newItem = this.state.numberOfItems - 1;
+            return {
+                ...prevState,
+                numberOfItems: newItem,
+                }
+        })
     };
     decreaseItemInCart = itemName => {};
     render() {
-        console.log("app parent STATE from callback", this.state.selectedCart);
         return (
             <BrowserRouter>
                 <Switch>
@@ -106,12 +128,21 @@ class App extends React.Component {
                                 <HomePage
                                     items={this.state.items}
                                     addItemToCart={this.addItemToCart}
+                                    charities={this.state.charities}
+                                    numberOfItems={this.state.numberOfItems }
                                 />
                             );
                         }}
                     ></Route>
                     {/* REGISTER */}
                     <Route exact path="/app/register" component={Register} />
+
+                    <Route exact path="/app/charities"  render={() => {
+                     return <Charities
+                     charities={this.state.charities}
+                     />;
+                 }}
+                    ></Route>
                     {/* LOGIN */}
                     <Route exact path="/app/login">
                         <Login />
@@ -121,7 +152,6 @@ class App extends React.Component {
                         <CharityRegister />
                     </PrivateRoute>
                     {/* CART */}
-
                     <CartContextProvider
                         value={{
                             selectedCartValue: this.state.selectedCart,
@@ -133,25 +163,30 @@ class App extends React.Component {
                             path="/app/cart"
                             render={() => {
                                 return (
+                                    <>
+                                    <Navigation />
                                     <Cart
                                         items={this.state.cart}
                                         removeItemFromCart={
                                             this.removeItemFromCart
                                         }
                                     />
+                                    <Footer />
+                                    </>
                                 );
                             }}
                         />
-
                         {/* 'MORE INFO' BUTTON --- SHOULD GO TO PRODUCT PAGE */}
                         {/* <Route path="/app/moreinfo/:id" component={ProductPage} /> */}
                         <Route
                             path="/app/moreinfo/:id"
                             render={() => {
-                                return <ProductPage items={this.state.items} />;
+                                return <ProductPage 
+                                items={this.state.items} 
+                                addItemToCart= {this.addItemToCart}
+                                />;
                             }}
                         />
-
                         {/* SELL ON */}
                         <Route path="/app/sellon" component={SellOn} />
                         {/* PRODUCTS */}
@@ -167,20 +202,25 @@ class App extends React.Component {
                                     />
                                 );
                             }}
-                        ></Route>
-
+                        >
+                        </Route>
+                        {/* CHECKOUT */}
                         <Route path="/app/checkout" component={Checkout} />
-                    </CartContextProvider>
-
-                    {/* CHECKOUT  */}
-
-                    {/* Display User Page */}
-                    <Route path="/app/user" component={UserPage} />
-
-                    {/* Change Charity Information */}
+                        {/* Display User Page */}
+                       <Route path="/app/user" component={UserPage} />
+                       {/* Show Charity Items */}
+                        <Route exact path="/app/showItems/:id" render={() => {
+                        return   <ShowItems
+                        items={this.state.items}
+                        addItemToCart= {this.addItemToCart}
+                        />;
+                        }}
+                        >
+                        </Route>
 
                     {/* NotFoundPage */}
-                    <Route path="*" component={NotFoundPage} />
+                    {/* <Route path="*" component={NotFoundPage} /> */}
+                    </CartContextProvider>
                 </Switch>
             </BrowserRouter>
         );

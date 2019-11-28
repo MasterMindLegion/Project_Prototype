@@ -14,7 +14,6 @@ import {
 import CategoriesBar from './CategoriesBar.jsx';
 // import Filtering from './Filtering.jsx';
 
-
 const Products = (props) => {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState (false);
@@ -27,7 +26,7 @@ const Products = (props) => {
         const fetchPosts = async () => {
             setLoading(true);
             // const res = await axios.get('https://jsonplaceholder.typicode.com/posts');
-            const res = await axios.get('http://www.projectprototype.test:8080/api/items');
+            const res = await axios.get('http://www.final_charity.test:8080/api/items');
             setPosts(res.data);
             setLoading(false);
         }

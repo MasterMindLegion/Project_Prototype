@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
     Card,CardImg,CardText,CardBody,CardLink,CardTitle,CardSubtitle, Button
@@ -13,6 +12,7 @@ export default class ProductCard extends React.Component {
         super(props);
         console.log(props)
     }
+
     addToCart = e => {
         console.log('addProps', this.props)
         this.props.addItemToCart({
@@ -22,9 +22,7 @@ export default class ProductCard extends React.Component {
             image: this.props.item_img,
             quantity: 1
         })
-
     };
-
     render() {
         return (
             <div>
@@ -34,8 +32,7 @@ export default class ProductCard extends React.Component {
                         margin: "1rem",
                         maxHeight: "600px",
                         minWidth: "200px",
-                    }}
-                >
+                    }}>
                     <CardImg
                         top
                         width="100%"
@@ -49,20 +46,15 @@ export default class ProductCard extends React.Component {
                         <CardSubtitle>
                             <h5> {this.props.price}/CZK</h5>
                         </CardSubtitle>
-                        <CardText>{this.props.description}</CardText>
+                        <CardText>{this.props.description}
+                        </CardText>
                         <Button onClick={this.addToCart}>Buy</Button>
                         <div>
-
-
-                            <Link to="app/cart">Go To Cart</Link>
-                            <p> </p>
-                            <CardLink to="#">
-                            <Link to={`/app/moreinfo/${this.props.id}`} >
-
-                                {/* More Info {this.props.id} */}
-                                More info
-                                </Link>
-                                </CardLink>
+                <CardLink to="#">
+                <Link to={`/app/moreinfo/${this.props.id}`} >
+                    More info
+                    </Link>
+                    </CardLink>
                         </div>
                     </CardBody>
                 </Card>

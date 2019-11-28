@@ -13,24 +13,16 @@ import {
 } from "reactstrap";
 import {cartContext} from "../../../App.jsx"
 
-
-
 const CartItem = props => {
     const SelectedCartContext = useContext(cartContext);
     console.log("CONTEXT CONSUMER FROM CART", SelectedCartContext)
 
     const removeItem =() => {
         props.removeItemFromCart(props.name);
-        
+
     }
 
-    
-    console.log("no item LEft");
-
     return (
-     
-
-
         <>
             <div>
 
@@ -64,7 +56,7 @@ const CartItem = props => {
 
                 </CardBody>
             </Jumbotron>
-    </div>            
+             </div>
         </>
     );
 };
@@ -75,6 +67,7 @@ const Cart = props => {
     const onChange = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
     console.log(localstorage_shoppingCart);
+
 
     let productCard = props.items.map((item, index) => {
         return (
@@ -91,7 +84,7 @@ const Cart = props => {
         );
     });
     return <div>{productCard}</div>;
-  
+
 
 };
 export default Cart;

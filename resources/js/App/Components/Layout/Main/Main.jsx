@@ -12,11 +12,13 @@ import {
 import ProductCard from "./Cart/ProductCard.jsx";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button } from "reactstrap";
+import CharitiesCard from "./Cart/CharitiesCard.jsx";
+import Charities from "../../Pages/Charities.jsx";
+import { Link } from 'react-router-dom';
 
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             loading: false,
             isLoaded: false,
@@ -24,23 +26,21 @@ export default class Main extends React.Component {
             all_item: [],
             paginationData: null,
             diplay: false,
-            all_item: []
-        };
+            all_item: [
+            ],
     }
+    }
+     handleClick = () => {
+         this.setState({display: !this.state.display})
+ }
 
-    // https://www.youtube.com/watch?v=koQmm5HIFgw
-
-    handleClick = () => {
-        this.setState({ display: !this.state.display });
-    };
-    render() {
-        //EVERY ITEM
+    render() {  
         const productCards = this.props.items.map((x, index) => {
             if (x.id < 4) {
                 return (
                     <Col key={`product-${x.item_name}-${index}`}>
-                        <ProductCard
-                            id={x.id}
+                       <ProductCard
+                            id = {x.id}
                             name={x.item_name}
                             item_img={x.item_img}
                             price={x.price_per_item}
@@ -50,23 +50,33 @@ export default class Main extends React.Component {
                     </Col>
                 );
             } else {
-                return (
-                    this.state.display && (
-                        <Col key={`product-${x.item_name}-${index}`}>
-                            <ProductCard
-                                id={x.id}
-                                name={x.item_name}
-                                item_img={x.item_img}
-                                price={x.price_per_item}
-                                description={x.description}
-                                addItemToCart={this.props.addItemToCart}
-                            />
-                        </Col>
-                    )
-                );
+                return this.state.display && (
+                    <Col key={`product-${x.item_name}-${index}`}>
+                       <ProductCard
+                            id = {x.id}
+                            name={x.item_name}
+                            item_img={x.item_img}
+                            price={x.price_per_item}
+                           description={x.description}
+                           addItemToCart={this.props.addItemToCart}
+                />
+                   </Col>
+            );
             }
         });
-
+         const CharitiesCards = this.props.charities.map((charity, index) => { 
+             if (index < 2){
+             return (
+                 <Col key={`product-${charity.name}-${index}`}>
+                     <CharitiesCard
+                        name={charity.Name}
+                        address={charity.Char_address}
+                        information={charity.Char_information}
+                         id={charity.id}
+                     />
+                 </Col>
+         );}
+         });
         return (
             <>
                 <div>
@@ -126,7 +136,9 @@ export default class Main extends React.Component {
 
                         <Button className="bg-success"></Button>
                     </Container>
+
                     {/* <Carousel /> */}
+                    
                     <Container
                         className="w-10
                         fluid
@@ -157,7 +169,7 @@ export default class Main extends React.Component {
                             <Col>
                                 <h3>Support independent creators</h3>
                                 <p>
-                                    There’s no Etsy warehouse – just millions of
+                                    There're no warehouses – just hundreds of
                                     people selling the things they love. We make
                                     the whole process easy, helping you connect
                                     directly with makers to find something
@@ -235,6 +247,13 @@ export default class Main extends React.Component {
                                     happy, but also promote a good cause.
                                 </p>
                             </Col>
+                            <Container>
+                         <Row>{CharitiesCards}</Row> 
+                        <Link to="/app/charities">
+                        <Button className="bg-success"> All charities
+                        </Button>
+                        </Link>
+                    </Container>
                             <Row>
                                 <Col>
                                     <Card></Card>
@@ -253,6 +272,7 @@ export default class Main extends React.Component {
         );
     }
 }
+
 
 //FETCH MULTIPLE Request
 // const paginateItems = async () => {
