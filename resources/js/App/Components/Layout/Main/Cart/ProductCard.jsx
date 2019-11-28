@@ -45,7 +45,7 @@ export default class ProductCard extends React.Component {
                         </CardSubtitle>
                         <CardText>{this.props.description}
                         </CardText>
-                        <Button onClick={this.addToCart}>Buy</Button>
+                        <Button  className="bg-success" onClick={this.addToCart}>Buy</Button>
                         <div>
                 <CardLink to="#">
                 <Link to={`/app/moreinfo/${this.props.id}`} >

@@ -61,6 +61,7 @@ class App extends React.Component {
     }
 
     addItemToCart = newItem => {
+        console.log('adding item to cart')
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(
                 item => item.name === newItem.name
@@ -113,7 +114,9 @@ class App extends React.Component {
                 }
         })
     };
+    
     decreaseItemInCart = itemName => {};
+
     render() {
         return (
             <BrowserRouter>

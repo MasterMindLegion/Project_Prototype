@@ -1,16 +1,18 @@
 import React from 'react';
-import {
+import { 
   Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,   DropdownToggle,
   DropdownMenu, DropdownItem,  UncontrolledDropdown,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+
 import ModalNavigationLogin from './../../Layout/Modals/ModalNavigationLogin.jsx';
 import ModalNavigationRegister from './../../Layout/Modals/ModalNavigationRegister.jsx';
 import Logout from './../../Auth/Logout.jsx';
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from 'reactstrap';
-import Cart from './Cart/Cart.jsx';
+import Cart from './../Main/Cart/Cart.jsx';
+
 import { connect } from 'react-redux';
 
 
