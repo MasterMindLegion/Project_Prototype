@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Login from './../../Auth/Login.jsx';
 import { connect } from 'react-redux';
+import { faIdCard } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ModalNavigationLogin = (props) => {
   const {
@@ -10,7 +12,7 @@ const ModalNavigationLogin = (props) => {
   } = props;
 
   const [modal, setModal] = useState(false);
-  const [loginValue, setLoginValue] = useState('Log In')
+  const [loginValue, setLoginValue] = useState('Log In');
 
   const toggle = () => setModal(!modal);
 
@@ -25,9 +27,9 @@ const ModalNavigationLogin = (props) => {
   }
   return (
     <div>
-  <Button color="danger" onClick={toggle}>{buttonLabel} {'[modalLogin] login'}</Button>
+  <Button color="success" onClick={toggle}>{buttonLabel} {'Login'}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
+        <ModalHeader toggle={toggle}>  <FontAwesomeIcon  icon={faIdCard} /> </ModalHeader>
         <ModalBody>
           <Login 
           

@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 import ModalNavigationLogin from './Modals/ModalNavigationLogin.jsx';
 import ModalNavigationRegister from './Modals/ModalNavigationRegister.jsx';
 import Logout from './../Auth/Logout.jsx';
+import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 import Cart from './Main/Cart/Cart.jsx';
@@ -27,17 +29,17 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
-
   render() {
     return (
       <>
-        <Navbar color="light" light expand="md">
+        <Navbar color="dark" dark expand="md" className='navigation align-items-center'>
           <NavbarBrand href="/">E-Market</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
+          <NavbarToggler onClick={this.toggle}  />
+          
           <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+            <Nav className="ml-auto p-2 align-items-center" navbar>
               {/* LOGIN/LOGOUT */}
-              <NavItem>
+              <NavItem className='p-1'>
                 {
                   this.props.loginSuccess === true
                   ? <Logout />
@@ -45,35 +47,29 @@ import { connect } from 'react-redux';
                 }
               </NavItem>
               {/* Register */}
-              <NavItem>
+              <NavItem className='p-1'>
                 <ModalNavigationRegister />
               </NavItem>
               {/* Register/Edit Charity */}
               { this.props.loginSuccess && <NavItem >
                 <Link to="/app/registerCharity">{this.props.showRegisterLink ? "registerCharity": "editcharity"}</Link>
               </ NavItem >}
-              {/* Cart */}
-              <NavItem>
-                <Link to='/app/cart'>  Cart {this.props.numberOfItems} </ Link>
-              </NavItem>
               {/* Sell */}
-              <NavItem>
+              <NavItem className='p-1'>
                 <Link to='/app/sellon'>  Sell </ Link>
               </NavItem>
               {/* PRODUCTS */}
-              <NavItem>
+              <NavItem className='p-1'>
                 <Link to='/app/Products'> Products </ Link>
               </NavItem>
-              {/* ADD ITEMS */}
-              {/* {this.props.loginSuccess &&
-              <NavItem >
-                <Link to="/app/addItems"> Add new item</Link>
-              </ NavItem >}
-                USER DROPDOWN */}
+              <NavItem  className='p-1'>
+                 <Link to='/app/cart' > <FontAwesomeIcon  icon={faShoppingCart} />  {this.props.numberOfItems} </ Link>
+              </NavItem>
+                {/* USER DROPDOWN  */}
               {this.props.loginSuccess &&
-              <UncontrolledDropdown nav inNavbar>
+              <UncontrolledDropdown nav inNavbar className='p-1'>
               <DropdownToggle nav caret>
-                User
+              <FontAwesomeIcon  icon={faUser} /> 
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
@@ -88,8 +84,7 @@ import { connect } from 'react-redux';
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown> }
-
-
+            
 
             </Nav>
           </Collapse>

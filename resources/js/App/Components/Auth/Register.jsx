@@ -138,7 +138,7 @@ const validateField = (fieldName, value) => {
              </FormGroup>
 
 
-              <Button type="submit" value="Submit" onClick= {newValidateSubmit} color="danger">Submit</Button>       
+              <Button outline type="submit" className='mx-auto' value="Submit" onClick= {newValidateSubmit} color="primary">Submit</Button>       
            </Form>
           </>
  

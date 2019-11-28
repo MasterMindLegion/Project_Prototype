@@ -17,8 +17,6 @@ class ItemController extends Controller
             'in_stock' => $request->in_stock,
             'charity_id' => $request->user()->charity->id]);
     }
-
-
     public function index() {
         $all_items = Item::get();
         return $all_items;
