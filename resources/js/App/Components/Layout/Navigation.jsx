@@ -7,13 +7,10 @@ import { Link } from 'react-router-dom';
 import ModalNavigationLogin from './Modals/ModalNavigationLogin.jsx';
 import ModalNavigationRegister from './Modals/ModalNavigationRegister.jsx';
 import Logout from './../Auth/Logout.jsx';
-<<<<<<< HEAD
-=======
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
->>>>>>> eca6ab3b2299de463d96666691b2727fa7316b64
 import Cart from './Main/Cart/Cart.jsx';
 import { connect } from 'react-redux';
 

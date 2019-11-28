@@ -128,12 +128,6 @@ export default class Main extends React.Component {
                             <div style={{ backgroundColor: '#212529'}} className="my-5">
                                 {this.state.display && <h1>View More</h1>}
                                 <Row>{productCards}</Row>
-<<<<<<< HEAD
-                                <Row>
-                                    <Button className="bg-success" onClick={this.handleClick}>load more</Button>
-                                </Row>
-                                <br/>
-=======
                                 <div style={{ padding: "1.4rem", textAlign: "center" }}>
                                 <Button outline color='success' onClick={this.handleClick} style={{ margin: "1rem"}}>
                                     Load More
@@ -143,7 +137,6 @@ export default class Main extends React.Component {
                                 <Link to='/app/Products' />
                                 </Button>
                                 </div>
->>>>>>> eca6ab3b2299de463d96666691b2727fa7316b64
                             </div>
                         }
                     </Container>

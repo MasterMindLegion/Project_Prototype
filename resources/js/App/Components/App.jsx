@@ -44,7 +44,7 @@ class App extends React.Component {
     }
     componentDidMount() {
         //MARTIN VERSION /www.final_charity.test:8080/
-        fetch("http://www.projectprototype.test:8080/api/items")
+        fetch("http://www.charity.test/api/items")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -53,7 +53,7 @@ class App extends React.Component {
                 });
             });
 
-        fetch("http://www.projectprototype.test:8080/api/charities")
+        fetch("http://www.charity.test/api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({

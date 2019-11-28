@@ -5,7 +5,7 @@ import {
 import "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import { Link } from "react-router-dom";
-import Checkout from '../../../../../../../Project_Prototype/resources/js/App/Components/Layout/Main/Checkout/Checkout';
+// import Checkout from '../../../../../../../Project_Prototype/resources/js/App/Components/Layout/Main/Checkout/Checkout';
 
 export default class ProductCard extends React.Component {
     constructor(props) {
