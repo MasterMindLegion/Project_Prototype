@@ -37,9 +37,27 @@ export default function ProductPage (props){
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
 
-  const addItem =() => {
-    props.addItemToCart(props.name)
+  const addItem =(item) => {
+    props.addItemToCart({
+        name: item.name,
+        price:item.price_per_item,
+        description: item.description,
+        image: item.item_img,
+        quantity: 1
+    })
   }
+
+
+  // addToCart = e => {
+  //     console.log('addProps', this.props)
+  //     this.props.addItemToCart({
+  //         name: this.name,
+  //         price: this.price,
+  //         description: this.description,
+  //         image: this.item_img,
+  //         quantity: 1
+  //   })
+  // }
 
   let item = null;
   if(items.length > 0){
@@ -71,6 +89,8 @@ export default function ProductPage (props){
             <h4> Item description: </h4>
             <h5> {item.description} </h5>
            </CardBody>
+           {/* <Button color="danger" size="md" block  onClick={this.addToCart}> <AddedProductModal/> Add to Cart</Button> */}
+
             <CardBody min-width="400px">
             <Link to="/app/checkout"> <h4> Proceed to Checkout </h4> </Link>
             <hr className="my-2" />

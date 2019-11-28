@@ -22,6 +22,8 @@ const CartItem = props => {
 
     }
 
+
+
     return (
         <>
             <div>
