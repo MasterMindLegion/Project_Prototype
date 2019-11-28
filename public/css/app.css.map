@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///./resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI","file":"/css/app.css","sourcesContent":["//\nbody {\n    width: 90%;\n}"],"sourceRoot":""}
+{"version":3,"sources":["webpack:///./resources/sass/app.scss"],"names":[],"mappings":"AACA;EACI;CAAJ;;AAKA;EAEM;CAHN;;AAOA;EACI","file":"/css/app.css","sourcesContent":["//\nbody {\n    width: 90%;\n}\n\n$primary : rgb(41, 244, 205);\n\n.navigationLink {\n  \n      color: white!important;\n  \n   \n}\n.cartIcon {\n    color: white !important;\n}"],"sourceRoot":""}

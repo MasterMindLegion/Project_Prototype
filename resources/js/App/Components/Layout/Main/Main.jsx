@@ -82,11 +82,11 @@ export default class Main extends React.Component {
                 <div>
                     <Container
                         fluid
-                        className="body-max-width bg-light w-100"
-                        style={{ padding: "2em", textAlign: "center" }}
+                        className="body-max-width  w-100"
+                        style={{ padding: "4rem", textAlign: "center", backgroundColor: "#29f4cd", }}
                     >
                         <Row>
-                            <Col className="text-align-center">
+                            <Col className="text-align-center py-2">
                                 <h1>Look What Local Charities Have to Offer</h1>
                             </Col>
                         </Row>
@@ -125,16 +125,20 @@ export default class Main extends React.Component {
                     <Container>
                         {
                             // ADD STYLE TO HAVE BTN AT THE BOTTOM
-                            <div>
+                            <div style={{ backgroundColor: '#212529'}} className="my-5">
                                 {this.state.display && <h1>View More</h1>}
                                 <Row>{productCards}</Row>
-                                <button onClick={this.handleClick}>
-                                    load more
-                                </button>
+                                <div style={{ padding: "1.4rem", textAlign: "center" }}>
+                                <Button outline color='success' onClick={this.handleClick} style={{ margin: "1rem"}}>
+                                    Load More
+                                </Button>
+                                <Button color='primary'>
+                                View More 
+                                <Link to='/app/Products' />
+                                </Button>
+                                </div>
                             </div>
                         }
-
-                        <Button className="bg-success"></Button>
                     </Container>
                     {/* <Carousel /> */}
                     <Container
@@ -232,7 +236,7 @@ export default class Main extends React.Component {
                             textAlign: "center"
                         }}
                     >
-                        <Row>
+                        <Row style={{ padding: "2rem", textAlign: "center" }}>
                             <Col>
                                 <h3>List of Charities</h3>
                                 <p>
