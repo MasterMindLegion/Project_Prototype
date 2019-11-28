@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import {
@@ -16,31 +16,19 @@ import { FaCcMastercard } from 'react-icons/fa';
 import { FaApplePay } from 'react-icons/fa';
 import { FaGoogleWallet } from 'react-icons/fa';
 import { Link } from "react-router-dom";
-
-// const SingleItem = (props) => {
-//   //pass down the correct ID here on props
-//   return(
-//     <div>
-//       <p>Product ID: {props.id}</p>
-//       <p>name: {props.name}</p>
-//       <p>description: {props.description}</p>
-//     </div>
-//   )
-// }
-
-
+import ProductCounter from "./ProductCounter.jsx";
 
 export default function ProductPage (props){
   
-  
-    const addItem = (item) => {
-      props.addItemToCart({
-          name: item.name,
-          price: item.price_per_item,
-          description: item.description,
-          image: item.item_img,
-          quantity: 1
-      })
+    // ADD THIS TO ONCLICK BUTTON BELOW, TO BE ABLE TO ADD ITEMS TO CART ON THIS PAGE
+     const addItem = (item) => {
+       props.addItemToCart({
+           name: item.name,
+           price: item.price_per_item,
+           description: item.description,
+           image: item.item_img,
+           quantity: 1
+       })
     }
 
   
@@ -102,6 +90,7 @@ export default function ProductPage (props){
             <Col>
             {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
             <ProductCounter/>
+            <Button onClick={addItem}>Add to Cart</Button>
             </Col>
 
 

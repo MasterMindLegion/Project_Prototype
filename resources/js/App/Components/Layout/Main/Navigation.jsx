@@ -4,15 +4,26 @@ import {
   DropdownMenu, DropdownItem,  UncontrolledDropdown,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
+<<<<<<< HEAD:resources/js/App/Components/Layout/Navigation.jsx
+import ModalNavigationLogin from './Modals/ModalNavigationLogin.jsx';
+import ModalNavigationRegister from './Modals/ModalNavigationRegister.jsx';
+import Logout from './../Auth/Logout.jsx';
+=======
 
 import ModalNavigationLogin from './../../Layout/Modals/ModalNavigationLogin.jsx';
 import ModalNavigationRegister from './../../Layout/Modals/ModalNavigationRegister.jsx';
 import Logout from './../../Auth/Logout.jsx';
+>>>>>>> 54b257b9f0cb254c7a848652870089e5e91a4afe:resources/js/App/Components/Layout/Main/Navigation.jsx
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from 'reactstrap';
 import Cart from './../Main/Cart/Cart.jsx';
 
+<<<<<<< HEAD:resources/js/App/Components/Layout/Navigation.jsx
+
+import Cart from './Main/Cart/Cart.jsx';
+=======
+>>>>>>> 54b257b9f0cb254c7a848652870089e5e91a4afe:resources/js/App/Components/Layout/Main/Navigation.jsx
 import { connect } from 'react-redux';
 
 

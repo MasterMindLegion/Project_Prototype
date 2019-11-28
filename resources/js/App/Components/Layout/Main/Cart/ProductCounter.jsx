@@ -29,6 +29,16 @@ export default class ProductCounter extends React.Component {
        this.setState(prevState => ({count: prevState.count-1}))
     }
 
+  // addToCart = e => {
+  //     console.log('addProps', this.props)
+  //     this.props.addItemToCart({
+  //         name: this.props.name,
+  //         price: this.props.price,
+  //         description: this.props.description,
+  //         image: this.props.item_img,
+  //         quantity: 1
+  //   })
+  // }
 
 
 }
