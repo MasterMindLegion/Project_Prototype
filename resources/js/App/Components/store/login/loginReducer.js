@@ -4,11 +4,18 @@ const loginAction = {
 const logoutAction = {
   type: "logout"
 }
+const storeCredentialsAction = (email, password) => {
+  return {
+    type: "storeCredentials",
+    payload: {email, password}
+  }
+
+}
 const initialState = {
   loginSuccess: false, 
   showRegisterLink : false,
   _token: null,
- // _token: window.localStorage.getItem('_token'),
+  credentials: [],
 }
 export const loginReducer = (state = initialState, action) => {
   switch(action.type) {
@@ -24,10 +31,15 @@ export const loginReducer = (state = initialState, action) => {
         _token: window.localStorage.clear(),
         loginSuccess: false 
       }
-      case "setHasCharit" :
+      case "storeCredentials":
+        return {
+          ...state,
+          credentials: [...action.payload]
+        }
+        case "setHasCharit" :
           return{
             ...state,
-            showRegisterLink: action.showRegisterLink,        
+            showRegisterLink: action.showRegisterLink,
           }
     default:
       

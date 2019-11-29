@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('/userpasswordchange', 'API\UserController@changePasswordInformationUser');
     Route::get('details', 'API\UserController@details');
     Route::post('editItems', 'Api\ItemController@edit');
+
+    Route::get('/validateUser', 'API\UserController@validateToken');
+
     // Route::get('/usercharity', 'API\CharityController@changeInformationCharity');
 });
 

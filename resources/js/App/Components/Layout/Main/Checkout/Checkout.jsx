@@ -34,7 +34,6 @@ function Copyright() {
   );
 
 }
-
 const useStyles = makeStyles(theme => ({
   appBar: {
     position: 'relative',

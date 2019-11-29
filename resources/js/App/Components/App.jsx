@@ -40,8 +40,10 @@ class App extends React.Component {
         
     }
     componentDidMount() {
-        //MARTIN VERSION /www.pro_charity.test:8080/
+     
+        //MARTIN VERSION /www.final_charity.test:8080/
         fetch("http://www.projectprototype.test:8080/api/items")
+        // fetch("http://www.final_charity.test:8080/api/items")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -49,7 +51,7 @@ class App extends React.Component {
                     items: result
                 });
             });
-        fetch("http://www.projectprototype.test:8080/api/charities")
+        fetch("http://www.projectprototype.test:8080//api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -57,6 +59,24 @@ class App extends React.Component {
                     charities: result
                 });
             });
+
+            this.props_token = window.localStorage.getItem('_token');
+            fetch('/api/validateUser', {
+                method: 'GET',
+                headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                 'Authorization': 'Bearer ' + this.props_token
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.localStorage.setItem('_token', data.success.token);
+                        this.props_token = window.localStorage.getItem( data.success.token);
+                        this.props.loginFunction();
+                      }
+                    });
     }
     addItemToCart = newItem => {
         this.setState(prevState => {
@@ -93,24 +113,15 @@ class App extends React.Component {
         });
     };
     removeItemFromCart = itemName => {
-        console.log('inside cart function')
         if(Object.values(localStorage.getItem('cart')).includes(this.state.cart.name) > -1 ) {
-            // console.log("local storage contains the item")
-            // console.log('WANT TO REMOVE', itemName)
             let cart = JSON.parse(localStorage.getItem('cart'))
             console.log(cart)
             cart = cart.filter(item => {
-                // console.log('FOUND', item.name)
                 return item.name != itemName;
             });
             console.log(cart)
             localStorage.setItem('cart', JSON.stringify(cart));
-            // JSON.parse('')
-            //convert string to object, then remove the name .. this.state.name
         } else {
-            console.log("localstorage doesn't contain the item")
-            // console.log(Object.values(localStorage.getItem('cart')))
-            console.log('not contained', localStorage.getItem('cart'))
         }
         this.setState(prevState => {
             const newCart = prevState.cart.filter(
@@ -153,9 +164,16 @@ class App extends React.Component {
                     <Route exact path="/app/register" component={Register} />
 ​
                     <Route exact path="/app/charities"  render={() => {
-                     return <Charities
-                     charities={this.state.charities}
-                     />;
+                        return (
+                            <>
+                            <Navigation />,
+                            <Charities
+                            charities={this.state.charities}
+                            />,
+                            <Footer />
+                            </>
+                        )
+
                  }}
                     ></Route>
                     {/* LOGIN */}
@@ -256,128 +274,15 @@ class App extends React.Component {
 const mapStateToProps = state => {
     return {
         loginStatus: state.loginReducer.loginStatus,
-        loginSuccess: state.loginReducer.loginSuccess
+        loginSuccess: state.loginReducer.loginSuccess,
+        credentials: state.loginReducer.credentials
     };
 };
-export default connect(mapStateToProps)(App);
-
-// import React from 'react';
-// import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-// import { connect } from 'react-redux';
-// import Register from './Auth/Register.jsx';
-// import Login from './Auth/Login.jsx';
-// import NotFoundPage from './Layout/NotFoundPage.jsx';
-// import HomePage from './Pages/HomePage.jsx';
-// import Cart from './Layout/Main/Cart/Cart.jsx';
-// import SellOn from './Layout/Main/SellOn.jsx';
-// import Checkout from './Layout/Main/Checkout/Checkout.jsx'
-// import CharityRegister from './Auth/CharityRegister.jsx';
-// import PrivateRoute from './Pages/Protected.jsx';
-
-// class App extends React.Component {
-//     constructor(props) {
-
-//         super(props);
-//         const cartString = window.localStorage.getItem("cart")
-//         const cart = cartString ? JSON.parse(cartString) : [{name: 'nemo'}]
-//         this.state = {
-//             token: null,
-//             logged_in: null,
-//             items: [],
-//             cart: cart,
-//         };
-//     }
-//     componentDidMount() {
-//         // fetch("http://www.charity.test:8080/api/items")
-
-//         fetch("http://www.projectprototype.test:8080/api/items")
-//             .then(res => res.json())
-//             .then(result => {
-//             //  console.log("[Homepage] FETCH", result);
-//                 this.setState({
-//                     isLoaded: true,
-//                     items: result
-//                 });
-//             });
-//     }
-//     addItemToCart = (newItem) => {
-//         this.setState(prevState => {
-//             const hasItem = !!prevState.cart.find(item => item.name === newItem.name)
-//             let newCart
-//             if(hasItem) {
-//                 newCart = prevState.cart.reduce((acc, curr) => {
-//                     if(newItem.name === curr.name) curr.quantity = curr.quantity + 1
-//                     return acc.concat(curr)
-//                 }, [])
-//             } else {
-//                 newCart = prevState.cart.concat(newItem)
-//             }
-//             window.localStorage.setItem("cart", JSON.stringify(newCart));
-//             return {
-//                 ...prevState,
-//                 cart: newCart
-//             }
-//         })
-//     }
-//     removeItemFromCart = (itemName) => {
-//         this.setState(prevState => {
-//             const newCart = prevState.cart.filter(item=>itemName!==item.name)
-//             return {
-//                 ...prevState,
-//                 cart: newCart
-//             }
-//         })
-//     }
-//     decreaseItemInCart=itemName=>{
-
-//     }
-//     render() {
-
-//         return (
-//             <BrowserRouter>
-//             <Switch>
-//                 {/* HomePage */}
-//                  <Route exact path="/"  render={() => {
-//                      return <HomePage
-//                      items={this.state.items}
-//                      addItemToCart={this.addItemToCart}
-//                      />;
-//                  }}
-//              ></Route>
-//              {/* REGISTER */}
-//                  <Route exact path="/app/register" component={Register}/>
-//                 {/* LOGIN */}
-//                <Route exact path="/app/login">
-//                    <Login/>
-//                </Route>
-//                {/* REGISTER CHARITY/PRIVATE ROUTE */}
-//                <PrivateRoute exact path="/app/registerCharity">
-//                     <CharityRegister/>
-//                 </PrivateRoute>
-//                 {/* CART */}
-//                 <Route exact path="/app/cart"  render={() => {
-//                      return <Cart
-//                      items={this.state.cart}
-//                      removeItemFromCart={this.removeItemFromCart}
-//                      />;
-//                  }}
-//                 />
-//                 {/* SELL ON */}
-//                 <Route path="/app/sellon" component={SellOn} />
-//                 {/* CHECKOUT  */}
-//                 <Route path="/app/checkout" component={Checkout} />
-//                 {/* NotFoundPage */}
-//                <Route path="*" component={NotFoundPage} />
-//             </Switch>
-//             </BrowserRouter>
-//         )
-//     }
-// }
-// const mapStateToProps = state => {
-//     return {
-//       loginStatus: state.loginReducer.loginStatus,
-//       loginSuccess: state.loginReducer.loginSuccess,
-
-//     };
-//   }
-// export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+    return {
+      loginFunction: () => {
+        dispatch({ type: "login" })
+      }
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -22,9 +22,7 @@ class Login extends React.Component {
       password: event.target.value,
     })
   }
-  componentDidMount() {
-    this.props_token = window.localStorage.getItem('_token');
-  }
+
   handleFormSubmit = (event) => {
     event.preventDefault();
     fetch('/api/login', {
@@ -35,15 +33,18 @@ class Login extends React.Component {
       },
       body: JSON.stringify({
         email: this.state.email,
-        password: this.state.password
+        password: this.state.password,
+
       })
     })
       .then(response => response.json())
       .then(data => {
+        console.log('[LOGIN] DATA', data)
         if (data.status === 'success') {
           window.localStorage.setItem('_token', data.success.token);
           this.props_token = window.localStorage.getItem( data.success.token);
           this.props.loginFunction();
+          this.props.storeCredentials(data.email, data.password);
         }
       })
       .catch(e => {
@@ -93,7 +94,11 @@ const mapDispatchToProps = dispatch => {
   return {
     loginFunction: () => {
       dispatch({ type: "login" })
-    }
+    },
+    storeCredentials : (email, password) => {
+      console.log('startfetch is being dispatched')
+      dispatch({type: "storeCredentials",  payload: {email, password}})
+      },
   }
 }
 

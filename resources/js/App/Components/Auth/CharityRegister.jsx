@@ -16,7 +16,6 @@ import {store} from './../../../app';
       loading: false,
       redirect: false
       }
-      console.log("[charityregister]", this.state)
   }
     handleNameChange = (event) => {
       this.setState({
@@ -52,18 +51,15 @@ import {store} from './../../../app';
     .then(response => response.json())
     .then(data => {
       if(data.status == true ){
-        console.log("[DATA STATUS RESPONSE]", data.status )
         this.setState({
           redirect: true
         })
-        return history.push("/");
+        window.location.href = "/";
       }
-      console.log("[CHARITY REGISTER] this.state", this.state)
     })
     
     }
     render() {
-      console.log("[charityRegister] this.state.redirect", this.state.redirect)
         return (
           <>
            {this.props.showRegisterLink 

@@ -9,6 +9,8 @@ use App\User;
 
 class ItemController extends Controller
 {
+    public $successStatus = 200;
+
     public function createItem(Request $request, User $User) {
         $item = Item::create([
             'item_name' => $request->item_name,
@@ -37,5 +39,9 @@ class ItemController extends Controller
             'description' => $request->description,
             'in_stock' => $request->in_stock,
             ]);
+            return response()->json([
+                'success' => true,
+            ], $this->successStatus);
+
     }
 }

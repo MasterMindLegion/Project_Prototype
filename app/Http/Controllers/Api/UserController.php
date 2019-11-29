@@ -14,6 +14,7 @@ class UserController extends Controller
 {
 
     public $successStatus = 200;
+
    
     /** 
          * login api 
@@ -36,6 +37,8 @@ class UserController extends Controller
                     'token_type' => "Bearer",
                     'message' => 'You are authorized to access',
                     'status' => 'success',
+                    'email' => $request->user()->email,
+                    'password' => $request->user()->password,
                     'role_id' => $role_id ,            
                 ], $this-> successStatus); 
             } 
@@ -45,6 +48,25 @@ class UserController extends Controller
                     'message' => 'Please enter correct email and password',
                 ], 401); 
             } 
+        }
+
+        public function validateToken (Request $request) {
+            
+            if($request->user()) {
+                $success['token'] =  $request->user()->createToken('MyApp')-> accessToken;
+                return response()->json([
+                    'success' => $success, 
+                    'TEST_USER' =>  $request->user(),
+                    'token_type' => "Bearer",
+                    'message' => 'You are authorized to access',
+                    'status' => 'success',
+                    'email' => $request->user()->email,
+                    'password' => $request->user()->password,           
+                ], $this-> successStatus); 
+            }
+            return response()->json([
+                'success' => false
+            ], 500);
         }
     /** 
          * Register api 
