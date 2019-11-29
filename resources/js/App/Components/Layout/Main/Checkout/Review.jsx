@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
@@ -7,19 +8,19 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
 // const products = [
-//   { name: '', desc: '', price: '9.99 CZK' },
-//   { name: '', desc: 'Another thing', price: '$3.45' },
-//   { name: '', desc: 'Something else', price: '$6.51' },
-//   { name: '', desc: 'Best thing of all', price: '$14.11' },
-//   { name: '', desc: '', price: 'Free' },
+//   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
+//   { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
+//   { name: 'Product 3', desc: 'Something else', price: '$6.51' },
+//   { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
+//   { name: 'Shipping', desc: '', price: 'Free' },
 // ];
-// const addresses = ['Data4You', 'BootcampVille', 'Prague', '696969', 'Kazhasztan'];
-// const payments = [
-//   { name: 'Card type', detail: 'Visa' },
-//   { name: 'Card holder', detail: 'Mr John Smith' },
-//   { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-//   { name: 'Expiry date', detail: '04/2024' },
-// ];
+const addresses = ['1 Material-UI Drive', 'BootcampVille', 'Prague', '99999', 'USA'];
+const payments = [
+  { name: 'Card type', detail: 'Pay Pal' },
+  { name: 'Card holder', detail: '' },
+  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
+  { name: 'Expiry date', detail: '04/2024' },
+];
 
 const useStyles = makeStyles(theme => ({
   listItem: {
@@ -33,45 +34,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const [value, setValue] = React.useState(localStorage.getItem("cart"));
- const localstorage_shoppingCart = JSON.parse(value);
- console.log(localstorage_shoppingCart);
+// const [value, setValue] = React.useState
+
 
 export default function Review() {
+  const classes = useStyles();
+  const value = localStorage.getItem("cart");
+  const products = JSON.parse(value);
+  //console.log(localstorage_shoppingCart);
+  console.log('demoday');
 
-    return (
+    let total_price = 0;
+    products.map(product => {
+        total_price += product.price
+    })
+  return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Order summary
       </Typography>
-        {/* Mapping Local Storag */}
-        <List disablePadding>
-                {cart.map(value, key => (
-                <ListItem className={classes.listItem} key={product.name}>
-                    <ListItemText primary={product.name} secondary={product.name} />
-                    <Typography variant="body2">{product.price}</Typography>
-                </ListItem>
-                ))}
-                <ListItem className={classes.listItem}>
-                <ListItemText primary="Total" />
-                <Typography variant="subtitle1" className={classes.total}>
-                    $34.06
-                </Typography>
-                </ListItem>
-            </List>
-
       <List disablePadding>
         {products.map(product => (
-
           <ListItem className={classes.listItem} key={product.name}>
-            <ListItemText primary={product.name} secondary={product.name} />
+            <ListItemText primary={product.name} secondary={product.desc} />
             <Typography variant="body2">{product.price}</Typography>
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            $34.06
+            { total_price } CZK
           </Typography>
         </ListItem>
       </List>

@@ -57,7 +57,7 @@ export default class Footer extends React.Component {
                         <h4 className="h6">About Us</h4>
                         <ul className="list-unstyled footer-blog-list">
                             <li className="d-flex align-items-center">
-                                
+
                                 <div className="text">
                                     <h5 className="mb-0">
                                         {" "}
@@ -66,7 +66,7 @@ export default class Footer extends React.Component {
                                 </div>
                             </li>
                             <li className="d-flex align-items-center">
-                              
+
                                 <div className="text">
                                     <h5 className="mb-0">
                                         {" "}
@@ -75,7 +75,7 @@ export default class Footer extends React.Component {
                                 </div>
                             </li>
                             <li className="d-flex align-items-center">
-                               
+
                                 <div className="text">
                                     <h5 className="mb-0">
                                         {" "}
@@ -90,7 +90,7 @@ export default class Footer extends React.Component {
                         <h4 className="h6">Buy on E-Shop</h4>
                         <ul className="list-unstyled footer-blog-list">
                             <li className="d-flex align-items-center">
-                        
+
                                 <div className="text">
                                     <h5 className="mb-0">
                                         {" "}

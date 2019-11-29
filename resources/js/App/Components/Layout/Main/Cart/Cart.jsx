@@ -22,8 +22,6 @@ const CartItem = props => {
 
     }
 
-
-
     return (
         <>
             <div>
@@ -63,14 +61,13 @@ const CartItem = props => {
     );
 };
 
-
 const Cart = props => {
-    const [quantityState, setQuantityState] = useState( Object.values(...props.items)[4])
-    
+    // const [quantityState, setQuantityState] = useState( Object.values(...props.items)[])
+
     // console.log("cart props", props);
     // console.log('prop quantity', Object.values(...props.items)[4])
     // console.log('state quantity', quantityState)
-    
+
     const [value, setValue] = React.useState(localStorage.getItem("cart"));
     const onClick = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
@@ -83,7 +80,7 @@ const Cart = props => {
     const decrement = (index) => {
         if (quantityState > 0){
             setQuantityState(quantityState-1)
-        } return 
+        } return
     }
 
 

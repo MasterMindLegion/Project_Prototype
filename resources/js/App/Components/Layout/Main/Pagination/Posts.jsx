@@ -47,14 +47,15 @@ console.log(posts);
                     <p> </p>
                     <hr className="my-2" />
                     <CardSubtitle> <h2> Price:  {post.price_per_item} CZK </h2>  </CardSubtitle>
-                    
+
                     <h4> Item description:   </h4>
                     <CardText>{post.description}</CardText>
                     <hr className="my-1" />
                     <CardBody min-width="400px">
-                    
-                    <Button onClick={() => handleClick(post)}><FaShoppingCart />  ADD TO SHOPPING CART </Button>
-                      
+
+                    <Button onClick={() => handleClick(post)}  style={{ backgroundColor: '#29f4cd'}}
+                     ><FaShoppingCart />  ADD TO SHOPPING CART </Button>
+
                        <h4> Payments: <FaCcVisa /> <FaCcMastercard /> <FaApplePay /> <FaGoogleWallet /> </h4>
                        <h6>  Get more time to pay.  See payment information... </h6>
                         {/* <Link to="/app/checkout"> <h3> </h3></Link>
