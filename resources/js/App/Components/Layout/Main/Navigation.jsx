@@ -1,19 +1,17 @@
 import React from 'react';
-import { 
+import {
   Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem,   DropdownToggle,
   DropdownMenu, DropdownItem,  UncontrolledDropdown,
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import ModalNavigationLogin from './../Modals/ModalNavigationLogin';
-import ModalNavigationRegister from './../Modals/ModalNavigationRegister.jsx';
+import ModalNavigationLogin from './../../Layout/Modals/ModalNavigationLogin.jsx';
+import ModalNavigationRegister from './../../Layout/Modals/ModalNavigationRegister.jsx';
 import Logout from './../../Auth/Logout.jsx';
 import { faShoppingCart, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from 'reactstrap';
 import Cart from './../Main/Cart/Cart.jsx';
 import { connect } from 'react-redux';
-
-
  class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +33,7 @@ import { connect } from 'react-redux';
         <Navbar color="dark" dark expand="md" className='navigation align-items-center'>
           <NavbarBrand href="/">E-Market</NavbarBrand>
           <NavbarToggler onClick={this.toggle}  />
-          
+
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto p-2 align-items-center" navbar>
               {/* LOGIN/LOGOUT */}
@@ -76,7 +74,7 @@ import { connect } from 'react-redux';
               {this.props.loginSuccess &&
               <UncontrolledDropdown nav inNavbar className='p-1'>
               <DropdownToggle nav caret>
-              <FontAwesomeIcon  icon={faUser} /> 
+              <FontAwesomeIcon  icon={faUser} />
               </DropdownToggle>
               <DropdownMenu right>
                 <DropdownItem>
@@ -91,7 +89,7 @@ import { connect } from 'react-redux';
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown> }
-            
+
 
             </Nav>
           </Collapse>

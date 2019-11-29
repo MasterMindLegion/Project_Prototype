@@ -16,18 +16,14 @@ import Charities from './Pages/Charities.jsx';
 import ShowItems from './Pages/ShowItems.jsx';
 import Products from "./Layout/Main/Products.jsx";
  import ProductsPage from "./Pages/ProductsPage.jsx";
- import AddItems from './/Pages/AddItems.jsx';
+ import AddItems from './Pages/AddItems.jsx';
 import Navigation from './Layout/Main/Navigation.jsx';
 import Footer from './Layout/Footer/Footer.jsx';
-import EditItems from './Pages/EditItems.jsx';
-
 export const cartContext = createContext({});
 const CartContextProvider = cartContext.Provider;
-
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         const cartString = window.localStorage.getItem("cart");
         const cart = cartString ? JSON.parse(cartString) : [];
         this.state = {
@@ -37,16 +33,22 @@ class App extends React.Component {
             charities: [],
             cart: cart,
             selectedCart: null,
+            test: "hi",
             numberOfItems: 0,
         };
         console.log("cart",this.state.cart);
         
     }
     componentDidMount() {
+<<<<<<< HEAD
      
         //MARTIN VERSION /www.final_charity.test:8080/
         fetch("http://www.final_charity.test:8080/api/items")
         // fetch("http://www.final_charity.test:8080/api/items")
+=======
+        //MARTIN VERSION /www.pro_charity.test:8080/
+        fetch("http://www.projectprototype.test:8080/api/items")
+>>>>>>> c38585a41c9a625851b5f6719bb4e7bb29333115
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -54,9 +56,7 @@ class App extends React.Component {
                     items: result
                 });
             });
-
-        fetch("http://www.final_charity.test:8080/api/charities")
-        // fetch("http://www.final_charity.test:8080/api/charities")
+        fetch("http://www.projectprototype.test:8080/api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -83,7 +83,6 @@ class App extends React.Component {
                       }
                     });
     }
-
     addItemToCart = newItem => {
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(
@@ -118,7 +117,6 @@ class App extends React.Component {
             selectedCart: arg
         });
     };
-
     removeItemFromCart = itemName => {
         if(Object.values(localStorage.getItem('cart')).includes(this.state.cart.name) > -1 ) {
             let cart = JSON.parse(localStorage.getItem('cart'))
@@ -147,9 +145,7 @@ class App extends React.Component {
                 }
         })
     };
-    
     decreaseItemInCart = itemName => {};
-
     render() {
         return (
             <BrowserRouter>
@@ -171,7 +167,7 @@ class App extends React.Component {
                     ></Route>
                     {/* REGISTER */}
                     <Route exact path="/app/register" component={Register} />
-
+​
                     <Route exact path="/app/charities"  render={() => {
                      return <Charities
                      charities={this.state.charities}
@@ -265,7 +261,6 @@ class App extends React.Component {
                         >
                         </Route>
                         {/* EDIT ITEMS */}
-
                     {/* NotFoundPage */}
                     {/* <Route path="*" component={NotFoundPage} /> */}
                     </CartContextProvider>
@@ -274,7 +269,6 @@ class App extends React.Component {
         );
     }
 }
-
 const mapStateToProps = state => {
     return {
         loginStatus: state.loginReducer.loginStatus,

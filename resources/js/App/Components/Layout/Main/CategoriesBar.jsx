@@ -8,16 +8,14 @@ const Example = (props) => {
 
   return (
     <div>
-      <Navbar color="faded" light>
-        <NavbarBrand href="/" className="mr-auto">CATEGORIES   </NavbarBrand>
+      <Navbar color="faded" light width="100%" >
+        <NavbarBrand href="/" className="mr-auto">  CATEGORIES  </NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
             <NavItem>
-              <NavLink href="#">Fashion </NavLink>
-
-              <NavLink href="#">Home & Garden</NavLink>
-
+              <NavLink href="#"> Fashion </NavLink>
+              <NavLink href="#"> Home & Garden</NavLink>
               <NavLink href="#">Electronics</NavLink>
               <NavLink href="#">Sports & Leisure </NavLink>
               <NavLink href="#">Health & Beauty</NavLink>

@@ -55,8 +55,7 @@ export default class Main extends React.Component {
                 );
             }
         });
-        
-         const CharitiesCards = this.props.charities.map((charity, index) => { 
+         const CharitiesCards = this.props.charities.map((charity, index) => {
              if (index < 2){
              return (
                  <Col key={`product-${charity.name}-${index}`}>
@@ -125,7 +124,7 @@ export default class Main extends React.Component {
                                     Load More
                                 </Button>
                                 <Button color='primary'>
-                                View More 
+                                View More
                                 <Link to='/app/Products' />
                                 </Button>
                                 </div>
@@ -141,10 +140,11 @@ export default class Main extends React.Component {
                         <Row>
                             <Col>
                                 <h2>
-                                    <strong>About E-Market</strong>
+                                        <strong>About E-Market</strong>
                                 </h2>
                             </Col>
                         </Row>
+
                         <Row>
                             <Col>
                                 <h3>A one-of-a-kind community</h3>
@@ -176,6 +176,7 @@ export default class Main extends React.Component {
                         </Row>
                     </Container>
 
+
                     <Container
                         className=" w-100"
                         fluid
@@ -201,7 +202,7 @@ export default class Main extends React.Component {
                         </Row>
                         <Row>
                             <Container>
-                                <Row>{CharitiesCards}</Row> 
+                                <Row>{CharitiesCards}</Row>
                             <br/>
                             <Link to="/app/charities">
                             <Button className="bg-success"> All charities

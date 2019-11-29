@@ -37,10 +37,11 @@ export default class SellOn extends React.Component {
                 </MDBCol>
                 </MDBRow>
 
+
                   <MDBContainer>
                     <MDBCardGroup deck>
                         <MDBCard>
-                        <MDBCardBody>
+                        <MDBCardBody style={{  backgroundColor: "#29f4cd"}} >
                             <MDBCardTitle tag="h5">PLUS Account</MDBCardTitle>
                             <MDBCardText>
                             Everything you need to start, manage, and grow a creative business
@@ -54,7 +55,7 @@ export default class SellOn extends React.Component {
                         </MDBCardFooter>
                         </MDBCard>
                         <MDBCard>
-                        <MDBCardBody>
+                        <MDBCardBody  style={{  backgroundColor: "#29f4cd"}}>
                             <MDBCardTitle tag="h5">PREMIUM Account</MDBCardTitle>
                             <MDBCardText>
                             This panel has supporting text below as a natural lead-in to
@@ -67,7 +68,7 @@ export default class SellOn extends React.Component {
                         </MDBCardFooter>
                         </MDBCard>
                         <MDBCard>
-                        <MDBCardBody>
+                        <MDBCardBody  style={{  backgroundColor: "#29f4cd"}}>
                             <MDBCardTitle tag="h5">PRO Account</MDBCardTitle>
                             <MDBCardText>
                             This is a wider panel with supporting text below as a natural

@@ -36,14 +36,14 @@ export default class ProductCard extends React.Component {
                         top
                         width="100%"
                         src={this.props.item_img}
-                        alt="Card image"
+                        alt="DemoDay image"
                     />
                     <CardBody min-width="200px">
                         <CardTitle>
                             <h4>{this.props.name}</h4>
                         </CardTitle>
                         <CardSubtitle>
-                            <h5> {this.props.price}/CZK</h5>
+                            <h5> {this.props.price} CZK</h5>
                         </CardSubtitle>
                         <CardText>{this.props.description}
                         </CardText>
