@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::put('/useremailchange', 'API\UserController@changeEmailInformationUser');
     Route::put('/userpasswordchange', 'API\UserController@changePasswordInformationUser');
     Route::get('details', 'API\UserController@details');
+    Route::post('editItems', 'Api\ItemController@edit');
     // Route::get('/usercharity', 'API\CharityController@changeInformationCharity');
 });
 

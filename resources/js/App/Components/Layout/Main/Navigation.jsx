@@ -18,7 +18,6 @@ import { connect } from 'react-redux';
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.edit = this.edit.bind(this);
     this.state = {
       isOpen: false,
     };
@@ -28,19 +27,7 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
-  edit(){
-    fetch("http://www.final_charity.test:8080/api/details",{
-        method: 'GET',
-        headers: {
-           'Accept':       'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + window.localStorage.getItem('_token')
-      },})
-    .then(res => res.json())
-    .then(result => {
-      this.props.startFetch(result);
-    });
-  }
+
   render() {
     console.log('[NAVIGATION] PROPS', this.props)
     return (

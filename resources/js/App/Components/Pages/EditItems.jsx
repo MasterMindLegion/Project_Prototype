@@ -1,45 +1,37 @@
-
-import React, { useState } from 'react';
-// import { Jumbotron } from 'reactstrap';
-import { Card, Container, Row, Col } from "reactstrap";
-import { BrowserRouter, Route, Switch, Redirect, useParams } from "react-router-dom";
-import ProductCard from "../Layout/Main/Cart/ProductCard.jsx";
-import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "reactstrap";
-
-import Navigation from './../Layout/Main/Navigation.jsx';
+import React from 'react';
+import { Col } from "reactstrap";
+import CardEdit from  '../Layout/Main/Cart/CardEdit.jsx';
+import { connect } from 'react-redux';
 
 const EditItems = (props) => {
-/*             const [id, setId] = useState(useParams());
-            console.log("id",typeof(id.id));
-
-
-            const productCards = props.items.map((x, index) => {
-            
-            if(x.charity_id == id.id){
-                console.log(x)
-                console.log(id.id);
+            const productCards = props.items.items.map((x, index) => {
             return (
                 <Col key={`product-${x.item_name}-${index}`}>
-                
-                    <ProductCard
+                    <CardEdit
                         name={x.item_name}
                         item_img={x.item_img}
+                        in_stock={x.in_stock}
                         price={x.price_per_item}
+                        id={x.id}
                         description={x.description}
-                        addItemToCart = {props.addItemToCart}
                     />
                 </Col>
-            );}
-        });
-   */
-
+            )}
+        );
     return (
         <div>
-    {/*     {console.log(props)} */}
-        <p>dfdf</p>
+         {console.log(props)} 
+        {console.log("redux props", props)} 
+        <p>{productCards}</p>
         </div>
     );
 };
+const mapStateToProps = state => {
+  return {
+    loginSuccess: state.loginReducer.loginSuccess,
+    items: state.itemReducer
+  };
+}
 
-export default EditItems;
+// What Actions be used
+export default connect(mapStateToProps)(EditItems);
