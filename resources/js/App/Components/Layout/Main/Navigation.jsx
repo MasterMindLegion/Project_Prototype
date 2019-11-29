@@ -68,19 +68,19 @@ import { connect } from 'react-redux';
               </NavItem>
               {/* Register/Edit Charity */}
               { this.props.loginSuccess && <NavItem >
-                <Link to="/app/registerCharity">{this.props.showRegisterLink ? "registerCharity": "editcharity"}</Link>
+                <Link to="/app/registerCharity">{this.props.showRegisterLink ? "RegisterCharity": "EditCharity"}</Link>
               </ NavItem >}
               {/* Sell */}
               <NavItem className='p-1'>
                 <Link to='/app/sellon'>  Sell </ Link>
               </NavItem>
               {/* Edit Items */}
-              {this.props.loginSuccess && <NavItem >
+              {/* {this.props.loginSuccess && <NavItem >
               <Link to="/app/editItems/:id"> >
               <Button onClick={this.edit} className="bg-success"> editItems
               </Button>
               </Link>
-              </ NavItem >}
+              </ NavItem >}  */}
               {/* PRODUCTS */}
               <NavItem className='p-1'>
                 <Link to='/app/Products'> Products </ Link>

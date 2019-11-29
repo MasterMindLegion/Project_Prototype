@@ -12,6 +12,7 @@ import AddItems from './../Pages/AddItems.jsx'
 import HomePage from './../Pages/HomePage.jsx';
 import editItems from './../Pages/EditItems.jsx';
 import PrivateRouteEditItems from './../Pages/Protected.jsx';
+
 export default function UserPage() {
     return (
       <>
@@ -45,13 +46,10 @@ export default function UserPage() {
             <Route exact path="/app/addItems">
               <AddItems/>
             </Route>
-            <PrivateRouteEditItems>
-                    <Route exact path="/app/editItems/:id" render={() => {
-                        return <EditItems/>;
-                        }}
-                        />
-            </PrivateRouteEditItems>
-           
+             <Route exact path="/app/editItems/:id" render={() => {
+               return <EditItems/>;
+              }}
+            />
           </Switch>
         </div>
       </Router>

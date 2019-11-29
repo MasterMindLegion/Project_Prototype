@@ -30,6 +30,7 @@ export const loginReducer = (state = initialState, action) => {
             showRegisterLink: action.showRegisterLink,        
           }
     default:
+      
       return state 
   }
   

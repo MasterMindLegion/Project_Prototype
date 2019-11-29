@@ -17,21 +17,7 @@ import { FaApplePay } from 'react-icons/fa';
 import { FaGoogleWallet } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
-// const SingleItem = (props) => {
-//   //pass down the correct ID here on props
-//   return(
-//     <div>
-//       <p>Product ID: {props.id}</p>
-//       <p>name: {props.name}</p>
-//       <p>description: {props.description}</p>
-//     </div>
-//   )
-// }
-
-
-
 export default function ProductPage (props){
-  
   
     const addItem = (item) => {
       props.addItemToCart({
@@ -42,16 +28,11 @@ export default function ProductPage (props){
           quantity: 1
       })
     }
-
-  
   //all props are passed down
   const {items} = {...props}
   console.log("[ProductPage] items", items)
-
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
-
-  
   let item = null;
   if(items.length > 0){
     item = items.filter((item) => (item.id == id))[0];
@@ -99,7 +80,7 @@ export default function ProductPage (props){
             </CardBody>
             <Col>
             {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
-            <ProductCounter/>
+  
             </Col>
 
 

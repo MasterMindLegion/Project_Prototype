@@ -25,18 +25,22 @@ export default class Main extends React.Component {
             items: null,
             all_item: [],
             paginationData: null,
-            diplay: false,
             all_item: [
             ],
+            numberOfDisplayedItems: 4,
+            loadMoreNumberOfDisplayedItems: 2,
+            
     }
     }
      handleClick = () => {
-         this.setState({display: !this.state.display})
+         this.setState({numberOfDisplayedItems: this.state.numberOfDisplayedItems + this.state.loadMoreNumberOfDisplayedItems })
  }
 
     render() {  
+        let count = 0;
         const productCards = this.props.items.map((x, index) => {
-            if (x.id < 4) {
+            count ++;
+            if (count <= this.state.numberOfDisplayedItems) {
                 return (
                     <Col key={`product-${x.item_name}-${index}`}>
                        <ProductCard
@@ -49,21 +53,9 @@ export default class Main extends React.Component {
                         />
                     </Col>
                 );
-            } else {
-                return this.state.display && (
-                    <Col key={`product-${x.item_name}-${index}`}>
-                       <ProductCard
-                            id = {x.id}
-                            name={x.item_name}
-                            item_img={x.item_img}
-                            price={x.price_per_item}
-                           description={x.description}
-                           addItemToCart={this.props.addItemToCart}
-                />
-                   </Col>
-            );
             }
         });
+        
          const CharitiesCards = this.props.charities.map((charity, index) => { 
              if (index < 2){
              return (
@@ -143,8 +135,8 @@ export default class Main extends React.Component {
 
                     <Container
                         fluid
-                        className="w-100 bg-success"
-                        style={{ padding: "2em", textAlign: "center" }}
+                        className="w-100"
+                        style={{ padding: "2em", textAlign: "center", backgroundColor: "#29f4cd" }}
                     >
                         <Row>
                             <Col>

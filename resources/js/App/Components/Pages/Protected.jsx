@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch, Redirect,  Link } from "react-router-dom";
 import CharityRegister from './../Auth/CharityRegister.jsx';
-import editItems from './../Pages/EditItems'
-import EditItems from './../Pages/EditItems';
+import editItems from './../Pages/EditItems';
 
   const PrivateRouteCharityRegister = (props, { /*component: CharityRegister,*/ ...rest }) => (
-   
      <Route {...rest} render={() => (
        console.log("'to be sure'",props.loginSuccess),
        props.loginSuccess === true
@@ -18,11 +16,10 @@ import EditItems from './../Pages/EditItems';
     )} />
   ) 
   const PrivateRouteEditItems = (props, { /*component: CharityRegister,*/ ...rest }) => (
-   
     <Route {...rest} render={() => (
       console.log("'to be sure'",props.loginSuccess),
       props.loginSuccess === true
-        ? <EditItems {...props} />
+        ? <editItems {...props} />
         //: <Redirect to='/app/login' />
         : <h1>You have to be logged in to acces the path 
            <Link to="/"> Lets get you there</Link>

@@ -39,6 +39,8 @@ class App extends React.Component {
             selectedCart: null,
             numberOfItems: 0,
         };
+        console.log("cart",this.state.cart);
+        
     }
     componentDidMount() {
         //MARTIN VERSION /www.final_charity.test:8080/
@@ -61,7 +63,6 @@ class App extends React.Component {
     }
 
     addItemToCart = newItem => {
-        console.log('adding item to cart')
         this.setState(prevState => {
             const hasItem = !!prevState.cart.find(
                 item => item.name === newItem.name
@@ -97,6 +98,25 @@ class App extends React.Component {
     };
 
     removeItemFromCart = itemName => {
+        console.log('inside cart function')
+        if(Object.values(localStorage.getItem('cart')).includes(this.state.cart.name) > -1 ) {
+            // console.log("local storage contains the item")
+            // console.log('WANT TO REMOVE', itemName)
+            let cart = JSON.parse(localStorage.getItem('cart'))
+            console.log(cart)
+            cart = cart.filter(item => {
+                // console.log('FOUND', item.name)
+                return item.name != itemName;
+            });
+            console.log(cart)
+            localStorage.setItem('cart', JSON.stringify(cart));
+            // JSON.parse('')
+            //convert string to object, then remove the name .. this.state.name
+        } else {
+            console.log("localstorage doesn't contain the item")
+            // console.log(Object.values(localStorage.getItem('cart')))
+            console.log('not contained', localStorage.getItem('cart'))
+        }
         this.setState(prevState => {
             const newCart = prevState.cart.filter(
                 item => itemName !== item.name
@@ -190,7 +210,19 @@ class App extends React.Component {
                             }}
                         />
                         {/* SELL ON */}
-                        <Route path="/app/sellon" component={SellOn} />
+                        <Route
+                            exact
+                            path="/app/sellon"
+                            render={() => {
+                                return (
+                                    <>
+                                    <Navigation />
+                                    <SellOn/>
+                                    <Footer />
+                                    </>
+                                );
+                            }}
+                        />
                         {/* PRODUCTS */}
                         {/* <CartContextProvider value={this.selectedCartCallback}> */}
                         <Route
@@ -220,13 +252,7 @@ class App extends React.Component {
                         >
                         </Route>
                         {/* EDIT ITEMS */}
-                         <Route exact path="/app/editItems/:id" render={() => {
-                            return <EditItems
-                            
-                            user={this.state.user}
-                            token={this.state.token}/>;
-                            }}
-                            /> 
+
                     {/* NotFoundPage */}
                     {/* <Route path="*" component={NotFoundPage} /> */}
                     </CartContextProvider>
