@@ -29,4 +29,13 @@ class ItemController extends Controller
         $paginate_items = Item::paginate(3);
         return $paginate_items;
     }
+
+    public function edit(Request $request, User $User) {
+        $item = Item::where('id', $request->id)->update( [
+            'item_name' => $request->item_name,
+            'price_per_item' => $request->price_per_item,
+            'description' => $request->description,
+            'in_stock' => $request->in_stock,
+            ]);
+    }
 }

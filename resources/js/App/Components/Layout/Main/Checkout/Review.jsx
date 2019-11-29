@@ -7,6 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
 
+
 // const products = [
 //   { name: 'Product 1', desc: 'A nice thing', price: '$9.99' },
 //   { name: 'Product 2', desc: 'Another thing', price: '$3.45' },
@@ -22,6 +23,7 @@ const payments = [
   { name: 'Expiry date', detail: '04/2024' },
 ];
 
+
 const useStyles = makeStyles(theme => ({
   listItem: {
     padding: theme.spacing(1, 0),
@@ -33,6 +35,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(2),
   },
 }));
+
 
 // const [value, setValue] = React.useState
 
@@ -48,6 +51,7 @@ export default function Review() {
     products.map(product => {
         total_price += product.price
     })
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

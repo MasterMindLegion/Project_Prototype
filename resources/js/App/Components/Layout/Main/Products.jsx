@@ -58,7 +58,6 @@ const Products = (props) => {
 
                 <Pagination postsPerPage={postsPerPage} totalPosts={posts.length}
                         paginate={paginate} />
-
           </div>
           </Container>
           </Jumbotron>

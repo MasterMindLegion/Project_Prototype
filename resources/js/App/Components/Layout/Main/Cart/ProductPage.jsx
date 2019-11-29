@@ -30,16 +30,11 @@ export default function ProductPage (props){
            quantity: 1
        })
     }
-
-  
   //all props are passed down
   const {items} = {...props}
   console.log("[ProductPage] items", items)
-
   //looks for the item id based on url - app/more/info/3
   const {id} = useParams();
-
-  
   let item = null;
   if(items.length > 0){
     item = items.filter((item) => (item.id == id))[0];

@@ -25,12 +25,7 @@ const CartItem = props => {
     return (
         <>
             <div>
-
-            <h1> display cart message </h1>
-            <Jumbotron>
             <CardBody min-width="400px">
-            <h4 className="display-3"><strong>   Excellent Choice!  You're almost there! </strong> </h4>
-                <h3 className="display-3"><strong>   Selected item: </strong> </h3>
                 <h4 className="display-3"><strong>    <h4> {props.name} </h4> </strong></h4>
                 <CardImg max-width="50rem" max-height="20%" src={props.image} alt="Card image"/>
                 <p></p>
@@ -44,30 +39,22 @@ const CartItem = props => {
                 <Button color="secondary">Learn More</Button>
                 </CardBody>
                 <hr className="my-2" />
-                <CardBody min-width="400px">
-
-                <CardTitle><Link to="/app/products">Click to See More Items</Link></CardTitle>
-                <Link to="/app/checkout">Proceed to Checkout</Link>
-
-                <FormGroup>
-                    <Label for="examplePassword"> <h4> Enter Discount Code   </h4> </Label>
-                    <Input type="password" name="password" id="examplePassword" placeholder="Your Discount Code " />
-                </FormGroup>
-
-                </CardBody>
-            </Jumbotron>
              </div>
         </>
     );
 };
 
-const Cart = props => {
+
+// const Cart = props => {
     // const [quantityState, setQuantityState] = useState( Object.values(...props.items)[])
 
     // console.log("cart props", props);
     // console.log('prop quantity', Object.values(...props.items)[4])
     // console.log('state quantity', quantityState)
 
+
+const Cart = props => {
+    // const [quantityState, setQuantityState] = useState( Object.values(...props.items)[4])
     const [value, setValue] = React.useState(localStorage.getItem("cart"));
     const onClick = event => setValue(event.target.value);
     const localstorage_shoppingCart = JSON.parse(value);
@@ -76,14 +63,11 @@ const Cart = props => {
     const increment = (index) => {
         setQuantityState(quantityState+1)
     }
-
     const decrement = (index) => {
         if (quantityState > 0){
             setQuantityState(quantityState-1)
         } return
     }
-
-
     let productCard = props.items.map((item, index) => {
         return (
 
@@ -98,8 +82,12 @@ const Cart = props => {
             />
         );
     });
-    return <div>{productCard}</div>;
-
-
+    return (
+        <Jumbotron>
+             {productCard}
+          <CardBody min-width="400px">
+            <Link to="/app/checkout">Proceed to Checkout</Link>
+         </CardBody>
+        </Jumbotron>);
 };
 export default Cart;

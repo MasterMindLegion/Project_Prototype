@@ -5,14 +5,31 @@ import {
     Route,
     Link
   } from "react-router-dom";
+  import { connect } from 'react-redux';
 
 import UserInformation from './../Auth/UserInformation.jsx';
 import PasswordChange from './../Auth/PasswordChange.jsx';
 import AddItems from './../Pages/AddItems.jsx'
 import HomePage from './../Pages/HomePage.jsx';
-import editItems from './../Pages/EditItems.jsx';
+import EditItems from './../Pages/EditItems.jsx';
 import PrivateRouteEditItems from './../Pages/Protected.jsx';
-export default function UserPage() {
+
+ function UserPage(props) {
+console.log('USERPAGE PROPS', props)
+ function edit(){
+    fetch("http://www.final_charity.test:8080/api/details",{
+        method: 'GET',
+        headers: {
+           'Accept':       'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + window.localStorage.getItem('_token')
+      },})
+    .then(res => res.json())
+    .then(result => {
+      props.startFetch(result);
+    });
+  }
+
     return (
       <>
       {/* Cant be in router */}
@@ -29,7 +46,7 @@ export default function UserPage() {
             <li>
               <Link to="/app/addItems"> Add new item</Link>
             </li>
-            <li>
+            <li onClick={edit}>
               <Link to="/app/editItems/:id"> Edit item</Link>
             </li>
           </ul>
@@ -45,19 +62,39 @@ export default function UserPage() {
             <Route exact path="/app/addItems">
               <AddItems/>
             </Route>
-            <PrivateRouteEditItems>
-                    <Route exact path="/app/editItems/:id" render={() => {
-                        return <EditItems/>;
-                        }}
-                        />
-            </PrivateRouteEditItems>
-           
+             <Route exact path="/app/editItems/:id" render={() => {
+               return <EditItems/>;
+              }}
+            />
           </Switch>
         </div>
       </Router>
       </>
     );
   }
+  //==========
+// REDUX
+//==========
+// What state be used
+const mapStateToProps = state => {
+  return {
+    loginSuccess: state.loginReducer.loginSuccess,
+    showRegisterLink: state.loginReducer.showRegisterLink,
+    items: state.itemReducer.items
+  };
+}
+// What Actions be used
+const mapDispatchToProps = dispatch => {
+  return {
+    startFetch : (arg) => {
+      console.log('startfetch is being dispatched')
+      console.log(arg)
+      dispatch({type: "startFetch", payload: arg})
+      },
+ }
+}
+  // What Actions be used
+  export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
 
 
   

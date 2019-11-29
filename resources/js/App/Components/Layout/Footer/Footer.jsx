@@ -16,15 +16,24 @@ import { FaCcMastercard } from 'react-icons/fa';
 import { FaApplePay } from 'react-icons/fa';
 import { FaGoogleWallet } from 'react-icons/fa';
 
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import { MDBCard,MDBCardHeader,MDBNav, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 
 export default class Footer extends React.Component {
   render(){
     return (
-        <footer className="main-footer">
+        <>
+       
+        <footer className="main-footer"  style={{  backgroundColor: "#29f4cd"}} >
             <div className="container">
                 <div className="row">
                     <div className="col-lg-3">
+
+                     <MDBCardHeader style={{  backgroundColor: "#29f4cd"}} >
+                        <MDBNav header>
+
+                        </MDBNav>
+                    </MDBCardHeader>
+                    
                         <h4 className="h6">Follow Us On</h4>
                         {/* <Link to="/app/user">Acount Settings</Link> */}
                        <Link to="/app/user">
@@ -54,6 +63,12 @@ export default class Footer extends React.Component {
                         </form>
                     </div>
                     <div className="col-lg-3">
+
+                    <MDBCardHeader style={{  backgroundColor: "#29f4cd"}} >
+                        <MDBNav header>
+
+                        </MDBNav>
+                    </MDBCardHeader>
                         <h4 className="h6">About Us</h4>
                         <ul className="list-unstyled footer-blog-list">
                             <li className="d-flex align-items-center">
@@ -87,6 +102,12 @@ export default class Footer extends React.Component {
                         <hr className="d-block d-lg-none"></hr>
                     </div>
                     <div className="col-lg-3">
+
+                    <MDBCardHeader style={{  backgroundColor: "#29f4cd"}} >
+                        <MDBNav header>
+
+                        </MDBNav>
+                    </MDBCardHeader>
                         <h4 className="h6">Buy on E-Shop</h4>
                         <ul className="list-unstyled footer-blog-list">
                             <li className="d-flex align-items-center">
@@ -120,6 +141,12 @@ export default class Footer extends React.Component {
                         <hr className="d-block d-lg-none" />
                     </div>
                     <div className="col-lg-3">
+
+                    <MDBCardHeader style={{  backgroundColor: "#29f4cd"}} >
+                        <MDBNav header>
+
+                        </MDBNav>
+                    </MDBCardHeader>
                         <h4 className="h6">Contact</h4>
                         <p className="text-uppercase">
                             <strong>E-SHOP PRAHA </strong>
@@ -129,12 +156,12 @@ export default class Footer extends React.Component {
                             166 36 <br />
                             <strong>Czech Republic</strong>
                         </p>
-                        <a
+                        {/* <a
                             href="/app/checkout"
                             className="btn btn-template-main"
                         >
                             Go to contact page
-                        </a>
+                        </a> */}
                         <hr className="d-block d-lg-none" />
                     </div>
                     <div className="col-lg-3">
@@ -149,10 +176,12 @@ export default class Footer extends React.Component {
                                 <a href="#"></a>
                             </li>
                         </ul>
+                    
                     </div>
                 </div>
             </div>
         </footer>
+        </>
     );
   }
 }

@@ -13,11 +13,9 @@ import { Button } from 'reactstrap';
 import Cart from './../Main/Cart/Cart.jsx';
 import { connect } from 'react-redux';
  class Navigation extends React.Component {
-
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.edit = this.edit.bind(this);
     this.state = {
       isOpen: false,
     };
@@ -27,19 +25,7 @@ import { connect } from 'react-redux';
       isOpen: !this.state.isOpen
     });
   }
-  edit(){
-    fetch("http://www.final_charity.test:8080/api/details",{
-        method: 'GET',
-        headers: {
-           'Accept':       'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + window.localStorage.getItem('_token')
-      },})
-    .then(res => res.json())
-    .then(result => {
-      this.props.startFetch(result);
-    });
-  }
+
   render() {
     console.log('[NAVIGATION] PROPS', this.props)
     return (
@@ -64,19 +50,19 @@ import { connect } from 'react-redux';
               </NavItem>
               {/* Register/Edit Charity */}
               { this.props.loginSuccess && <NavItem >
-                <Link to="/app/registerCharity">{this.props.showRegisterLink ? "registerCharity": "editcharity"}</Link>
+                <Link to="/app/registerCharity">{this.props.showRegisterLink ? "RegisterCharity": "EditCharity"}</Link>
               </ NavItem >}
               {/* Sell */}
               <NavItem className='p-1'>
                 <Link to='/app/sellon'>  Sell </ Link>
               </NavItem>
               {/* Edit Items */}
-              {this.props.loginSuccess && <NavItem >
+              {/* {this.props.loginSuccess && <NavItem >
               <Link to="/app/editItems/:id"> >
               <Button onClick={this.edit} className="bg-success"> editItems
               </Button>
               </Link>
-              </ NavItem >}
+              </ NavItem >}  */}
               {/* PRODUCTS */}
               <NavItem className='p-1'>
                 <Link to='/app/Products'> Products </ Link>

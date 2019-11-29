@@ -15,9 +15,7 @@ const Example = (props) => {
           <Nav navbar>
             <NavItem>
               <NavLink href="#"> Fashion </NavLink>
-
-              <NavLink href="#">Home & Garden</NavLink>
-
+              <NavLink href="#"> Home & Garden</NavLink>
               <NavLink href="#">Electronics</NavLink>
               <NavLink href="#">Sports & Leisure </NavLink>
               <NavLink href="#">Health & Beauty</NavLink>
