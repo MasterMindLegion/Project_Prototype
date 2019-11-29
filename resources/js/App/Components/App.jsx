@@ -43,6 +43,7 @@ class App extends React.Component {
         
     }
     componentDidMount() {
+     
         //MARTIN VERSION /www.final_charity.test:8080/
         fetch("http://www.final_charity.test:8080/api/items")
         // fetch("http://www.final_charity.test:8080/api/items")
@@ -63,6 +64,24 @@ class App extends React.Component {
                     charities: result
                 });
             });
+
+            this.props_token = window.localStorage.getItem('_token');
+            fetch('/api/validateUser', {
+                method: 'GET',
+                headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                 'Authorization': 'Bearer ' + this.props_token
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        window.localStorage.setItem('_token', data.success.token);
+                        this.props_token = window.localStorage.getItem( data.success.token);
+                        this.props.loginFunction();
+                      }
+                    });
     }
 
     addItemToCart = newItem => {
@@ -101,24 +120,15 @@ class App extends React.Component {
     };
 
     removeItemFromCart = itemName => {
-        console.log('inside cart function')
         if(Object.values(localStorage.getItem('cart')).includes(this.state.cart.name) > -1 ) {
-            // console.log("local storage contains the item")
-            // console.log('WANT TO REMOVE', itemName)
             let cart = JSON.parse(localStorage.getItem('cart'))
             console.log(cart)
             cart = cart.filter(item => {
-                // console.log('FOUND', item.name)
                 return item.name != itemName;
             });
             console.log(cart)
             localStorage.setItem('cart', JSON.stringify(cart));
-            // JSON.parse('')
-            //convert string to object, then remove the name .. this.state.name
         } else {
-            console.log("localstorage doesn't contain the item")
-            // console.log(Object.values(localStorage.getItem('cart')))
-            console.log('not contained', localStorage.getItem('cart'))
         }
         this.setState(prevState => {
             const newCart = prevState.cart.filter(
@@ -268,7 +278,15 @@ class App extends React.Component {
 const mapStateToProps = state => {
     return {
         loginStatus: state.loginReducer.loginStatus,
-        loginSuccess: state.loginReducer.loginSuccess
+        loginSuccess: state.loginReducer.loginSuccess,
+        credentials: state.loginReducer.credentials
     };
 };
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = dispatch => {
+    return {
+      loginFunction: () => {
+        dispatch({ type: "login" })
+      }
+    }
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(App);

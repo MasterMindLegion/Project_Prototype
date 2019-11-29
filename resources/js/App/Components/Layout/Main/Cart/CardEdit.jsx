@@ -16,6 +16,7 @@ export default class CardEdit extends React.Component {
             description: this.props.description, 
             inStock: this.props.in_stock,
             id: this.props.id,
+            success: false,
             localToken: window.localStorage.getItem('_token'),
         }
     }
@@ -41,7 +42,7 @@ export default class CardEdit extends React.Component {
   }
 
 
-handleFormSubmit = (event) => {
+  handleFormSubmit = (event) => {
     event.preventDefault();
     fetch('/api/editItems', {
       method: 'POST',
@@ -60,12 +61,16 @@ handleFormSubmit = (event) => {
       })
     })
     .then(response => response.json())
-    .then(data => { console.log(data)
+    .then(data => {
+      console.log('CARDEDIT', data)
+    if(data.success.token !== null/*  && modalStatus */) {this.setState({
+        success:true
+    })}
     })
+    .catch((e) => {
+    console.log(e);
+  })
 }
-
-
-
     render() {
 
         return (
@@ -121,6 +126,9 @@ handleFormSubmit = (event) => {
              </FormGroup>
              </CardText>
             <Button type="submit" value="Submit" color="danger">Submit</Button>  
+            <div className='text-danger'>
+               {this.state.success == false ? '' : <p role="alert" className="alert alert-success">Item was changed</p>}
+            </div>
               </Form> 
              </CardBody>
              </Card>

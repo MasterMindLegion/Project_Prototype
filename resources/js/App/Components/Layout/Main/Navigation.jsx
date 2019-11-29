@@ -18,6 +18,7 @@ import { connect } from 'react-redux';
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
+
     this.state = {
       isOpen: false,
     };
@@ -29,7 +30,6 @@ import { connect } from 'react-redux';
   }
 
   render() {
-    console.log('[NAVIGATION] PROPS', this.props)
     return (
       <>
         <Navbar color="dark" dark expand="md" className='navigation align-items-center'>
@@ -115,8 +115,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     startFetch : (arg) => {
-      console.log('startfetch is being dispatched')
-      console.log(arg)
       dispatch({type: "startFetch", payload: arg})
       },
  }

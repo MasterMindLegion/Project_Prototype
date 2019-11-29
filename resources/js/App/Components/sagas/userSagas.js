@@ -8,7 +8,6 @@ const hasUserCharity = async () => {
     'Content-Type': 'application/json',
     'Authorization': 'Bearer ' + state.loginReducer._token
   }
-  console.log("headers from user saga", headers);
    const res = await fetch('/api/auth/charity', {
       method: 'POST',
       headers
