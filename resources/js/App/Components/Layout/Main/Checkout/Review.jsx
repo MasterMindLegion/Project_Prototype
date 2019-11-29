@@ -15,12 +15,12 @@ import Grid from '@material-ui/core/Grid';
 //   { name: 'Product 4', desc: 'Best thing of all', price: '$14.11' },
 //   { name: 'Shipping', desc: '', price: 'Free' },
 // ];
-const addresses = ['1 Material-UI Drive', 'BootcampVille', 'Prague', '99999', 'USA'];
+const addresses = ['  ', '', '', '', ''];
 const payments = [
-  { name: 'Card type', detail: 'Pay Pal' },
+  { name: 'Card type', detail: '' },
   { name: 'Card holder', detail: '' },
-  { name: 'Card number', detail: 'xxxx-xxxx-xxxx-1234' },
-  { name: 'Expiry date', detail: '04/2024' },
+  { name: 'Card number', detail: '' },
+  { name: 'Expiry date', detail: '' },
 ];
 
 
