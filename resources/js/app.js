@@ -10,10 +10,12 @@ import { loginReducer } from './App/Components/store/login/loginReducer.js';
 import createSagaMiddleware from 'redux-saga';
 import userSagas from './App/Components/sagas/userSagas.js';
 import { itemReducer } from './App/Components/store/item/itemReducer.js';
+import { checkoutReducer } from './App/Components/store/checkout/checkoutReducer.js';
 // combining two reducers into a single reducer
 const rootReducer = combineReducers({
   loginReducer: loginReducer,
-  itemReducer: itemReducer
+  itemReducer: itemReducer,
+  checkoutReducer: checkoutReducer
 })
 // Store
 function* rootSaga() {

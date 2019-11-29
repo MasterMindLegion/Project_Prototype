@@ -40,15 +40,10 @@ class App extends React.Component {
         
     }
     componentDidMount() {
-<<<<<<< HEAD
      
         //MARTIN VERSION /www.final_charity.test:8080/
         fetch("http://www.final_charity.test:8080/api/items")
         // fetch("http://www.final_charity.test:8080/api/items")
-=======
-        //MARTIN VERSION /www.pro_charity.test:8080/
-        fetch("http://www.projectprototype.test:8080/api/items")
->>>>>>> c38585a41c9a625851b5f6719bb4e7bb29333115
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -56,7 +51,7 @@ class App extends React.Component {
                     items: result
                 });
             });
-        fetch("http://www.projectprototype.test:8080/api/charities")
+        fetch("http://www.final_charity.test:8080//api/charities")
             .then(res => res.json())
             .then(result => {
                 this.setState({
@@ -169,9 +164,16 @@ class App extends React.Component {
                     <Route exact path="/app/register" component={Register} />
 ​
                     <Route exact path="/app/charities"  render={() => {
-                     return <Charities
-                     charities={this.state.charities}
-                     />;
+                        return (
+                            <>
+                            <Navigation />,
+                            <Charities
+                            charities={this.state.charities}
+                            />,
+                            <Footer />
+                            </>
+                        )
+
                  }}
                     ></Route>
                     {/* LOGIN */}

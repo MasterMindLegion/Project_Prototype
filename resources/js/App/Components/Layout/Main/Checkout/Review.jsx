@@ -6,6 +6,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
 
 
 // const products = [
@@ -40,7 +41,7 @@ const useStyles = makeStyles(theme => ({
 // const [value, setValue] = React.useState
 
 
-export default function Review() {
+ function Review(props) {
   const classes = useStyles();
   const value = localStorage.getItem("cart");
   const products = JSON.parse(value);
@@ -76,8 +77,13 @@ export default function Review() {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
-          <Typography gutterBottom>{addresses.join(', ')}</Typography>
+          <Typography gutterBottom>{props.formCredentials.firstName}</Typography>
+          <Typography gutterBottom>{props.formCredentials.lastName}</Typography>
+          <Typography gutterBottom>{props.formCredentials.address1}</Typography>
+          <Typography gutterBottom>{props.formCredentials.address2}</Typography>
+          <Typography gutterBottom>{props.formCredentials.city}</Typography>
+          <Typography gutterBottom>{props.formCredentials.zip}</Typography>
+          <Typography gutterBottom>{props.formCredentials.country }</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>
           <Typography variant="h6" gutterBottom className={classes.title}>
@@ -100,3 +106,16 @@ export default function Review() {
     </React.Fragment>
   );
 }
+//==========
+// REDUX
+//==========
+// What state be used
+const mapStateToProps = state => {
+  return {
+    formCredentials: state.checkoutReducer.formCredentials
+  };
+}
+// What Actions be used
+
+//what is connect?
+export default connect(mapStateToProps)(Review);
