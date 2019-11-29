@@ -32,11 +32,13 @@ const CartItem = props => {
                 <CardSubtitle> <h2>  Only {props.price}  CZK </h2>  </CardSubtitle>
                 <hr className="my-2" />
                 <h4> Item description: </h4>
-                <h5>  Donald John Trump is the 45th and current president of the United States. Before entering politics, he was a businessman and television personality. Trump was born and raised in the New York City borough of Queens, and received a bachelor's degree in economics from the Wharton School at the University of Pennsylvania..{props.description} </h5>
+                <h5>  {props.description} </h5>
                 <p className="lead">
             <Button className="counter-button" color="primary"  onClick={removeItem}>Remove Item</Button>
                 </p>
-                <Button color="secondary">Learn More</Button>
+
+                <CardSubtitle>  <h5> In case You Mind </h5>  </CardSubtitle><Link disabled to="app/products">Search Other Items...  </Link>
+                
                 </CardBody>
                 <hr className="my-2" />
              </div>

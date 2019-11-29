@@ -124,10 +124,10 @@ export default class SellOn extends React.Component {
   </MDBCard>
 </MDBContainer>
 
-<MDBContainer>
+<MDBContainer >
   <MDBCardGroup deck>
     <MDBCard>
-      <MDBCardBody>
+      <MDBCardBody style={{  backgroundColor: "#29f4cd"}}>
         <MDBCardTitle tag="h5">Authentic Craft Supplies</MDBCardTitle>
         <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Others/documentation/forest-sm-mini.jpg" waves />
         <MDBCardText>
@@ -143,8 +143,8 @@ export default class SellOn extends React.Component {
       </MDBCardBody>
     </MDBCard>
 
-    <MDBCard>
-                <MDBCardBody>
+    <MDBCard >
+    <MDBCardBody style={{  backgroundColor: "#29f4cd"}}>
                     <MDBCardTitle tag="h5">Vintage </MDBCardTitle>
                     <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"  />
                     <MDBCardText>
@@ -162,7 +162,7 @@ export default class SellOn extends React.Component {
 
 
                 <MDBCard>
-                <MDBCardBody>
+                <MDBCardBody style={{  backgroundColor: "#29f4cd"}}>
                     <MDBCardTitle tag="h5">Handmade </MDBCardTitle>
                     <MDBCardImage className="img-fluid" src="https://mdbootstrap.com/img/Photos/Others/photo7.jpg" waves />
                     <MDBCardText>

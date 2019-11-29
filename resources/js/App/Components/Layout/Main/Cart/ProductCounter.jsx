@@ -29,6 +29,7 @@ export default class ProductCounter extends React.Component {
        this.setState(prevState => ({count: prevState.count-1}))
     }
 
+
   // addToCart = e => {
   //     console.log('addProps', this.props)
   //     this.props.addItemToCart({
@@ -43,7 +44,17 @@ export default class ProductCounter extends React.Component {
 
 }
   render() {
-    return (
+
+    const addItem = (item) => {
+        props.addItemToCart({
+            name: item.name,
+            price: item.price_per_item,
+            description: item.description,
+            image: item.item_img,
+            quantity: 1
+        })
+    }
+     return (
       <div>
            <h2> Update Your Cart  <FaShoppingCart />  </h2>
         <h3>Current Quantity in Your Cart: {this.state.count}</h3>
@@ -54,8 +65,11 @@ export default class ProductCounter extends React.Component {
         {/* <Button color="primary" size="md" onClick={this.addToCart}> <AddedProductModal/> Add to cart</Button> */}
         {/* <AddedProductModal/>  */}
         <hr className="my-2" />
-        <Button color="danger" size="md" block  onClick={this.addItemToCart}> <AddedProductModal/> Add to Cart</Button>
-        <Button color="danger" size="md" block> Refresh Your Cart</Button>
+        <Button color="danger" size="md" block   onClick={this.props.addItemToCart}> <AddedProductModal/> Add to Cart</Button>
+        {/* props.addItemToCart */}
+        {/* <Button onClick={addItem}>Add to Cart</Button> */}
+
+        {/* <Button color="danger" size="md" block> Refresh Your Cart</Button> */}
 
       </div>
       )

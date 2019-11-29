@@ -63,7 +63,8 @@ export default function ProductPage (props){
             <CardSubtitle> <h5> Or see other items from seller! Click for more...</h5>  </CardSubtitle>
             <hr className="my-2" />
             <h4> Item description: </h4>
-            <h5> {item.description} </h5>
+            <h5> {item.description}
+            Writing great fashion copy has never been easier! Enhance customer experience and lower your return rate with enticing product copy. Instant results. Reasonably priced. Human sounding. AI-written. Highlights: A Demo Available, Truly Versatile And Adaptive Technology. </h5>
            </CardBody>
            {/* <Button color="danger" size="md" block  onClick={this.addToCart}> <AddedProductModal/> Add to Cart</Button> */}
 
@@ -85,7 +86,7 @@ export default function ProductPage (props){
             <Col>
             {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
             <ProductCounter/>
-            <Button onClick={addItem}>Add to Cart</Button>
+            {/* <Button onClick={addItem}>Add to Cart</Button> */}
             </Col>
 
 
@@ -118,7 +119,7 @@ export default function ProductPage (props){
             {/* </Row> */}
         </>
        ) : (
-         <h2>Loading</h2>
+         <h2>Loading...</h2>
        )
        }
       </div>

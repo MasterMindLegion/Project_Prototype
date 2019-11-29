@@ -123,11 +123,12 @@ export default class Main extends React.Component {
                                 <Button outline color='success' onClick={this.handleClick} style={{ margin: "1rem"}}>
                                     Load More
                                 </Button>
-                                <Button color='primary'>
-                                View More
-                                <Link to='/app/Products' />
+                                <Button outline color='primary'>
+                                <Link to="/app/products">  View More </Link>
+                               
+                               
                                 </Button>
-                                </div>
+                                </div>  
                             </div>
                         }
                     </Container>

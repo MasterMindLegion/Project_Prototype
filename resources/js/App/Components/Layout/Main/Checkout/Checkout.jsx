@@ -100,10 +100,10 @@ export default function Checkout() {
   return (
      <React.Fragment>
       <CssBaseline />
-        <AppBar position="absolute" color="default" className={classes.appBar}>
+        <AppBar position="absolute" color="#4db6ac" className={classes.appBar}>
             <Toolbar>
-             <Typography variant="h6" color="inherit" noWrap>
-                <Link color="inherit" href="/../app/products">
+             <Typography variant="h6" color="#4db6ac" noWrap>
+                <Link color="#4db6ac" href="/../app/products">
                 <MenuIcon />  Back to Products
                 </Link>
                 </Typography>
@@ -111,7 +111,7 @@ export default function Checkout() {
 
              <Toolbar>
                 <Typography variant="h6" color="inherit" noWrap>
-                    <Link color="inherit" href="/../app/cart">
+                    <Link color="#4db6ac" href="/../app/cart">
                     <ShoppingCartIcon /> Back to Cart
                     </Link>
                 </Typography>
@@ -119,7 +119,7 @@ export default function Checkout() {
 
             <Toolbar>
              <Typography variant="h6" color="inherit" noWrap>
-                <Link color="inherit" href="/../app/products">
+                <Link color="#4db6ac" href="/../app/products">
                 <CreditCardIcon /> How would you like to pay?
                 </Link>
                 </Typography>
