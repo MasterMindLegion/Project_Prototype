@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container, Row, Col } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import {
@@ -16,17 +16,19 @@ import { FaCcMastercard } from 'react-icons/fa';
 import { FaApplePay } from 'react-icons/fa';
 import { FaGoogleWallet } from 'react-icons/fa';
 import { Link } from "react-router-dom";
+import ProductCounter from "./ProductCounter.jsx";
 
 export default function ProductPage (props){
   
-    const addItem = (item) => {
-      props.addItemToCart({
-          name: item.name,
-          price: item.price_per_item,
-          description: item.description,
-          image: item.item_img,
-          quantity: 1
-      })
+    // ADD THIS TO ONCLICK BUTTON BELOW, TO BE ABLE TO ADD ITEMS TO CART ON THIS PAGE
+     const addItem = (item) => {
+       props.addItemToCart({
+           name: item.name,
+           price: item.price_per_item,
+           description: item.description,
+           image: item.item_img,
+           quantity: 1
+       })
     }
   //all props are passed down
   const {items} = {...props}
@@ -63,6 +65,8 @@ export default function ProductPage (props){
             <h4> Item description: </h4>
             <h5> {item.description} </h5>
            </CardBody>
+           {/* <Button color="danger" size="md" block  onClick={this.addToCart}> <AddedProductModal/> Add to Cart</Button> */}
+
             <CardBody min-width="400px">
             <Link to="/app/checkout"> <h4> Proceed to Checkout </h4> </Link>
             <hr className="my-2" />
@@ -80,7 +84,8 @@ export default function ProductPage (props){
             </CardBody>
             <Col>
             {/** HERE GOES ADD/REMOVE PRODUCT QUANTITY */}
-  
+            <ProductCounter/>
+            <Button onClick={addItem}>Add to Cart</Button>
             </Col>
 
 

@@ -29,16 +29,16 @@ export default class ProductCounter extends React.Component {
        this.setState(prevState => ({count: prevState.count-1}))
     }
 
-  addToCart = e => {
-      console.log('addProps', this.props)
-      this.props.addItemToCart({
-          name: this.props.name,
-          price: this.props.price,
-          description: this.props.description,
-          image: this.props.item_img,
-          quantity: 1
-    })
-  }
+  // addToCart = e => {
+  //     console.log('addProps', this.props)
+  //     this.props.addItemToCart({
+  //         name: this.props.name,
+  //         price: this.props.price,
+  //         description: this.props.description,
+  //         image: this.props.item_img,
+  //         quantity: 1
+  //   })
+  // }
 
 
 }
@@ -54,8 +54,8 @@ export default class ProductCounter extends React.Component {
         {/* <Button color="primary" size="md" onClick={this.addToCart}> <AddedProductModal/> Add to cart</Button> */}
         {/* <AddedProductModal/>  */}
         <hr className="my-2" />
-        <Button color="danger" size="md" block >  <AddedProductModal/> Add to Cart</Button>
-        <Button color="danger" size="md" block  onClick={this.reset} >  <AddedProductModal/> Refresh Your Cart</Button>
+        <Button color="danger" size="md" block  onClick={this.addItemToCart}> <AddedProductModal/> Add to Cart</Button>
+        <Button color="danger" size="md" block> Refresh Your Cart</Button>
 
       </div>
       )
